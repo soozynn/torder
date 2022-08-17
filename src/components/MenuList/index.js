@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Menubar(props) {
+export default function MenuList(props) {
   return <div></div>;
 }
