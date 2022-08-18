@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import logoSrc from "../../../../assets/logo.svg";
 import hamburgerSrc from "../../../../assets/hamburger.svg";
@@ -22,13 +23,17 @@ const Logo = styled.img`
   height: 4.79587vw;
 `;
 
-export default function HeaderIcons() {
+export default function HeaderIcons({ onClick }) {
   return (
     <HeaderIconContainer>
-      <div>
+      <div onClick={onClick}>
         <HamburgerIcon alt="hamburger" src={hamburgerSrc} />
       </div>
       <Logo alt="logo" src={logoSrc} />
     </HeaderIconContainer>
   );
 }
+
+HeaderIcons.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

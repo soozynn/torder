@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import HeaderIcons from "./Icons/index";
-import styled from "styled-components";
 
 const StoreInformationContainer = styled.div`
   flex: 1;
@@ -37,10 +37,18 @@ const Name = styled.p`
 export default function StoreInformation({ store }) {
   const { name } = store;
 
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClickHamburger = () => {
+    // 사이드바 보이기
+    setIsClicked(!isClicked);
+  };
+
   return (
     <StoreInformationContainer>
-      <HeaderIcons />
+      <HeaderIcons onClick={handleClickHamburger} />
       <Name>{name}</Name>
+      {}
     </StoreInformationContainer>
   );
 }

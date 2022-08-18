@@ -33,6 +33,12 @@ const GlobalStyles = createGlobalStyle`
   src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/NotoSerifKR-SemiBold.woff2")
     format("woff2");
 }
+
+@font-face {
+  font-family: "NotoSerifKR";
+  src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/NotoSerifKR-Regular.woff2")
+    format("woff2");
+}
 `;
 
 export default function App() {

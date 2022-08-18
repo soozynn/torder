@@ -3,10 +3,12 @@ import styled from "styled-components";
 
 import Navbar from "../components/Navbar/index";
 import Header from "../components/Header/index";
-import Error from "../components/Error/index";
+import Notification from "../components/Notification/index";
+import CategoryList from "../components/Category/CategoryList";
+import SubCategoryList from "../components/SubCategoryList/SubCategoryList";
 import mockData from "../mock.json";
 
-const NavbarWrapper = styled.div`
+const GoodsContainer = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -23,6 +25,20 @@ const NavbarWrapper = styled.div`
   transition: transform 1s;
 `;
 
+const Wrapbar = styled.div`
+  width: 100vw;
+  height: 6.25vw;
+  display: flex;
+  justify-content: center;
+  padding: 2.35vw 0 2.2875vw;
+  box-sizing: border-box;
+`;
+
+const CategoryListContainer = styled.div`
+  padding-left: 4.75vw;
+  box-sizing: border-box;
+`;
+
 export default function Main() {
   const [data, setData] = useState({ ...mockData });
 
@@ -31,12 +47,17 @@ export default function Main() {
       {data ? (
         <>
           <Header store={data.store} table={data.table} />
-          <NavbarWrapper>
+          <GoodsContainer>
+            <Wrapbar></Wrapbar>
+            <CategoryListContainer>
+              <CategoryList categories={data.categories} />
+              <SubCategoryList subCategories={data.subCategories} />
+            </CategoryListContainer>
             <Navbar />
-          </NavbarWrapper>
+          </GoodsContainer>
         </>
       ) : (
-        <Error />
+        <Notification />
       )}
     </>
   );
