@@ -8,6 +8,7 @@ import CategoryList from "../components/Category/CategoryList";
 import SubCategoryList from "../components/SubCategoryList/SubCategoryList";
 import mockData from "../mock.json";
 import MenuList from "../components/Menu/MenuList";
+import { useSelector } from "react-redux";
 
 const GoodsContainer = styled.div`
   position: fixed;
@@ -41,7 +42,7 @@ const CategoryListContainer = styled.div`
 `;
 
 export default function Main() {
-  const [data, setData] = useState({ ...mockData });
+  const data = useSelector((state) => state.menu.menu);
   const [activeCategoryId, setActiveCategoryId] = useState(
     data.categories[0].id
   );
