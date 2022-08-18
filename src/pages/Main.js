@@ -7,6 +7,7 @@ import Notification from "../components/Notification/index";
 import CategoryList from "../components/Category/CategoryList";
 import SubCategoryList from "../components/SubCategoryList/SubCategoryList";
 import mockData from "../mock.json";
+import MenuList from "../components/Menu/MenuList";
 
 const GoodsContainer = styled.div`
   position: fixed;
@@ -50,6 +51,7 @@ export default function Main() {
       {data ? (
         <>
           <Header store={data.store} table={data.table} />
+
           <GoodsContainer>
             <Wrapbar></Wrapbar>
             <CategoryListContainer>
@@ -63,8 +65,10 @@ export default function Main() {
                 activeCategoryId={activeCategoryId}
               />
             </CategoryListContainer>
-            <Navbar />
+            <MenuList menu={data.goods} number={data.categories.length} />
           </GoodsContainer>
+
+          <Navbar />
         </>
       ) : (
         <Notification />

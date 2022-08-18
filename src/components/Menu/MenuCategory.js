@@ -2,27 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import MenuCategory from "./MenuCategory";
+import Menu from "./Menu";
 
-const MenuListContainer = styled.div`
-  position: relative;
-  flex: 1;
-  overflow: auto;
-  padding: 0 5vw 20vw;
-  box-sizing: border-box;
-`;
-
-export default function MenuList({ menu, number }) {
+export default function MenuCategory({ menu }) {
   return (
-    <MenuListContainer>
-      {[...Array(number)].map((index) => (
-        <MenuCategory key={index} menu={menu} />
-      ))}
-    </MenuListContainer>
+    <div>
+      <Menu />
+    </div>
   );
 }
 
-MenuList.propTypes = {
+MenuCategory.propTypes = {
   menu: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -43,9 +33,5 @@ MenuList.propTypes = {
       price: PropTypes.number,
       optionQuantityLimit: PropTypes.number,
     }).isRequired,
-  }).isRequired,
-  number: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
   }).isRequired,
 };
