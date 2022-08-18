@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -18,24 +18,38 @@ const SubCategoryListWrapper = styled.div`
   display: flex;
 `;
 
-export default function SubCategoryList({ subCategories }) {
-  const [activeId, setActiveId] = useState("");
+export default function SubCategoryList({ subCategories, activeCategoryId }) {
+  const [activeSubCategoryId, setActiveSubCategoryId] = useState(
+    subCategories[0].id
+  );
+
+  useEffect(() => {
+    setActiveSubCategoryId(
+      subCategories.filter((subCategory) =>
+        subCategory.parentCategoriesCodes.includes(activeCategoryId)
+      )[0].id
+    );
+  }, [activeCategoryId, subCategories]);
 
   const handleClickSubCategory = (id) => {
-    setActiveId(id);
+    setActiveSubCategoryId(id);
   };
 
   return (
     <SubCategoryListContainer>
       <SubCategoryListWrapper>
-        {subCategories.map((subCategory) => (
-          <SubCategory
-            key={subCategory.id}
-            name={subCategory.name}
-            onClick={() => handleClickSubCategory(subCategory.id)}
-            isActive={activeId === subCategory.id}
-          />
-        ))}
+        {subCategories
+          .filter((subCategory) =>
+            subCategory.parentCategoriesCodes.includes(activeCategoryId)
+          )
+          .map((subCategory) => (
+            <SubCategory
+              key={subCategory.id}
+              name={subCategory.name}
+              onClick={() => handleClickSubCategory(subCategory.id)}
+              isActive={activeSubCategoryId === subCategory.id}
+            />
+          ))}
       </SubCategoryListWrapper>
     </SubCategoryListContainer>
   );
@@ -44,8 +58,10 @@ export default function SubCategoryList({ subCategories }) {
 SubCategoryList.propTypes = {
   subCategories: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      parentCategoriesCodes: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ).isRequired,
+  activeCategoryId: PropTypes.string.isRequired,
 };

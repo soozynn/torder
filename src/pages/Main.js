@@ -41,6 +41,9 @@ const CategoryListContainer = styled.div`
 
 export default function Main() {
   const [data, setData] = useState({ ...mockData });
+  const [activeCategoryId, setActiveCategoryId] = useState(
+    data.categories[0].id
+  );
 
   return (
     <>
@@ -50,8 +53,15 @@ export default function Main() {
           <GoodsContainer>
             <Wrapbar></Wrapbar>
             <CategoryListContainer>
-              <CategoryList categories={data.categories} />
-              <SubCategoryList subCategories={data.subCategories} />
+              <CategoryList
+                categories={data.categories}
+                activeId={activeCategoryId}
+                setActiveId={setActiveCategoryId}
+              />
+              <SubCategoryList
+                subCategories={data.subCategories}
+                activeCategoryId={activeCategoryId}
+              />
             </CategoryListContainer>
             <Navbar />
           </GoodsContainer>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -15,9 +15,7 @@ const CategoryListWrapper = styled.div`
   gap: 1.25vw;
 `;
 
-export default function CategoryList({ categories }) {
-  const [activeId, setActiveId] = useState("");
-
+export default function CategoryList({ categories, activeId, setActiveId }) {
   const handleClickCategory = (id) => {
     setActiveId(id);
   };
@@ -39,11 +37,14 @@ export default function CategoryList({ categories }) {
     </CategoryListContainer>
   );
 }
+
 CategoryList.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     })
   ).isRequired,
+  activeId: PropTypes.string.isRequired,
+  setActiveId: PropTypes.func.isRequired,
 };
