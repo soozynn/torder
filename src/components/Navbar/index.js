@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import Item from "./Item/index";
 import Recall from "./Recall/index";
-import iconHamburgerSrc from "../../assets/Navbar/hamburger.svg";
-import iconBillSrc from "../../assets/Navbar/bill.svg";
-import iconBellSrc from "../../assets/Navbar/bell.svg";
-import iconEventsSrc from "../../assets/Navbar/events.svg";
-import iconShoppingBagSrc from "../../assets/Navbar/shoppingBag.svg";
+import iconOrderSrc from "../../assets/order.svg";
+import iconBillSrc from "../../assets/bill.svg";
+import iconBellSrc from "../../assets/bell.svg";
+import iconEventsSrc from "../../assets/events.svg";
+import iconShoppingBagSrc from "../../assets/shoppingBag.svg";
 
 const NavbarContainer = styled.div`
   position: fixed;
@@ -19,15 +19,15 @@ const NavbarContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   background-color: #fff;
-  border-top: 0.125vw solid #ccc;
   padding: 0 12.5vw;
+  border-top: 0.125vw solid #ccc;
   box-sizing: border-box;
 `;
 
 export default function Navbar() {
   return (
     <NavbarContainer>
-      <Item src={iconHamburgerSrc} title="주문내역" />
+      <Item src={iconOrderSrc} title="주문내역" />
       <Item src={iconBillSrc} title="계산서" gap="1.625vw" />
       <Recall
         src={iconBellSrc}

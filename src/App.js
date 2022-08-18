@@ -12,18 +12,14 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
   }
 
-  p {
+  a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, button, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
     margin: 0;
     padding: 0;
-  }
-
-// font-family: "Spoqa Han Sans Neo";
-@import url("//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css");
-
-@font-face {
-  font-family: "mapoflower";
-  src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/MapoFlowerIsland.otf")
-    format("opentype");
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    scrollbar-width: none;
 }
 
 @font-face {
@@ -35,18 +31,6 @@ const GlobalStyles = createGlobalStyle`
 @font-face {
   font-family: "NotoSerifKR-semibold";
   src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/NotoSerifKR-SemiBold.woff2")
-    format("woff2");
-}
-
-@font-face {
-  font-family: "NotoSerifKR-light";
-  src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/NotoSerifCJKkr-ExtraLight-subset.woff2")
-    format("woff2");
-}
-
-@font-face {
-  font-family: "NotoSerifKR";
-  src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/NotoSerifKR-Regular.woff2")
     format("woff2");
 }
 `;

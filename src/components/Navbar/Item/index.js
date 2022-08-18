@@ -10,10 +10,6 @@ const ItemContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: ${(props) => props.gap || "1.45vw"};
-
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 const IconWrapper = styled.div`

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="37" height="24" viewBox="0 0 37 24">
+    <g data-name="Group 5" transform="translate(-.2 -.4)">
+        <rect data-name="Rectangle 1" width="37" height="4" rx="2" transform="translate(.2 .4)" style="fill:#fff"/>
+        <rect data-name="Rectangle 2" width="37" height="4" rx="2" transform="translate(.2 10.4)" style="fill:#fff"/>
+        <rect data-name="Rectangle 3" width="37" height="4" rx="2" transform="translate(.2 20.4)" style="fill:#fff"/>
+    </g>
+</svg>
