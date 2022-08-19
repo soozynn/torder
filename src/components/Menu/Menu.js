@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import Label from "../Label/index";
+
 const MenuContainer = styled.div`
   position: relative;
   display: flex;
@@ -81,6 +83,7 @@ const LabelContainer = styled.div`
 `;
 
 export default function Menu() {
+  // const {  } = ;
   return (
     <MenuContainer>
       <ImageWrapper>
@@ -93,10 +96,10 @@ export default function Menu() {
         <Name></Name>
         <Price></Price>
         <LabelContainer>
-          {/* {data && 각각 4개의 데이터가 존재하면 보여주기  */}
-          {/* {data && 각각 4개의 데이터가 존재하면 보여주기  */}
-          {/* {data && 각각 4개의 데이터가 존재하면 보여주기  */}
-          {/* {data && 각각 4개의 데이터가 존재하면 보여주기  */}
+          {/* {data && <Label>BEST</Label>}
+          {data && <Label>HIT</Label>}
+          {data && <Label>추천</Label>}
+          {data && <Label>신메뉴</Label>} */}
         </LabelContainer>
       </Information>
     </MenuContainer>

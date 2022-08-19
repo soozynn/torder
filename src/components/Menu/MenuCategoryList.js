@@ -18,9 +18,9 @@ export default function MenuCategoryList({ menu, name }) {
   return (
     <MenuCategoryListContainer>
       {subCategories
-        .filter((subCategory) =>
-          subCategory.parentCategoriesCodes.includes(subCategory.id)
-        )
+        // .filter((subCategory) => 굿즈의 belongToCategories에 서브카테고리스 아이디가 포함되어있는지
+        //   subCategory.parentCategoriesCodes.includes(subCategory.id)
+        // )
         .map((subCategory) => (
           <MenuCategory key={subCategory.id} menu={menu} name={name} />
         ))}
@@ -28,6 +28,6 @@ export default function MenuCategoryList({ menu, name }) {
   );
 }
 
-MenuCategoryList.prototype = {
+MenuCategoryList.propTypes = {
   // menu: PropTypes.
 };
