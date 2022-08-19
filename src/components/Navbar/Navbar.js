@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Item from "./NavbarItem";
-import Recall from "../Recall/index";
+import RecallIcon from "../RecallIcon/index";
 import iconOrderSrc from "../../assets/order.svg";
 import iconBillSrc from "../../assets/bill.svg";
 import iconEventsSrc from "../../assets/events.svg";
@@ -38,7 +38,7 @@ export default function Navbar({ onClick }) {
         width="4.275vw"
         height="2.775vw"
       />
-      <Recall position="center" />
+      <RecallIcon position="center" />
       <Item
         src={iconEventsSrc}
         title="이벤트"

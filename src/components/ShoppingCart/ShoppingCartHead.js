@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Recall from "../Recall";
-
 const ShoppingCartHeadContainer = styled.div`
   position: absolute;
   top: 0;

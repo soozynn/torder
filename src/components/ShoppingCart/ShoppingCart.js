@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import Recall from "../Recall";
+import RecallIcon from "../RecallIcon/index";
 import ShoppingCartHead from "./ShoppingCartHead";
 import ShoppingCartHistory from "./ShoppingCartHistory";
 import Button from "../Button/index";
@@ -131,7 +131,7 @@ export default function ShoppingCart() {
   return (
     <ShoppingCartContainer>
       <RecallWrapper>
-        <Recall />
+        <RecallIcon />
       </RecallWrapper>
       <ShoppingCartHead />
 

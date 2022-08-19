@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Header from "../components/Header/index";
 import CategoryList from "../components/Category/CategoryList";
-import SubCategoryList from "../components/SubCategoryList/SubCategoryList";
+import SubCategoryList from "../components/SubCategory/SubCategoryList";
 import FullMenuList from "../components/Menu/FullMenuList";
 import Navbar from "../components/Navbar/Navbar";
 import Notification from "../components/Notification/index";
