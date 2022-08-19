@@ -12,7 +12,13 @@ const MenuCategoryListContainer = styled.div`
   }
 `;
 
-export default function MenuCategoryList({ id, title, goods, subCategories }) {
+export default function MenuCategoryList({
+  id,
+  title,
+  goods,
+  subCategories,
+  setIsOpenNotification,
+}) {
   return (
     <MenuCategoryListContainer>
       {subCategories
@@ -24,6 +30,7 @@ export default function MenuCategoryList({ id, title, goods, subCategories }) {
             goods={goods}
             title={title}
             subTitle={subCategory.name}
+            setIsOpenNotification={setIsOpenNotification}
           />
         ))}
     </MenuCategoryListContainer>

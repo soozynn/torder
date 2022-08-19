@@ -44,13 +44,13 @@ const CategoryListContainer = styled.div`
 export default function Main() {
   const { menu, cart } = useSelector((state) => state.menu);
   const [isClickedShoppingCart, setIsClickedShoppingCart] = useState(false);
+  const [isOpenNotification, setIsOpenNotification] = useState(false);
   const [activeCategoryId, setActiveCategoryId] = useState(
     menu.categories[0].id
   );
-  console.log(cart);
+
   const handleClickShoppingCart = () => {
     if (!cart.length) return;
-    // return 대신 notification 보여주기
     setIsClickedShoppingCart(!isClickedShoppingCart);
   };
 
@@ -77,6 +77,7 @@ export default function Main() {
               goods={menu.goods}
               categories={menu.categories}
               subCategories={menu.subCategories}
+              setIsOpenNotification={setIsOpenNotification}
             />
           </GoodsContainer>
 
@@ -85,9 +86,17 @@ export default function Main() {
           ) : (
             <Navbar onClick={handleClickShoppingCart} />
           )}
+          {isOpenNotification && (
+            <Notification
+              isOpenNotification={isOpenNotification}
+              setIsOpenNotification={setIsOpenNotification}
+            >
+              품절된 상품입니다.
+            </Notification>
+          )}
         </>
       ) : (
-        <Notification />
+        <Notification>데이터를 불러오지 못하였습니다.</Notification>
       )}
     </>
   );

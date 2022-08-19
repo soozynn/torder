@@ -44,12 +44,19 @@ const MenuContainer = styled.div`
   row-gap: 1.875vw;
 `;
 
-export default function MenuCategory({ id, title, subTitle, goods }) {
+export default function MenuCategory({
+  id,
+  title,
+  subTitle,
+  goods,
+  setIsOpenNotification,
+}) {
   const dispatch = useDispatch();
 
   const handleClickMenu = (menu) => {
     if (menu.soldOut) {
-      return <Notification>품절된 상품입니다.</Notification>;
+      setIsOpenNotification(true);
+      return;
     }
 
     dispatch(
