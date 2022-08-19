@@ -56,7 +56,6 @@ export default function Menu({ menu, onClick }) {
     name,
     price,
     description,
-    belongToCategories,
     image,
     soldOut,
     hit,
@@ -65,7 +64,7 @@ export default function Menu({ menu, onClick }) {
     recommend,
     optionGroups,
   } = menu;
-  console.log(hit);
+
   return (
     <MenuContainer onClick={onClick}>
       <ImageWrapper>
@@ -78,7 +77,7 @@ export default function Menu({ menu, onClick }) {
           <Mark option={optionGroups.length > 0} description={description} />
         )}
         <Name>{name}</Name>
-        <Price>{price}</Price>
+        <Price>{price.toLocaleString()}</Price>
 
         <LabelContainer>
           {best && <Label>BEST</Label>}

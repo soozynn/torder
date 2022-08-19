@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -13,7 +13,6 @@ const MenuCategoryListContainer = styled.div`
 `;
 
 export default function MenuCategoryList({ id, title, goods, subCategories }) {
-  console.log(id);
   return (
     <MenuCategoryListContainer>
       {subCategories
@@ -21,10 +20,10 @@ export default function MenuCategoryList({ id, title, goods, subCategories }) {
         .map((subCategory) => (
           <MenuCategory
             key={subCategory.id}
+            id={subCategory.id}
             goods={goods}
             title={title}
             subTitle={subCategory.name}
-            subCategory={subCategory}
           />
         ))}
     </MenuCategoryListContainer>

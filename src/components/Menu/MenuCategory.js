@@ -42,7 +42,7 @@ const MenuContainer = styled.div`
   row-gap: 1.875vw;
 `;
 
-export default function MenuCategory({ title, subTitle, goods, subCategory }) {
+export default function MenuCategory({ id, title, subTitle, goods }) {
   const dispatch = useDispatch();
 
   const handleClickMenu = (event) => {
@@ -58,23 +58,24 @@ export default function MenuCategory({ title, subTitle, goods, subCategory }) {
       <HorizontalBar></HorizontalBar>
 
       <MenuContainer>
-        {goods.map((menu) => (
-          <Menu key={menu.id} menu={menu} onClick={(e) => handleClickMenu(e)} />
-        ))}
+        {goods
+          .filter((menu) => menu.belongToCategories.includes(id))
+          .map((menu) => (
+            <Menu
+              key={menu.id}
+              menu={menu}
+              onClick={(e) => handleClickMenu(e)}
+            />
+          ))}
       </MenuContainer>
     </div>
   );
 }
 
 MenuCategory.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
-  subCategory: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    parentCategoriesCodes: PropTypes.arrayOf(PropTypes.string.isRequired)
-      .isRequired,
-  }).isRequired,
   goods: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
