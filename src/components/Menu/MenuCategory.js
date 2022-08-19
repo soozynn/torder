@@ -70,6 +70,8 @@ export default function MenuCategory({
         count: 1,
       })
     );
+    setNotificationText(`장바구니에 ${menu.name} 상품을 담았습니다.`);
+    setIsOpenNotification(true);
   };
 
   return (

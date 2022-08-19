@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import imageDeleteButtonSrc from "../../assets/deleteButton.svg";
 import imagePlusButtonSrc from "../../assets/plusButton.svg";
 import imageMinusButtonSrc from "../../assets/minusButton.svg";
-import { removeMenu } from "../../features/menu/menuSlice";
+import { removeMenuToCart } from "../../features/menu/menuSlice";
 
 const ShoppingCartHistoryContainer = styled.div`
   position: relative;
@@ -80,7 +80,7 @@ const TotalInformation = styled.div`
 
 const Price = styled.p`
   padding: 0 2.75vw;
-  font-family: "notoserif-bold";
+  font-family: "NotoSerifKR-bold";
   font-size: 2.875vw;
   line-height: 1.1;
 `;
@@ -97,26 +97,26 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1vw; // 수정 필요
+  margin: 1vw;
   background: none;
   border: unset;
   transition: all 0.2s;
 `;
 
 const TotalQuantity = styled.p`
-  font-family: "notoserif-semibold";
+  font-family: "NotoSerifKR-semibold";
   font-size: 3.5vw;
   letter-spacing: -0.175vw;
 `;
 
-export default function ShoppingCartHistory({ list }) {
-  const { name, option, price } = list;
+export default function ShoppingCartHistory({ menu }) {
+  const { name, option, price } = menu;
   const [totalQuantity, setTotalQuantity] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!totalQuantity) {
-      // dispatch(removeMenu(id));
+      // dispatch(removeMenuToCart(id));
     }
   }, [totalQuantity, dispatch]);
 
@@ -140,7 +140,7 @@ export default function ShoppingCartHistory({ list }) {
       </MenuInformation>
 
       <TotalInformation>
-        <Price>{price}4000</Price>
+        <Price>{price.toLocaleString()}</Price>
 
         <TotalQuantityContainer>
           <Button onClick={handleClickPlusButton}>
@@ -157,5 +157,10 @@ export default function ShoppingCartHistory({ list }) {
 }
 
 ShoppingCartHistory.propTypes = {
-  // list: PropTypes.string,
+  menu: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
+  }),
 };

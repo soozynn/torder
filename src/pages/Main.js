@@ -8,7 +8,7 @@ import SubCategoryList from "../components/SubCategory/SubCategoryList";
 import FullMenuList from "../components/Menu/FullMenuList";
 import Navbar from "../components/Navbar/Navbar";
 import Notification from "../components/Notification/index";
-import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
+import ShoppingCartList from "../components/ShoppingCart/ShoppingCartList";
 
 const GoodsContainer = styled.div`
   position: fixed;
@@ -43,7 +43,7 @@ const CategoryListContainer = styled.div`
 
 export default function Main() {
   const { menu, cart } = useSelector((state) => state.menu);
-  const [isClickedShoppingCart, setIsClickedShoppingCart] = useState(false);
+  const [showsShoppingCart, setShowsShoppingCart] = useState(false);
   const [isOpenNotification, setIsOpenNotification] = useState(false);
   const [notificationText, setNotificationText] = useState("");
   const [activeCategoryId, setActiveCategoryId] = useState(
@@ -57,7 +57,7 @@ export default function Main() {
       return;
     }
 
-    setIsClickedShoppingCart(!isClickedShoppingCart);
+    setShowsShoppingCart(!showsShoppingCart);
   };
 
   return (
@@ -88,8 +88,13 @@ export default function Main() {
             />
           </GoodsContainer>
 
-          {isClickedShoppingCart ? (
-            <ShoppingCart />
+          {showsShoppingCart ? (
+            <ShoppingCartList
+              cartList={cart}
+              setIsOpenNotification={setIsOpenNotification}
+              setNotificationText={setNotificationText}
+              setShowsShoppingCart={setShowsShoppingCart}
+            />
           ) : (
             <Navbar onClick={handleClickShoppingCart} cartList={cart} />
           )}

@@ -62,9 +62,10 @@ export default function Item({
       ) : (
         <IconWrapper>
           <CountBox>
-            {cartList.reduce((accumulator, object) => {
-              return accumulator + object.count;
-            }, 0)}
+            {cartList.reduce(
+              (accumulator, object) => accumulator + object.count,
+              0
+            )}
           </CountBox>
         </IconWrapper>
       )}
@@ -81,7 +82,7 @@ Item.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
       count: PropTypes.number.isRequired,
     })
   ),

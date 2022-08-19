@@ -1,11 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import RecallIcon from "../RecallIcon/index";
 import ShoppingCartHead from "./ShoppingCartHead";
 import ShoppingCartHistory from "./ShoppingCartHistory";
 import Button from "../Button/index";
+import { orderMenuList } from "../../features/menu/menuSlice";
 
 const ShoppingCartContainer = styled.div`
   position: fixed;
@@ -54,10 +56,10 @@ const ShoppingCartTitle = styled.p`
 `;
 
 const AllDeleteButton = styled.p`
-  padding: 5px 10px;
+  padding: 0.7vw 1.6vw;
   background-color: unset;
-  border: 1.2px solid #000000;
-  border-radius: 8px;
+  border: 1px solid #000000;
+  border-radius: 4px;
   font-weight: 600;
   font-size: 2.5vw;
 `;
@@ -91,9 +93,9 @@ const HistoryListTotal = styled.div`
 `;
 
 const TotalText = styled.p`
-  font-family: "NotoSerifKR";
+  font-family: "notoserif-bold";
   font-size: 3.25vw;
-  font-weight: 700; // not work
+  font-weight: 700;
   letter-spacing: -0.08125vw;
 `;
 
@@ -125,8 +127,24 @@ const OrderButtonWrapper = styled.div`
   flex: 1;
 `;
 
-export default function ShoppingCart() {
-  const shoppingCartList = useSelector((state) => state.menu.bill);
+export default function ShoppingCartList({
+  cartList,
+  setIsOpenNotification,
+  setNotificationText,
+  setShowsShoppingCart,
+}) {
+  const dispatch = useDispatch();
+
+  const handleClickCloseButton = () => {
+    setShowsShoppingCart(false);
+  };
+
+  const handleClickOrderButton = () => {
+    dispatch(orderMenuList());
+    setShowsShoppingCart(false);
+    setIsOpenNotification(true);
+    setNotificationText("주문을 완료했습니다.");
+  };
 
   return (
     <ShoppingCartContainer>
@@ -143,37 +161,59 @@ export default function ShoppingCart() {
 
         <ShoppingCartListContainer>
           <ShoppingCarListWrapper>
-            {shoppingCartList.map((list) => (
-              <ShoppingCartHistory key={list.id} list={list} />
+            {cartList.map((menu) => (
+              <ShoppingCartHistory key={menu.id} menu={menu} />
             ))}
           </ShoppingCarListWrapper>
         </ShoppingCartListContainer>
 
         <HistoryListTotal>
           <TotalText>
-            총 {shoppingCartList.length}가지{" "}
-            {/* {shoppingCartList
-              .map((item) => item.count)
-              .reduce((prev, next) => prev + next)} */}
+            총 {cartList.length}가지{" "}
+            {cartList.reduce(
+              (accumulator, object) => accumulator + object.count,
+              0
+            )}
             개
           </TotalText>
           <TotalPrice>
-            {/* {shoppingCartList
-              .map((item) => item.price)
-              .reduce((prev, next) => prev + next)} */}
+            {cartList
+              .reduce(
+                (accumulator, object) =>
+                  accumulator + object.price * object.count,
+                0
+              )
+              .toLocaleString()}
             원
           </TotalPrice>
         </HistoryListTotal>
 
         <ButtonContainer>
           <CloseButtonWrapper>
-            <Button>닫기</Button>
+            <Button onClick={handleClickCloseButton}>닫기</Button>
           </CloseButtonWrapper>
+
           <OrderButtonWrapper>
-            <Button color="red">주문하기</Button>
+            <Button background="red" onClick={handleClickOrderButton}>
+              주문하기
+            </Button>
           </OrderButtonWrapper>
         </ButtonContainer>
       </ShoppingCartBackground>
     </ShoppingCartContainer>
   );
 }
+
+ShoppingCartList.propTypes = {
+  setIsOpenNotification: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
+  setShowsShoppingCart: PropTypes.func,
+  cartList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      count: PropTypes.number,
+    })
+  ).isRequired,
+};

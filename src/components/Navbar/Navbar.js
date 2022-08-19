@@ -44,7 +44,7 @@ export default function Navbar({ cartList, onClick }) {
         height="4.1695vw"
       />
       {cartList.length > 0 ? (
-        <Item title="장바구니" cartList={cartList} />
+        <Item title="장바구니" cartList={cartList} onClick={onClick} />
       ) : (
         <Item src={iconShoppingBagSrc} title="장바구니" onClick={onClick} />
       )}
@@ -57,7 +57,7 @@ Navbar.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
       count: PropTypes.number,
     })
   ).isRequired,
