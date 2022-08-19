@@ -7,7 +7,10 @@ import RecallIcon from "../RecallIcon/index";
 import ShoppingCartHead from "./ShoppingCartHead";
 import ShoppingCartHistory from "./ShoppingCartHistory";
 import Button from "../Button/index";
-import { orderMenuList } from "../../features/menu/menuSlice";
+import {
+  orderMenuList,
+  removeAllMenuToCart,
+} from "../../features/menu/menuSlice";
 
 const ShoppingCartContainer = styled.div`
   position: fixed;
@@ -146,6 +149,11 @@ export default function ShoppingCartList({
     setNotificationText("주문을 완료했습니다.");
   };
 
+  const handleClickAllDeleteButton = () => {
+    dispatch(removeAllMenuToCart());
+    setShowsShoppingCart(false);
+  };
+
   return (
     <ShoppingCartContainer>
       <RecallWrapper>
@@ -156,7 +164,9 @@ export default function ShoppingCartList({
       <ShoppingCartBackground>
         <HistoryHeader>
           <ShoppingCartTitle>장바구니</ShoppingCartTitle>
-          <AllDeleteButton>전체 삭제 X</AllDeleteButton>
+          <AllDeleteButton onClick={handleClickAllDeleteButton}>
+            전체 삭제 X
+          </AllDeleteButton>
         </HistoryHeader>
 
         <ShoppingCartListContainer>

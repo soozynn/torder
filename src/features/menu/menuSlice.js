@@ -34,6 +34,9 @@ export const menuSlice = createSlice({
     removeMenuToCart: (state, action) => {
       state.cart = state.cart.filter((menu) => menu.id !== action.payload);
     },
+    removeAllMenuToCart: (state) => {
+      state.cart = [];
+    },
     orderMenuList: (state) => {
       state.order = [...state.cart];
     },
@@ -45,6 +48,7 @@ export const {
   // selectSubCategory,
   addMenuToCart,
   removeMenuToCart,
+  removeAllMenuToCart,
   orderMenuList,
 } = menuSlice.actions;
 
