@@ -70,7 +70,7 @@ export default function Main() {
           </GoodsContainer>
 
           <Navbar />
-          <ShoppingCart />
+          {/* <ShoppingCart /> */}
         </>
       ) : (
         <Notification />

@@ -25,7 +25,7 @@ const HeadText = styled.p`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-family: "NotoSerifKR";
+  font-family: "notoserif-bold";
   font-size: 2.625vw;
   letter-spacing: -0.13125vw;
   filter: drop-shadow(0 -3.25vw 3.125vw rgba(0, 0, 0, 0.1));

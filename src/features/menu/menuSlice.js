@@ -16,6 +16,9 @@ export const menuSlice = createSlice({
     selectSubCategory: (state, action) => {
       state.activeSubCategory = action.payload;
     },
+    removeMenu: (state, action) => {
+      // state.bill = state.bill.filter((menu) => menu.id !== action.payload)
+    },
   },
 });
 

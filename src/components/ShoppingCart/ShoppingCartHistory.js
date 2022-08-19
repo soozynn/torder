@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import imageDeleteButtonSrc from "../../assets/deleteButton.svg";
+import imagePlusButtonSrc from "../../assets/plusButton.svg";
+import imageMinusButtonSrc from "../../assets/minusButton.svg";
+import { useDispatch } from "react-redux";
 
 const ShoppingCartHistoryContainer = styled.div`
   position: relative;
@@ -26,6 +29,11 @@ const DeleteButton = styled.div`
   justify-content: flex-end;
   transform: translate(15%, -15%);
   filter: drop-shadow(0 0 1vw rgba(0, 0, 0, 0.2));
+`;
+
+const Icon = styled.img`
+  width: 5.25vw;
+  height: 5.25vw;
 `;
 
 const MenuInformation = styled.div`
@@ -77,18 +85,18 @@ const Price = styled.p`
 `;
 
 const TotalQuantityContainer = styled.div`
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-const PlusButton = styled.button`
-  width: 10.25vw;
-  height: 10.25vw;
+const Button = styled.button`
+  width: 6.25vw;
+  height: 6.25vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 1vw; // 수정 필요
   background: none;
   border: unset;
   transition: all 0.2s;
@@ -100,20 +108,16 @@ const TotalQuantity = styled.p`
   letter-spacing: -0.175vw;
 `;
 
-const MinusButton = styled.button`
-  width: 10.25vw;
-  height: 10.25vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: none;
-  border: unset;
-  transition: all 0.2s;
-`;
-
 export default function ShoppingCartHistory({ list }) {
   const { name, option, price } = list;
   const [totalQuantity, setTotalQuantity] = useState(1);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   if (!totalQuantity) {
+  //     dispatch() 지우기, id를 줄지 메뉴 이름을 줄지
+  //   }
+  // });
 
   const handleClickPlusButton = () => {
     setTotalQuantity((prev) => prev + 1);
@@ -126,7 +130,7 @@ export default function ShoppingCartHistory({ list }) {
   return (
     <ShoppingCartHistoryContainer>
       <DeleteButton>
-        <img alt="delete" src={imageDeleteButtonSrc} />
+        <Icon alt="delete" src={imageDeleteButtonSrc} />
       </DeleteButton>
 
       <MenuInformation>
@@ -135,11 +139,16 @@ export default function ShoppingCartHistory({ list }) {
       </MenuInformation>
 
       <TotalInformation>
-        <Price>{price}</Price>
+        <Price>{price}4000</Price>
+
         <TotalQuantityContainer>
-          <PlusButton onClick={handleClickPlusButton}></PlusButton>
+          <Button onClick={handleClickPlusButton}>
+            <img alt="plus" src={imagePlusButtonSrc} />
+          </Button>
           <TotalQuantity>{totalQuantity}개</TotalQuantity>
-          <MinusButton onClick={handleClickMinusButton}></MinusButton>
+          <Button onClick={handleClickMinusButton}>
+            <img alt="minus" src={imageMinusButtonSrc} />
+          </Button>
         </TotalQuantityContainer>
       </TotalInformation>
     </ShoppingCartHistoryContainer>

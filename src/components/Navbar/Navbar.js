@@ -7,6 +7,7 @@ import iconOrderSrc from "../../assets/order.svg";
 import iconBillSrc from "../../assets/bill.svg";
 import iconEventsSrc from "../../assets/events.svg";
 import iconShoppingBagSrc from "../../assets/shoppingBag.svg";
+import { useSelector } from "react-redux";
 
 const NavbarContainer = styled.div`
   position: fixed;
@@ -24,13 +25,19 @@ const NavbarContainer = styled.div`
 `;
 
 export default function Navbar() {
+  const shoppingCartList = useSelector((state) => state.menu.bill);
+
   return (
     <NavbarContainer>
       <Item src={iconOrderSrc} title="주문내역" />
       <Item src={iconBillSrc} title="계산서" gap="1.625vw" />
       <Recall position="center" />
       <Item src={iconEventsSrc} title="이벤트" gap="1.625vw" />
-      <Item src={iconShoppingBagSrc} title="장바구니" />
+      {shoppingCartList.length > 0 ? (
+        <Item title="장바구니" count={shoppingCartList.length} />
+      ) : (
+        <Item src={iconShoppingBagSrc} title="장바구니" />
+      )}
     </NavbarContainer>
   );
 }

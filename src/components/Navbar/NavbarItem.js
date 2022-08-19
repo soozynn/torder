@@ -9,7 +9,7 @@ const ItemContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: ${(props) => props.gap || "1.45vw"};
+  gap: ${(props) => (props.gap ? props.gap : "1.45vw")};
 `;
 
 const IconWrapper = styled.div`
@@ -27,19 +27,37 @@ const IconText = styled.p`
   letter-spacing: -0.1375vw;
 `;
 
-export default function Item({ src, title, gap }) {
+const CountBox = styled.p`
+  width: 4.125vw;
+  height: 4.125vw;
+  margin-top: 1vh; // 수정 필요
+  border-radius: 0.625vw;
+  background-color: #ab240f;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  font-size: 2.625vw;
+  text-align: center;
+  line-height: 4.125vw;
+  color: #fff;
+`;
+
+export default function Item({ src, title, gap, count }) {
   return (
     <ItemContainer>
-      <IconWrapper>
-        <img src={src} alt="navbar-icon" gap={gap} />
-      </IconWrapper>
+      {src ? (
+        <IconWrapper>
+          <img src={src} alt="navbar-icon" gap={gap} />
+        </IconWrapper>
+      ) : (
+        <CountBox>{count}</CountBox>
+      )}
       <IconText>{title}</IconText>
     </ItemContainer>
   );
 }
 
 Item.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   title: PropTypes.string.isRequired,
   gap: PropTypes.string,
+  count: PropTypes.string,
 };

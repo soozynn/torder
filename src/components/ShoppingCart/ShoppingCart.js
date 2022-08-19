@@ -28,7 +28,7 @@ const RecallWrapper = styled.div`
   align-items: center;
 `;
 
-const HistoryList = styled.div`
+const ShoppingCartBackground = styled.div`
   height: calc(43.75vh - 3.75vw);
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@ const HistoryHeader = styled.div`
 `;
 
 const ShoppingCartTitle = styled.p`
-  font-family: "notoserif-bold";
+  font-family: "NotoSerifKR-bold";
   font-size: 3.25vw;
   letter-spacing: -0.08125vw;
 `;
@@ -67,9 +67,13 @@ const ShoppingCartListContainer = styled.div`
   padding: 0 3.125vw;
   box-sizing: border-box;
   overflow: auto;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-const ShoppingCartHistoryContainer = styled.div`
+const ShoppingCarListWrapper = styled.div`
   height: 30.25vw;
   display: flex;
   align-items: center;
@@ -89,7 +93,7 @@ const HistoryListTotal = styled.div`
 const TotalText = styled.p`
   font-family: "NotoSerifKR";
   font-size: 3.25vw;
-  font-weight: 700;
+  font-weight: 700; // not work
   letter-spacing: -0.08125vw;
 `;
 
@@ -103,11 +107,16 @@ const TotalPrice = styled.p`
 const ButtonContainer = styled.div`
   height: 14.625vw;
   display: flex;
+  align-items: center;
   gap: 1.25vw;
+
+  :last-child {
+    margin-right: 4vw;
+  }
 `;
 
 const CloseButtonWrapper = styled.div`
-  width: 22.5vw;
+  width: 16.5vw;
   display: flex;
   justify-content: flex-end;
 `;
@@ -126,21 +135,23 @@ export default function ShoppingCart() {
       </RecallWrapper>
       <ShoppingCartHead />
 
-      <ShoppingCartHistoryContainer>
+      <ShoppingCartBackground>
         <HistoryHeader>
           <ShoppingCartTitle>장바구니</ShoppingCartTitle>
           <AllDeleteButton>전체 삭제 X</AllDeleteButton>
         </HistoryHeader>
 
         <ShoppingCartListContainer>
-          {shoppingCartList.map((list) => (
-            <ShoppingCartHistory key={list.id} list={list} />
-          ))}
+          <ShoppingCarListWrapper>
+            {shoppingCartList.map((list) => (
+              <ShoppingCartHistory key={list.id} list={list} />
+            ))}
+          </ShoppingCarListWrapper>
         </ShoppingCartListContainer>
 
         <HistoryListTotal>
           <TotalText>
-            총{shoppingCartList.length}가지{" "}
+            총 {shoppingCartList.length}가지{" "}
             {/* {shoppingCartList
               .map((item) => item.count)
               .reduce((prev, next) => prev + next)} */}
@@ -162,7 +173,7 @@ export default function ShoppingCart() {
             <Button color="red">주문하기</Button>
           </OrderButtonWrapper>
         </ButtonContainer>
-      </ShoppingCartHistoryContainer>
+      </ShoppingCartBackground>
     </ShoppingCartContainer>
   );
 }
