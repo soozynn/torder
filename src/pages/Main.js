@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import Navbar from "../components/Navbar/index";
 import Header from "../components/Header/index";
-import Notification from "../components/Notification/index";
 import CategoryList from "../components/Category/CategoryList";
 import SubCategoryList from "../components/SubCategoryList/SubCategoryList";
-import mockData from "../mock.json";
-import MenuList from "../components/Menu/MenuList";
-import { useSelector } from "react-redux";
+import FullMenuList from "../components/Menu/FullMenuList";
+import Navbar from "../components/Navbar/index";
+import Notification from "../components/Notification/index";
 
 const GoodsContainer = styled.div`
   position: fixed;
@@ -66,7 +65,7 @@ export default function Main() {
                 activeCategoryId={activeCategoryId}
               />
             </CategoryListContainer>
-            <MenuList menu={data.goods} number={data.categories.length} />
+            <FullMenuList menu={data.goods} number={data.categories.length} />
           </GoodsContainer>
 
           <Navbar />

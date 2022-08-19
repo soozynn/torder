@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import SubCategory from "./SubCategory";
+import { selectSubCategory } from "../../features/menu/menuSlice";
 
 const SubCategoryListContainer = styled.div`
   position: relative;
@@ -16,12 +18,20 @@ const SubCategoryListContainer = styled.div`
 
 const SubCategoryListWrapper = styled.div`
   display: flex;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default function SubCategoryList({ subCategories, activeCategoryId }) {
   const [activeSubCategoryId, setActiveSubCategoryId] = useState(
     subCategories[0].id
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setActiveSubCategoryId(
@@ -31,8 +41,14 @@ export default function SubCategoryList({ subCategories, activeCategoryId }) {
     );
   }, [activeCategoryId, subCategories]);
 
-  const handleClickSubCategory = (id) => {
+  // useEffect(() => {
+  //   dispatch(selectSubCategory(subCategories[0].id));
+  // }, [dispatch, subCategories]);
+
+  const handleClickSubCategory = (event, id) => {
     setActiveSubCategoryId(id);
+    console.log(event);
+    dispatch(selectSubCategory(event.textContent));
   };
 
   return (
@@ -42,12 +58,13 @@ export default function SubCategoryList({ subCategories, activeCategoryId }) {
           .filter((subCategory) =>
             subCategory.parentCategoriesCodes.includes(activeCategoryId)
           )
-          .map((subCategory) => (
+          .map((subCategory, index, array) => (
             <SubCategory
               key={subCategory.id}
               name={subCategory.name}
-              onClick={() => handleClickSubCategory(subCategory.id)}
+              onClick={(e) => handleClickSubCategory(e, subCategory.id)}
               isActive={activeSubCategoryId === subCategory.id}
+              lastbar={index !== array.length - 1}
             />
           ))}
       </SubCategoryListWrapper>

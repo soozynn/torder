@@ -29,11 +29,11 @@ const Bar = styled.div`
   background-color: #999;
 `;
 
-export default function SubCategory({ name, onClick, isActive }) {
+export default function SubCategory({ name, onClick, isActive, lastbar }) {
   return (
     <SubCategoryContainer isActive={isActive} onClick={onClick}>
       <SubCategoryTitle isActive={isActive}>{name}</SubCategoryTitle>
-      <Bar></Bar>
+      {lastbar && <Bar></Bar>}
     </SubCategoryContainer>
   );
 }
@@ -42,4 +42,5 @@ SubCategory.propTypes = {
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
+  lastbar: PropTypes.bool.isRequired,
 };
