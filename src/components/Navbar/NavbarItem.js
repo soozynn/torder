@@ -73,7 +73,7 @@ Item.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string.isRequired,
   gap: PropTypes.string,
-  count: PropTypes.string,
+  count: PropTypes.number,
   onClick: PropTypes.func,
   width: PropTypes.string,
   height: PropTypes.string,

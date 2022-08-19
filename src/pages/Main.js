@@ -42,14 +42,14 @@ const CategoryListContainer = styled.div`
 `;
 
 export default function Main() {
-  const { menu, bill } = useSelector((state) => state.menu);
+  const { menu, cart } = useSelector((state) => state.menu);
   const [isClickedShoppingCart, setIsClickedShoppingCart] = useState(false);
   const [activeCategoryId, setActiveCategoryId] = useState(
     menu.categories[0].id
   );
-
+  console.log(cart);
   const handleClickShoppingCart = () => {
-    if (!bill.length) return;
+    if (!cart.length) return;
     // return 대신 notification 보여주기
     setIsClickedShoppingCart(!isClickedShoppingCart);
   };

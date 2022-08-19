@@ -26,7 +26,7 @@ const NavbarContainer = styled.div`
 `;
 
 export default function Navbar({ onClick }) {
-  const shoppingCartList = useSelector((state) => state.menu.bill);
+  const shoppingCartList = useSelector((state) => state.menu.cart);
 
   return (
     <NavbarContainer>

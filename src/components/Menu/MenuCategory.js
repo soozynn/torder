@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Menu from "./Menu";
-import { addMenu } from "../../features/menu/menuSlice";
+import { addMenuToCart } from "../../features/menu/menuSlice";
 
 const CategoryNameWrapper = styled.div`
   display: flex;
@@ -45,8 +45,15 @@ const MenuContainer = styled.div`
 export default function MenuCategory({ id, title, subTitle, goods }) {
   const dispatch = useDispatch();
 
-  const handleClickMenu = (event) => {
-    dispatch(addMenu(event.target));
+  const handleClickMenu = (menu) => {
+    dispatch(
+      addMenuToCart({
+        id: menu.id,
+        name: menu.name,
+        price: menu.price,
+        count: 1,
+      })
+    );
   };
 
   return (
@@ -64,7 +71,7 @@ export default function MenuCategory({ id, title, subTitle, goods }) {
             <Menu
               key={menu.id}
               menu={menu}
-              onClick={(e) => handleClickMenu(e)}
+              onClick={() => handleClickMenu(menu)}
             />
           ))}
       </MenuContainer>
