@@ -4,6 +4,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Menu from "./Menu";
+import Notification from "../Notification";
+
 import { addMenuToCart } from "../../features/menu/menuSlice";
 
 const CategoryNameWrapper = styled.div`
@@ -46,6 +48,10 @@ export default function MenuCategory({ id, title, subTitle, goods }) {
   const dispatch = useDispatch();
 
   const handleClickMenu = (menu) => {
+    if (menu.soldOut) {
+      return <Notification>품절된 상품입니다.</Notification>;
+    }
+
     dispatch(
       addMenuToCart({
         id: menu.id,
