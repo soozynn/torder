@@ -12,15 +12,15 @@ const MenuCategoryListContainer = styled.div`
   }
 `;
 
-export default function MenuCategoryList({ menu, name }) {
+export default function MenuCategoryList({ menu, name, activeCategory }) {
   const { subCategories } = menu;
-  // 메인의 시그니처 아이디의 일치하는 패런트 아이디를 가진 값들만 걸러주기
+  // 해당 서브카테고리스 갯수만큼
   return (
     <MenuCategoryListContainer>
       {subCategories
-        // .filter((subCategory) => 굿즈의 belongToCategories에 서브카테고리스 아이디가 포함되어있는지
-        //   subCategory.parentCategoriesCodes.includes(subCategory.id)
-        // )
+        // .filter((subCategory) => (
+
+        // ))
         .map((subCategory) => (
           <MenuCategory key={subCategory.id} menu={menu} name={name} />
         ))}

@@ -3,6 +3,9 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Label from "../Label/index";
+import Mark from "../Mark/index";
+import MenuImage from "../Menu/MenuImage";
+import SoldOutImage from "../SoldoutImage/index";
 
 const MenuContainer = styled.div`
   position: relative;
@@ -17,44 +20,10 @@ const ImageWrapper = styled.div`
   width: 100%;
 `;
 
-const Image = styled.div`
-  width: 100%;
-  height: 33.125vw;
-  background-size: cover;
-  background-position: 50%;
-  border: 0.125vw solid #e8e8e8;
-  border-radius: 1.25vw;
-  /* background-image: url(props.image); */
-`;
-
-const SoldOut = styled.p`
-  position: absolute;
-  left: 0.125vw;
-  bottom: 0;
-  width: calc(100% - 0.25vw);
-  height: 4.75vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-bottom-left-radius: 1.25vw;
-  border-bottom-right-radius: 1.25vw;
-  font-family: "NotoSerifKR-bold";
-  font-size: 2.25vw;
-  color: #fff;
-`;
-
 const Information = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const MarkContainer = styled.div`
-  display: flex;
-  margin: 0.3906vh 0;
-  gap: 1.25vw;
-  font-size: 2.35vw;
 `;
 
 const Name = styled.p`
@@ -82,28 +51,70 @@ const LabelContainer = styled.div`
   gap: 0.625vw;
 `;
 
-export default function Menu() {
-  // const {  } = ;
-  return (
-    <MenuContainer>
-      <ImageWrapper>
-        <Image></Image>
-        {/* {data && <SoldOut></SoldOut>} */}
-      </ImageWrapper>
+export default function Menu(props) {
+  const {
+    name,
+    price,
+    description,
+    belongToCategories,
+    image,
+    soldOut,
+    hit,
+    best,
+    new: newKeyword,
+    recommend,
+    optionGroups,
+  } = props;
 
-      <Information>
-        <MarkContainer>{/* {data && <p></p>} */}</MarkContainer>
-        <Name></Name>
-        <Price></Price>
-        <LabelContainer>
-          {/* {data && <Label>BEST</Label>}
-          {data && <Label>HIT</Label>}
-          {data && <Label>추천</Label>}
-          {data && <Label>신메뉴</Label>} */}
-        </LabelContainer>
-      </Information>
-    </MenuContainer>
-  );
+  // return (
+  //   <MenuContainer>
+  //     <ImageWrapper>
+  //       <MenuImage url={image} />
+  //       {soldOut && <SoldOutImage />}
+  //     </ImageWrapper>
+
+  //     <Information>
+  //       {(optionGroups.length > 0 || description) && (
+  //         <Mark option={optionGroups.length > 0} description={description} />
+  //       )}
+  //       <Name>{name}</Name>
+  //       <Price>{price}</Price>
+
+  //       <LabelContainer>
+  //         {best && <Label>BEST</Label>}
+  //         {hit && <Label>HIT</Label>}
+  //         {recommend && <Label>추천</Label>}
+  //         {newKeyword && <Label>신메뉴</Label>}
+  //       </LabelContainer>
+  //     </Information>
+  //   </MenuContainer>
+  // );
 }
 
-Menu.propTypes = {};
+Menu.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  price: PropTypes.number,
+  description: PropTypes.string,
+  belongToCategories: PropTypes.arrayOf(PropTypes.string),
+  image: PropTypes.string,
+  soldOut: PropTypes.bool,
+  hit: PropTypes.bool,
+  best: PropTypes.bool,
+  recommend: PropTypes.bool,
+  new: PropTypes.bool,
+  orderMaxQuantity: PropTypes.number,
+  orderMinQuantity: PropTypes.number,
+  optionGroups: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      selectedOptionLimit: PropTypes.number,
+      require: PropTypes.bool,
+      optionItems: PropTypes.shape({
+        displayName: PropTypes.string,
+        price: PropTypes.number,
+        optionQuantityLimit: PropTypes.number,
+      }),
+    })
+  ),
+};

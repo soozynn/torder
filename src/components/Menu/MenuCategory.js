@@ -41,7 +41,7 @@ const MenuContainer = styled.div`
 `;
 
 export default function MenuCategory({ menu, name }) {
-  const {} = menu;
+  // const {} = menu;
 
   return (
     <div>

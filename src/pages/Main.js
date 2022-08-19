@@ -6,8 +6,9 @@ import Header from "../components/Header/index";
 import CategoryList from "../components/Category/CategoryList";
 import SubCategoryList from "../components/SubCategoryList/SubCategoryList";
 import FullMenuList from "../components/Menu/FullMenuList";
-import Navbar from "../components/Navbar/index";
+import Navbar from "../components/Navbar/Navbar";
 import Notification from "../components/Notification/index";
+import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
 
 const GoodsContainer = styled.div`
   position: fixed;
@@ -69,6 +70,7 @@ export default function Main() {
           </GoodsContainer>
 
           <Navbar />
+          <ShoppingCart />
         </>
       ) : (
         <Notification />

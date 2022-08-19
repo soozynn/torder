@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import mockData from "../../mock.json";
 
-const initialState = { menu: { ...mockData }, bill: {}, activeSubCategory: "" };
+const initialState = {
+  menu: { ...mockData },
+  bill: [],
+  activeSubCategory: "",
+  activeCategory: "",
+};
 
 export const menuSlice = createSlice({
   name: "menu",

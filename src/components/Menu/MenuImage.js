@@ -17,5 +17,5 @@ export default function MenuImage({ url }) {
 }
 
 MenuImage.propTypes = {
-  url: PropTypes.string.isRequired,
+  // url: PropTypes.string.isRequired,
 };

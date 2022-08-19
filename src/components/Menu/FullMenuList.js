@@ -25,13 +25,18 @@ const FullMenuListContainer = styled.div`
 `;
 
 export default function FullMenuList() {
-  const { menu } = useSelector((state) => state.menu);
+  const { menu, activeCategory } = useSelector((state) => state.menu);
   const { categories } = menu;
 
   return (
     <FullMenuListContainer>
       {categories.map((category) => (
-        <MenuCategoryList key={category.id} menu={menu} name={category.name} />
+        <MenuCategoryList
+          key={category.id}
+          menu={menu}
+          name={category.name}
+          activeCategory={activeCategory}
+        />
       ))}
     </FullMenuListContainer>
   );

@@ -17,6 +17,6 @@ const SoldOutWrapper = styled.p`
   font-size: 2.25vw;
   color: #fff;
 `;
-export default function Soldout() {
+export default function SoldOutImage() {
   return <SoldOutWrapper>SOLD OUT</SoldOutWrapper>;
 }
