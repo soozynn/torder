@@ -23,7 +23,7 @@ const Logo = styled.img`
   height: 4.79587vw;
 `;
 
-export default function HeaderIcons({ onClick }) {
+export default function StoreInformationIcon({ onClick }) {
   return (
     <HeaderIconContainer>
       <div onClick={onClick}>
@@ -34,6 +34,6 @@ export default function HeaderIcons({ onClick }) {
   );
 }
 
-HeaderIcons.propTypes = {
+StoreInformationIcon.propTypes = {
   onClick: PropTypes.func.isRequired,
 };

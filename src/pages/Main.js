@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import Header from "../components/Header/index";
-import CategoryList from "../components/Category/CategoryList";
-import SubCategoryList from "../components/SubCategory/SubCategoryList";
-import FullMenuList from "../components/Menu/FullMenuList";
-import Navbar from "../components/Navbar/Navbar";
-import Notification from "../components/Notification/index";
-import ShoppingCartList from "../components/ShoppingCart/ShoppingCartList";
+import Header from "../components/Main/Header/index";
+import CategoryList from "../components/Main/Category/CategoryList";
+import SubCategoryList from "../components/Main/SubCategory/SubCategoryList";
+import FullMenuList from "../components/Main/Menu/FullMenuList";
+import Navbar from "../components/Main/Navbar/Navbar";
+import Notification from "../components/Main/Notification/index";
+import ShoppingCartList from "../components/Main/ShoppingCart/ShoppingCartList";
 
 const GoodsContainer = styled.div`
   position: fixed;

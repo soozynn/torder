@@ -1,13 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Item from "./NavbarItem";
 import RecallIcon from "../RecallIcon/index";
-import iconOrderSrc from "../../assets/order.svg";
-import iconBillSrc from "../../assets/bill.svg";
-import iconEventsSrc from "../../assets/events.svg";
-import iconShoppingBagSrc from "../../assets/shoppingBag.svg";
+import iconOrderSrc from "../../../assets/order.svg";
+import iconBillSrc from "../../../assets/bill.svg";
+import iconEventsSrc from "../../../assets/events.svg";
+import iconShoppingBagSrc from "../../../assets/shoppingBag.svg";
 
 const NavbarContainer = styled.div`
   position: fixed;
@@ -25,6 +26,12 @@ const NavbarContainer = styled.div`
 `;
 
 export default function Navbar({ cartList, onClick }) {
+  const navigate = useNavigate();
+
+  const handleClickBill = () => {
+    navigate("/bill");
+  };
+
   return (
     <NavbarContainer>
       <Item src={iconOrderSrc} title="주문내역" />
@@ -34,6 +41,7 @@ export default function Navbar({ cartList, onClick }) {
         gap="1.625vw"
         width="4.275vw"
         height="2.775vw"
+        onClick={handleClickBill}
       />
       <RecallIcon position="center" />
       <Item
