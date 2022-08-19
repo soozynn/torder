@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import PropTypes from "prop-types";
+
+import BillHeader from "../components/Bill/Header";
+import OrderList from "../components/Bill/OrderList/OrderList";
+import DutchPayPrice from "../components/Bill/DutchPay/DutchPayPrice";
+import DutchPayCount from "../components/Bill/DutchPay/DutchPayCount";
 
 const BillContainer = styled.div`
   position: fixed;
@@ -13,6 +18,22 @@ const BillContainer = styled.div`
   z-index: 1;
 `;
 
+const OrderListContainer = styled.header`
+  width: 100vw;
+`;
+
 export default function Bill() {
-  return <BillContainer></BillContainer>;
+  const [count, setCount] = useState(1);
+  const { order } = useSelector((state) => state.menu);
+
+  return (
+    <BillContainer>
+      <BillHeader />
+      <OrderListContainer>
+        <OrderList order={order} />
+        <DutchPayCount count={count} setCount={setCount} />
+        <DutchPayPrice count={count} order={order} />
+      </OrderListContainer>
+    </BillContainer>
+  );
 }

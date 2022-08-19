@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import Label from "../Label/index";
 import Mark from "../Mark/index";
-import MenuImage from "../Menu/MenuImage";
+import MenuImage from "./MenuImage";
 import SoldOutImage from "../SoldoutImage/index";
 
 const MenuContainer = styled.div`

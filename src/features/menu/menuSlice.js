@@ -5,21 +5,14 @@ import mockData from "../../mock.json";
 const initialState = {
   menu: { ...mockData },
   order: [],
+  bill: [],
   cart: [],
-  // activeSubCategory: "",
-  // activeCategory: mockData.categories[0],
 };
 
 export const menuSlice = createSlice({
   name: "menu",
   initialState,
   reducers: {
-    // selectCategory: (state, action) => {
-    //   state.activeCategory = action.payload;
-    // },
-    // selectSubCategory: (state, action) => {
-    //   state.activeSubCategory = action.payload;
-    // },
     addMenuToCart: (state, action) => {
       const { id } = action.payload;
       const sameMenuIndex = state.cart.findIndex((menu) => menu.id === id);
@@ -49,13 +42,12 @@ export const menuSlice = createSlice({
     },
     orderMenuList: (state) => {
       state.order = [...state.cart];
+      state.cart = [];
     },
   },
 });
 
 export const {
-  // selectCategory,
-  // selectSubCategory,
   addMenuToCart,
   removeMenuToCart,
   removeAllMenuToCart,
