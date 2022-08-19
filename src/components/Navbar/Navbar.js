@@ -1,10 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Item from "./NavbarItem";
-import Recall from "../Recall/index";
+import RecallIcon from "../RecallIcon/index";
 import iconOrderSrc from "../../assets/order.svg";
 import iconBillSrc from "../../assets/bill.svg";
 import iconEventsSrc from "../../assets/events.svg";
@@ -25,9 +24,7 @@ const NavbarContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export default function Navbar({ onClick }) {
-  const shoppingCartList = useSelector((state) => state.menu.bill);
-
+export default function Navbar({ cartList, onClick }) {
   return (
     <NavbarContainer>
       <Item src={iconOrderSrc} title="주문내역" />
@@ -38,7 +35,7 @@ export default function Navbar({ onClick }) {
         width="4.275vw"
         height="2.775vw"
       />
-      <Recall position="center" />
+      <RecallIcon position="center" />
       <Item
         src={iconEventsSrc}
         title="이벤트"
@@ -46,8 +43,8 @@ export default function Navbar({ onClick }) {
         width="3.69537vw"
         height="4.1695vw"
       />
-      {shoppingCartList.length > 0 ? (
-        <Item title="장바구니" count={shoppingCartList.length} />
+      {cartList.length > 0 ? (
+        <Item title="장바구니" cartList={cartList} onClick={onClick} />
       ) : (
         <Item src={iconShoppingBagSrc} title="장바구니" onClick={onClick} />
       )}
@@ -56,5 +53,13 @@ export default function Navbar({ onClick }) {
 }
 
 Navbar.propTypes = {
+  cartList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      count: PropTypes.number,
+    })
+  ).isRequired,
   onClick: PropTypes.func.isRequired,
 };

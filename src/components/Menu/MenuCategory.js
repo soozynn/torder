@@ -4,7 +4,9 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Menu from "./Menu";
-import { addMenu } from "../../features/menu/menuSlice";
+import Notification from "../Notification";
+
+import { addMenuToCart } from "../../features/menu/menuSlice";
 
 const CategoryNameWrapper = styled.div`
   display: flex;
@@ -42,11 +44,34 @@ const MenuContainer = styled.div`
   row-gap: 1.875vw;
 `;
 
-export default function MenuCategory({ id, title, subTitle, goods }) {
+export default function MenuCategory({
+  id,
+  title,
+  subTitle,
+  goods,
+  setIsOpenNotification,
+  setNotificationText,
+}) {
   const dispatch = useDispatch();
 
-  const handleClickMenu = (event) => {
-    dispatch(addMenu(event.target));
+  const handleClickMenu = (menu) => {
+    if (menu.option || menu.description) return;
+    if (menu.soldOut) {
+      setNotificationText("품절 된 상품입니다.");
+      setIsOpenNotification(true);
+      return;
+    }
+
+    dispatch(
+      addMenuToCart({
+        id: menu.id,
+        name: menu.name,
+        price: menu.price,
+        count: 1,
+      })
+    );
+    setNotificationText(`장바구니에 ${menu.name} 상품을 담았습니다.`);
+    setIsOpenNotification(true);
   };
 
   return (
@@ -64,7 +89,7 @@ export default function MenuCategory({ id, title, subTitle, goods }) {
             <Menu
               key={menu.id}
               menu={menu}
-              onClick={(e) => handleClickMenu(e)}
+              onClick={() => handleClickMenu(menu)}
             />
           ))}
       </MenuContainer>
@@ -76,6 +101,8 @@ MenuCategory.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
+  setIsOpenNotification: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
   goods: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 import Header from "../components/Header/index";
 import CategoryList from "../components/Category/CategoryList";
-import SubCategoryList from "../components/SubCategoryList/SubCategoryList";
+import SubCategoryList from "../components/SubCategory/SubCategoryList";
 import FullMenuList from "../components/Menu/FullMenuList";
 import Navbar from "../components/Navbar/Navbar";
 import Notification from "../components/Notification/index";
-import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
+import ShoppingCartList from "../components/ShoppingCart/ShoppingCartList";
 
 const GoodsContainer = styled.div`
   position: fixed;
@@ -42,16 +42,22 @@ const CategoryListContainer = styled.div`
 `;
 
 export default function Main() {
-  const { menu, bill } = useSelector((state) => state.menu);
-  const [isClickedShoppingCart, setIsClickedShoppingCart] = useState(false);
+  const { menu, cart } = useSelector((state) => state.menu);
+  const [showsShoppingCart, setShowsShoppingCart] = useState(false);
+  const [isOpenNotification, setIsOpenNotification] = useState(false);
+  const [notificationText, setNotificationText] = useState("");
   const [activeCategoryId, setActiveCategoryId] = useState(
     menu.categories[0].id
   );
 
   const handleClickShoppingCart = () => {
-    if (!bill.length) return;
-    // return 대신 notification 보여주기
-    setIsClickedShoppingCart(!isClickedShoppingCart);
+    if (!cart.length) {
+      setNotificationText("장바구니에 상품이 없습니다.");
+      setIsOpenNotification(true);
+      return;
+    }
+
+    setShowsShoppingCart(!showsShoppingCart);
   };
 
   return (
@@ -77,17 +83,32 @@ export default function Main() {
               goods={menu.goods}
               categories={menu.categories}
               subCategories={menu.subCategories}
+              setIsOpenNotification={setIsOpenNotification}
+              setNotificationText={setNotificationText}
             />
           </GoodsContainer>
 
-          {isClickedShoppingCart ? (
-            <ShoppingCart />
+          {showsShoppingCart ? (
+            <ShoppingCartList
+              cartList={cart}
+              setIsOpenNotification={setIsOpenNotification}
+              setNotificationText={setNotificationText}
+              setShowsShoppingCart={setShowsShoppingCart}
+            />
           ) : (
-            <Navbar onClick={handleClickShoppingCart} />
+            <Navbar onClick={handleClickShoppingCart} cartList={cart} />
+          )}
+          {isOpenNotification && (
+            <Notification
+              isOpenNotification={isOpenNotification}
+              setIsOpenNotification={setIsOpenNotification}
+            >
+              {notificationText}
+            </Notification>
           )}
         </>
       ) : (
-        <Notification />
+        <Notification>데이터를 불러오지 못하였습니다.</Notification>
       )}
     </>
   );

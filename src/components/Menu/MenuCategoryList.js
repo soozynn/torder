@@ -12,7 +12,14 @@ const MenuCategoryListContainer = styled.div`
   }
 `;
 
-export default function MenuCategoryList({ id, title, goods, subCategories }) {
+export default function MenuCategoryList({
+  id,
+  title,
+  goods,
+  subCategories,
+  setIsOpenNotification,
+  setNotificationText,
+}) {
   return (
     <MenuCategoryListContainer>
       {subCategories
@@ -24,6 +31,8 @@ export default function MenuCategoryList({ id, title, goods, subCategories }) {
             goods={goods}
             title={title}
             subTitle={subCategory.name}
+            setIsOpenNotification={setIsOpenNotification}
+            setNotificationText={setNotificationText}
           />
         ))}
     </MenuCategoryListContainer>
@@ -31,6 +40,17 @@ export default function MenuCategoryList({ id, title, goods, subCategories }) {
 }
 
 MenuCategoryList.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subCategories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      parentCategoriesCodes: PropTypes.arrayOf(PropTypes.string.isRequired),
+    })
+  ).isRequired,
+  setIsOpenNotification: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
   goods: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

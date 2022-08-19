@@ -4,7 +4,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import SubCategory from "./SubCategory";
-import { selectSubCategory } from "../../features/menu/menuSlice";
 
 const SubCategoryListContainer = styled.div`
   position: relative;
@@ -42,13 +41,11 @@ export default function SubCategoryList({ subCategories, activeCategoryId }) {
   }, [activeCategoryId, subCategories]);
 
   // useEffect(() => {
-  //   dispatch(selectSubCategory(subCategories[0].id));
+  //   dispatch();
   // }, [dispatch, subCategories]);
 
-  const handleClickSubCategory = (event, id) => {
+  const handleClickSubCategory = (id) => {
     setActiveSubCategoryId(id);
-    console.log(event);
-    dispatch(selectSubCategory(event.textContent));
   };
 
   return (
@@ -62,7 +59,7 @@ export default function SubCategoryList({ subCategories, activeCategoryId }) {
             <SubCategory
               key={subCategory.id}
               name={subCategory.name}
-              onClick={(e) => handleClickSubCategory(e, subCategory.id)}
+              onClick={() => handleClickSubCategory(subCategory.id)}
               isActive={activeSubCategoryId === subCategory.id}
               lastbar={index !== array.length - 1}
             />

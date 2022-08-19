@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import imageDeleteButtonSrc from "../../assets/deleteButton.svg";
 import imagePlusButtonSrc from "../../assets/plusButton.svg";
 import imageMinusButtonSrc from "../../assets/minusButton.svg";
-import { removeMenu } from "../../features/menu/menuSlice";
+import { addMenuToCart, removeMenuToCart } from "../../features/menu/menuSlice";
 
 const ShoppingCartHistoryContainer = styled.div`
   position: relative;
@@ -80,7 +80,7 @@ const TotalInformation = styled.div`
 
 const Price = styled.p`
   padding: 0 2.75vw;
-  font-family: "notoserif-bold";
+  font-family: "NotoSerifKR-bold";
   font-size: 2.875vw;
   line-height: 1.1;
 `;
@@ -92,40 +92,48 @@ const TotalQuantityContainer = styled.div`
 `;
 
 const Button = styled.button`
-  width: 6.25vw;
-  height: 6.25vw;
+  width: 10.25vw;
+  height: 10.25vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1vw; // 수정 필요
   background: none;
   border: unset;
   transition: all 0.2s;
 `;
 
+const ButtonIcon = styled.img`
+  width: 5.75vw;
+  height: 5.75vw;
+`;
+
 const TotalQuantity = styled.p`
-  font-family: "notoserif-semibold";
+  font-family: "NotoSerifKR-semibold";
   font-size: 3.5vw;
   letter-spacing: -0.175vw;
 `;
 
-export default function ShoppingCartHistory({ list }) {
-  const { name, option, price } = list;
-  const [totalQuantity, setTotalQuantity] = useState(1);
+export default function ShoppingCartHistory({ menu }) {
+  const { name, option, price, count } = menu;
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!totalQuantity) {
-      // dispatch(removeMenu(id));
-    }
-  }, [totalQuantity, dispatch]);
-
   const handleClickPlusButton = () => {
-    setTotalQuantity((prev) => prev + 1);
+    dispatch(
+      addMenuToCart({
+        id: menu.id,
+        name: menu.name,
+        price: menu.price,
+        count: 1,
+      })
+    );
   };
 
   const handleClickMinusButton = () => {
-    setTotalQuantity((prev) => prev - 1);
+    dispatch(
+      removeMenuToCart({
+        id: menu.id,
+      })
+    );
   };
 
   return (
@@ -140,15 +148,17 @@ export default function ShoppingCartHistory({ list }) {
       </MenuInformation>
 
       <TotalInformation>
-        <Price>{price}4000</Price>
+        <Price>{price.toLocaleString()}</Price>
 
         <TotalQuantityContainer>
           <Button onClick={handleClickPlusButton}>
-            <img alt="plus" src={imagePlusButtonSrc} />
+            <ButtonIcon alt="plus" src={imagePlusButtonSrc} />
           </Button>
-          <TotalQuantity>{totalQuantity}개</TotalQuantity>
+
+          <TotalQuantity>{count}개</TotalQuantity>
+
           <Button onClick={handleClickMinusButton}>
-            <img alt="minus" src={imageMinusButtonSrc} />
+            <ButtonIcon alt="minus" src={imageMinusButtonSrc} />
           </Button>
         </TotalQuantityContainer>
       </TotalInformation>
@@ -157,5 +167,10 @@ export default function ShoppingCartHistory({ list }) {
 }
 
 ShoppingCartHistory.propTypes = {
-  // list: PropTypes.string,
+  menu: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
+  }),
 };

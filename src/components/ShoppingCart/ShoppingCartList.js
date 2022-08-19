@@ -1,13 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import Recall from "../Recall";
+import RecallIcon from "../RecallIcon/index";
 import ShoppingCartHead from "./ShoppingCartHead";
 import ShoppingCartHistory from "./ShoppingCartHistory";
 import Button from "../Button/index";
+import {
+  orderMenuList,
+  removeAllMenuToCart,
+} from "../../features/menu/menuSlice";
 
-const ShoppingCartContainer = styled.div`
+const ShoppingCartListContainer = styled.div`
   position: fixed;
   left: 0;
   bottom: 0;
@@ -54,15 +59,15 @@ const ShoppingCartTitle = styled.p`
 `;
 
 const AllDeleteButton = styled.p`
-  padding: 5px 10px;
+  padding: 0.7vw 1.6vw;
   background-color: unset;
-  border: 1.2px solid #000000;
-  border-radius: 8px;
+  border: 1px solid #000000;
+  border-radius: 4px;
   font-weight: 600;
   font-size: 2.5vw;
 `;
 
-const ShoppingCartListContainer = styled.div`
+const ShoppingCartContainer = styled.div`
   flex: 1;
   padding: 0 3.125vw;
   box-sizing: border-box;
@@ -73,7 +78,7 @@ const ShoppingCartListContainer = styled.div`
   }
 `;
 
-const ShoppingCarListWrapper = styled.div`
+const ShoppingCartWrapper = styled.div`
   height: 30.25vw;
   display: flex;
   align-items: center;
@@ -91,9 +96,9 @@ const HistoryListTotal = styled.div`
 `;
 
 const TotalText = styled.p`
-  font-family: "NotoSerifKR";
+  font-family: "notoserif-bold";
   font-size: 3.25vw;
-  font-weight: 700; // not work
+  font-weight: 700;
   letter-spacing: -0.08125vw;
 `;
 
@@ -125,55 +130,100 @@ const OrderButtonWrapper = styled.div`
   flex: 1;
 `;
 
-export default function ShoppingCart() {
-  const shoppingCartList = useSelector((state) => state.menu.bill);
+export default function ShoppingCartList({
+  cartList,
+  setIsOpenNotification,
+  setNotificationText,
+  setShowsShoppingCart,
+}) {
+  const dispatch = useDispatch();
+
+  const handleClickCloseButton = () => {
+    setShowsShoppingCart(false);
+  };
+
+  const handleClickOrderButton = () => {
+    dispatch(orderMenuList());
+    setShowsShoppingCart(false);
+    setIsOpenNotification(true);
+    setNotificationText("주문을 완료했습니다.");
+  };
+
+  const handleClickAllDeleteButton = () => {
+    dispatch(removeAllMenuToCart());
+    setShowsShoppingCart(false);
+  };
 
   return (
-    <ShoppingCartContainer>
+    <ShoppingCartListContainer>
       <RecallWrapper>
-        <Recall />
+        <RecallIcon />
       </RecallWrapper>
       <ShoppingCartHead />
 
       <ShoppingCartBackground>
         <HistoryHeader>
           <ShoppingCartTitle>장바구니</ShoppingCartTitle>
-          <AllDeleteButton>전체 삭제 X</AllDeleteButton>
+          <AllDeleteButton onClick={handleClickAllDeleteButton}>
+            전체 삭제 X
+          </AllDeleteButton>
         </HistoryHeader>
 
-        <ShoppingCartListContainer>
-          <ShoppingCarListWrapper>
-            {shoppingCartList.map((list) => (
-              <ShoppingCartHistory key={list.id} list={list} />
+        <ShoppingCartContainer>
+          <ShoppingCartWrapper>
+            {cartList.map((menu) => (
+              <ShoppingCartHistory key={menu.id} menu={menu} />
             ))}
-          </ShoppingCarListWrapper>
-        </ShoppingCartListContainer>
+          </ShoppingCartWrapper>
+        </ShoppingCartContainer>
 
         <HistoryListTotal>
           <TotalText>
-            총 {shoppingCartList.length}가지{" "}
-            {/* {shoppingCartList
-              .map((item) => item.count)
-              .reduce((prev, next) => prev + next)} */}
+            총 {cartList.length}가지{" "}
+            {cartList.reduce(
+              (accumulator, object) => accumulator + object.count,
+              0
+            )}
             개
           </TotalText>
           <TotalPrice>
-            {/* {shoppingCartList
-              .map((item) => item.price)
-              .reduce((prev, next) => prev + next)} */}
+            {cartList
+              .reduce(
+                (accumulator, object) =>
+                  accumulator + object.price * object.count,
+                0
+              )
+              .toLocaleString()}
             원
           </TotalPrice>
         </HistoryListTotal>
 
         <ButtonContainer>
           <CloseButtonWrapper>
-            <Button>닫기</Button>
+            <Button onClick={handleClickCloseButton}>닫기</Button>
           </CloseButtonWrapper>
+
           <OrderButtonWrapper>
-            <Button color="red">주문하기</Button>
+            <Button background="red" onClick={handleClickOrderButton}>
+              주문하기
+            </Button>
           </OrderButtonWrapper>
         </ButtonContainer>
       </ShoppingCartBackground>
-    </ShoppingCartContainer>
+    </ShoppingCartListContainer>
   );
 }
+
+ShoppingCartList.propTypes = {
+  setIsOpenNotification: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
+  setShowsShoppingCart: PropTypes.func,
+  cartList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      count: PropTypes.number,
+    })
+  ).isRequired,
+};

@@ -24,7 +24,13 @@ const FullMenuListContainer = styled.div`
   }
 `;
 
-export default function FullMenuList({ goods, categories, subCategories }) {
+export default function FullMenuList({
+  goods,
+  categories,
+  subCategories,
+  setIsOpenNotification,
+  setNotificationText,
+}) {
   return (
     <FullMenuListContainer>
       {categories.map((category) => (
@@ -34,6 +40,8 @@ export default function FullMenuList({ goods, categories, subCategories }) {
           title={category.name}
           goods={goods}
           subCategories={subCategories}
+          setIsOpenNotification={setIsOpenNotification}
+          setNotificationText={setNotificationText}
         />
       ))}
     </FullMenuListContainer>
@@ -41,6 +49,8 @@ export default function FullMenuList({ goods, categories, subCategories }) {
 }
 
 FullMenuList.propTypes = {
+  setIsOpenNotification: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

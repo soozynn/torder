@@ -7,7 +7,7 @@ const ButtonText = styled.p`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: ${(props) => (props.color ? "#b51900" : "#999")};
+  background-color: ${(props) => (props.background ? "#b51900" : "#999")};
   border-radius: 1.25vw;
   font-size: 4.25vw;
   font-weight: 750;
@@ -15,11 +15,16 @@ const ButtonText = styled.p`
   letter-spacing: -0.2125vw;
 `;
 
-export default function Button({ children, color }) {
-  return <ButtonText color={color}>{children}</ButtonText>;
+export default function Button({ children, background, onClick }) {
+  return (
+    <ButtonText onClick={onClick} background={background}>
+      {children}
+    </ButtonText>
+  );
 }
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
-  color: PropTypes.string,
+  background: PropTypes.string,
+  onClick: PropTypes.func,
 };
