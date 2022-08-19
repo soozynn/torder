@@ -20,6 +20,11 @@ const IconWrapper = styled.div`
   align-items: center;
 `;
 
+const Icon = styled.img`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+`;
+
 const IconText = styled.p`
   margin-bottom: 3vw;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
@@ -30,7 +35,6 @@ const IconText = styled.p`
 const CountBox = styled.p`
   width: 4.125vw;
   height: 4.125vw;
-  margin-top: 1vh; // 수정 필요
   border-radius: 0.625vw;
   background-color: #ab240f;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
@@ -40,15 +44,25 @@ const CountBox = styled.p`
   color: #fff;
 `;
 
-export default function Item({ src, title, gap, count, onClick }) {
+export default function Item({
+  src,
+  title,
+  gap,
+  count,
+  onClick,
+  width,
+  height,
+}) {
   return (
-    <ItemContainer onClick={onClick}>
+    <ItemContainer onClick={onClick} gap={gap}>
       {src ? (
         <IconWrapper>
-          <img src={src} alt="navbar-icon" gap={gap} />
+          <Icon src={src} alt="navbar-icon" width={width} height={height} />
         </IconWrapper>
       ) : (
-        <CountBox>{count}</CountBox>
+        <IconWrapper>
+          <CountBox>{count}</CountBox>
+        </IconWrapper>
       )}
       <IconText>{title}</IconText>
     </ItemContainer>
@@ -61,4 +75,6 @@ Item.propTypes = {
   gap: PropTypes.string,
   count: PropTypes.string,
   onClick: PropTypes.func,
+  width: PropTypes.string,
+  height: PropTypes.string,
 };

@@ -16,7 +16,7 @@ const SubCategoryContainer = styled.div`
 
 const SubCategoryTitle = styled.p`
   white-space: nowrap;
-  padding: 0.875vw 2.625vw 1vw;
+  padding: 0.355vw 2.625vw 0.4vw;
   box-sizing: border-box;
   background-color: ${(props) => props.isActive && "#ab240f"};
   border-radius: ${(props) => props.isActive && "12.5vw"};

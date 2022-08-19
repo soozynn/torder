@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const Content = styled.div`
   white-space: nowrap;
-  padding: 1.125vw 3.125vw;
+  padding: 0.5vw 3.125vw;
   background-color: ${(props) => props.isActive && "#2f2a26"};
   border: 0.25vw solid #2f2a26;
   border-radius: 4.25vw;

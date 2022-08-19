@@ -65,7 +65,7 @@ export default function Menu({ menu, onClick }) {
     recommend,
     optionGroups,
   } = menu;
-
+  console.log(hit);
   return (
     <MenuContainer onClick={onClick}>
       <ImageWrapper>

@@ -13,6 +13,7 @@ const MenuCategoryListContainer = styled.div`
 `;
 
 export default function MenuCategoryList({ id, title, goods, subCategories }) {
+  console.log(id);
   return (
     <MenuCategoryListContainer>
       {subCategories

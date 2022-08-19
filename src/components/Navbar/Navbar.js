@@ -31,9 +31,21 @@ export default function Navbar({ onClick }) {
   return (
     <NavbarContainer>
       <Item src={iconOrderSrc} title="주문내역" />
-      <Item src={iconBillSrc} title="계산서" gap="1.625vw" />
+      <Item
+        src={iconBillSrc}
+        title="계산서"
+        gap="1.625vw"
+        width="4.275vw"
+        height="2.775vw"
+      />
       <Recall position="center" />
-      <Item src={iconEventsSrc} title="이벤트" gap="1.625vw" />
+      <Item
+        src={iconEventsSrc}
+        title="이벤트"
+        gap="1.625vw"
+        width="3.69537vw"
+        height="4.1695vw"
+      />
       {shoppingCartList.length > 0 ? (
         <Item title="장바구니" count={shoppingCartList.length} />
       ) : (
