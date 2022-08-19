@@ -29,9 +29,10 @@ const NotificationWrapper = styled.div`
 `;
 
 const Text = styled.p`
-  font-family: "NotoSerifKR-bold";
+  font-family: "notoserif-bold";
   font-size: 5vw;
   color: #fff;
+  text-align: center;
 `;
 
 export default function Notification({

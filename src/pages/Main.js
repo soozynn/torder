@@ -52,7 +52,7 @@ export default function Main() {
 
   const handleClickShoppingCart = () => {
     if (!cart.length) {
-      setNotificationText("장바구니에 상품이 없습니다");
+      setNotificationText("장바구니에 상품이 없습니다.");
       setIsOpenNotification(true);
       return;
     }

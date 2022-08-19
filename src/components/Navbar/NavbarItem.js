@@ -48,7 +48,7 @@ export default function Item({
   src,
   title,
   gap,
-  count,
+  cartList,
   onClick,
   width,
   height,
@@ -61,7 +61,11 @@ export default function Item({
         </IconWrapper>
       ) : (
         <IconWrapper>
-          <CountBox>{count}</CountBox>
+          <CountBox>
+            {cartList.reduce((accumulator, object) => {
+              return accumulator + object.count;
+            }, 0)}
+          </CountBox>
         </IconWrapper>
       )}
       <IconText>{title}</IconText>
@@ -73,7 +77,14 @@ Item.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string.isRequired,
   gap: PropTypes.string,
-  count: PropTypes.number,
+  cartList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      count: PropTypes.number.isRequired,
+    })
+  ),
   onClick: PropTypes.func,
   width: PropTypes.string,
   height: PropTypes.string,

@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -45,7 +44,7 @@ export default function Navbar({ cartList, onClick }) {
         height="4.1695vw"
       />
       {cartList.length > 0 ? (
-        <Item title="장바구니" count={cartList.length} />
+        <Item title="장바구니" cartList={cartList} />
       ) : (
         <Item src={iconShoppingBagSrc} title="장바구니" onClick={onClick} />
       )}
@@ -54,7 +53,7 @@ export default function Navbar({ cartList, onClick }) {
 }
 
 Navbar.propTypes = {
-  cart: PropTypes.arrayOf(
+  cartList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
