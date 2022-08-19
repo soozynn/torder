@@ -25,9 +25,7 @@ const NavbarContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export default function Navbar({ onClick }) {
-  const shoppingCartList = useSelector((state) => state.menu.cart);
-
+export default function Navbar({ cartList, onClick }) {
   return (
     <NavbarContainer>
       <Item src={iconOrderSrc} title="주문내역" />
@@ -46,8 +44,8 @@ export default function Navbar({ onClick }) {
         width="3.69537vw"
         height="4.1695vw"
       />
-      {shoppingCartList.length > 0 ? (
-        <Item title="장바구니" count={shoppingCartList.length} />
+      {cartList.length > 0 ? (
+        <Item title="장바구니" count={cartList.length} />
       ) : (
         <Item src={iconShoppingBagSrc} title="장바구니" onClick={onClick} />
       )}
@@ -56,5 +54,13 @@ export default function Navbar({ onClick }) {
 }
 
 Navbar.propTypes = {
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      count: PropTypes.number,
+    })
+  ).isRequired,
   onClick: PropTypes.func.isRequired,
 };

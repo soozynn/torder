@@ -45,12 +45,18 @@ export default function Main() {
   const { menu, cart } = useSelector((state) => state.menu);
   const [isClickedShoppingCart, setIsClickedShoppingCart] = useState(false);
   const [isOpenNotification, setIsOpenNotification] = useState(false);
+  const [notificationText, setNotificationText] = useState("");
   const [activeCategoryId, setActiveCategoryId] = useState(
     menu.categories[0].id
   );
 
   const handleClickShoppingCart = () => {
-    if (!cart.length) return;
+    if (!cart.length) {
+      setNotificationText("장바구니에 상품이 없습니다");
+      setIsOpenNotification(true);
+      return;
+    }
+
     setIsClickedShoppingCart(!isClickedShoppingCart);
   };
 
@@ -78,20 +84,21 @@ export default function Main() {
               categories={menu.categories}
               subCategories={menu.subCategories}
               setIsOpenNotification={setIsOpenNotification}
+              setNotificationText={setNotificationText}
             />
           </GoodsContainer>
 
           {isClickedShoppingCart ? (
             <ShoppingCart />
           ) : (
-            <Navbar onClick={handleClickShoppingCart} />
+            <Navbar onClick={handleClickShoppingCart} cartList={cart} />
           )}
           {isOpenNotification && (
             <Notification
               isOpenNotification={isOpenNotification}
               setIsOpenNotification={setIsOpenNotification}
             >
-              품절된 상품입니다.
+              {notificationText}
             </Notification>
           )}
         </>

@@ -50,11 +50,14 @@ export default function MenuCategory({
   subTitle,
   goods,
   setIsOpenNotification,
+  setNotificationText,
 }) {
   const dispatch = useDispatch();
 
   const handleClickMenu = (menu) => {
+    if (menu.option || menu.description) return;
     if (menu.soldOut) {
+      setNotificationText("품절 된 상품입니다.");
       setIsOpenNotification(true);
       return;
     }
@@ -96,6 +99,8 @@ MenuCategory.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
+  setIsOpenNotification: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
   goods: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

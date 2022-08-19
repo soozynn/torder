@@ -29,6 +29,7 @@ export default function FullMenuList({
   categories,
   subCategories,
   setIsOpenNotification,
+  setNotificationText,
 }) {
   return (
     <FullMenuListContainer>
@@ -40,6 +41,7 @@ export default function FullMenuList({
           goods={goods}
           subCategories={subCategories}
           setIsOpenNotification={setIsOpenNotification}
+          setNotificationText={setNotificationText}
         />
       ))}
     </FullMenuListContainer>
@@ -47,6 +49,8 @@ export default function FullMenuList({
 }
 
 FullMenuList.propTypes = {
+  setIsOpenNotification: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
