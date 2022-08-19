@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createGlobalStyle } from "styled-components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Main from "./pages/Main";
+
+const GlobalStyles = createGlobalStyle`
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, button, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    scrollbar-width: none;
 }
 
-export default App;
+@font-face {
+  font-family: "NotoSerifKR-bold";
+  src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/NotoSerifKR-Bold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "NotoSerifKR-semibold";
+  src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/NotoSerifKR-SemiBold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "NotoSerifKR";
+  src: url("https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/fonts/NotoSerifKR-Regular.woff2")
+    format("woff2");
+}
+`;
+
+export default function App() {
+  return (
+    <>
+      <GlobalStyles />
+      <Router>
+        <Routes>
+          {/* <Route path="/order" element={<Order/>} />
+          <Route path="/bill" element={<Bill/>} />
+          <Route path="/recall" element={<Recall/>} />
+          <Route path="/events" element={<Events/>} /> */}
+          <Route path="/" element={<Main />} />
+        </Routes>
+      </Router>
+    </>
+  );
+}
