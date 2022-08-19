@@ -32,7 +32,17 @@ export const menuSlice = createSlice({
       state.cart.push(action.payload);
     },
     removeMenuToCart: (state, action) => {
-      state.cart = state.cart.filter((menu) => menu.id !== action.payload);
+      const { id } = action.payload;
+      const sameMenuIndex = state.cart.findIndex(
+        (menu) => menu.id === id && menu.count > 1
+      );
+
+      if (sameMenuIndex !== -1) {
+        state.cart[sameMenuIndex].count -= 1;
+        return;
+      }
+
+      state.cart = state.cart.filter((menu) => menu.id !== id);
     },
     removeAllMenuToCart: (state) => {
       state.cart = [];

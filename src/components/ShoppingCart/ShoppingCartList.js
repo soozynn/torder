@@ -12,7 +12,7 @@ import {
   removeAllMenuToCart,
 } from "../../features/menu/menuSlice";
 
-const ShoppingCartContainer = styled.div`
+const ShoppingCartListContainer = styled.div`
   position: fixed;
   left: 0;
   bottom: 0;
@@ -67,7 +67,7 @@ const AllDeleteButton = styled.p`
   font-size: 2.5vw;
 `;
 
-const ShoppingCartListContainer = styled.div`
+const ShoppingCartContainer = styled.div`
   flex: 1;
   padding: 0 3.125vw;
   box-sizing: border-box;
@@ -78,7 +78,7 @@ const ShoppingCartListContainer = styled.div`
   }
 `;
 
-const ShoppingCarListWrapper = styled.div`
+const ShoppingCartWrapper = styled.div`
   height: 30.25vw;
   display: flex;
   align-items: center;
@@ -155,7 +155,7 @@ export default function ShoppingCartList({
   };
 
   return (
-    <ShoppingCartContainer>
+    <ShoppingCartListContainer>
       <RecallWrapper>
         <RecallIcon />
       </RecallWrapper>
@@ -169,13 +169,13 @@ export default function ShoppingCartList({
           </AllDeleteButton>
         </HistoryHeader>
 
-        <ShoppingCartListContainer>
-          <ShoppingCarListWrapper>
+        <ShoppingCartContainer>
+          <ShoppingCartWrapper>
             {cartList.map((menu) => (
               <ShoppingCartHistory key={menu.id} menu={menu} />
             ))}
-          </ShoppingCarListWrapper>
-        </ShoppingCartListContainer>
+          </ShoppingCartWrapper>
+        </ShoppingCartContainer>
 
         <HistoryListTotal>
           <TotalText>
@@ -210,7 +210,7 @@ export default function ShoppingCartList({
           </OrderButtonWrapper>
         </ButtonContainer>
       </ShoppingCartBackground>
-    </ShoppingCartContainer>
+    </ShoppingCartListContainer>
   );
 }
 
