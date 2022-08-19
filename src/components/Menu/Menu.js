@@ -51,7 +51,7 @@ const LabelContainer = styled.div`
   gap: 0.625vw;
 `;
 
-export default function Menu(props) {
+export default function Menu({ menu, onClick }) {
   const {
     name,
     price,
@@ -64,57 +64,62 @@ export default function Menu(props) {
     new: newKeyword,
     recommend,
     optionGroups,
-  } = props;
+  } = menu;
 
-  // return (
-  //   <MenuContainer>
-  //     <ImageWrapper>
-  //       <MenuImage url={image} />
-  //       {soldOut && <SoldOutImage />}
-  //     </ImageWrapper>
+  return (
+    <MenuContainer onClick={onClick}>
+      <ImageWrapper>
+        <MenuImage url={image} />
+        {soldOut && <SoldOutImage />}
+      </ImageWrapper>
 
-  //     <Information>
-  //       {(optionGroups.length > 0 || description) && (
-  //         <Mark option={optionGroups.length > 0} description={description} />
-  //       )}
-  //       <Name>{name}</Name>
-  //       <Price>{price}</Price>
+      <Information>
+        {(optionGroups.length > 0 || description) && (
+          <Mark option={optionGroups.length > 0} description={description} />
+        )}
+        <Name>{name}</Name>
+        <Price>{price}</Price>
 
-  //       <LabelContainer>
-  //         {best && <Label>BEST</Label>}
-  //         {hit && <Label>HIT</Label>}
-  //         {recommend && <Label>추천</Label>}
-  //         {newKeyword && <Label>신메뉴</Label>}
-  //       </LabelContainer>
-  //     </Information>
-  //   </MenuContainer>
-  // );
+        <LabelContainer>
+          {best && <Label>BEST</Label>}
+          {hit && <Label>HIT</Label>}
+          {recommend && <Label>추천</Label>}
+          {newKeyword && <Label>신메뉴</Label>}
+        </LabelContainer>
+      </Information>
+    </MenuContainer>
+  );
 }
 
 Menu.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  price: PropTypes.number,
-  description: PropTypes.string,
-  belongToCategories: PropTypes.arrayOf(PropTypes.string),
-  image: PropTypes.string,
-  soldOut: PropTypes.bool,
-  hit: PropTypes.bool,
-  best: PropTypes.bool,
-  recommend: PropTypes.bool,
-  new: PropTypes.bool,
-  orderMaxQuantity: PropTypes.number,
-  orderMinQuantity: PropTypes.number,
-  optionGroups: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      selectedOptionLimit: PropTypes.number,
-      require: PropTypes.bool,
-      optionItems: PropTypes.shape({
-        displayName: PropTypes.string,
-        price: PropTypes.number,
-        optionQuantityLimit: PropTypes.number,
-      }),
-    })
-  ),
+  onClick: PropTypes.func.isRequired,
+  menu: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    description: PropTypes.string,
+    belongToCategories: PropTypes.arrayOf(PropTypes.string),
+    image: PropTypes.string,
+    soldOut: PropTypes.bool,
+    hit: PropTypes.bool,
+    best: PropTypes.bool,
+    recommend: PropTypes.bool,
+    new: PropTypes.bool,
+    orderMaxQuantity: PropTypes.number,
+    orderMinQuantity: PropTypes.number,
+    optionGroups: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        selectedOptionLimit: PropTypes.number,
+        require: PropTypes.bool,
+        optionItems: PropTypes.arrayOf(
+          PropTypes.shape({
+            displayName: PropTypes.string,
+            price: PropTypes.number,
+            optionQuantityLimit: PropTypes.number,
+          })
+        ),
+      })
+    ),
+  }),
 };

@@ -42,35 +42,49 @@ const CategoryListContainer = styled.div`
 `;
 
 export default function Main() {
-  const data = useSelector((state) => state.menu.menu);
+  const { menu, bill } = useSelector((state) => state.menu);
+  const [isClickedShoppingCart, setIsClickedShoppingCart] = useState(false);
   const [activeCategoryId, setActiveCategoryId] = useState(
-    data.categories[0].id
+    menu.categories[0].id
   );
+
+  const handleClickShoppingCart = () => {
+    if (!bill.length) return;
+    // return 대신 notification 보여주기
+    setIsClickedShoppingCart(!isClickedShoppingCart);
+  };
 
   return (
     <>
-      {data ? (
+      {menu ? (
         <>
-          <Header store={data.store} table={data.table} />
+          <Header store={menu.store} table={menu.table} />
 
           <GoodsContainer>
             <Wrapbar></Wrapbar>
             <CategoryListContainer>
               <CategoryList
-                categories={data.categories}
+                categories={menu.categories}
                 activeId={activeCategoryId}
                 setActiveId={setActiveCategoryId}
               />
               <SubCategoryList
-                subCategories={data.subCategories}
+                subCategories={menu.subCategories}
                 activeCategoryId={activeCategoryId}
               />
             </CategoryListContainer>
-            <FullMenuList menu={data.goods} number={data.categories.length} />
+            <FullMenuList
+              goods={menu.goods}
+              categories={menu.categories}
+              subCategories={menu.subCategories}
+            />
           </GoodsContainer>
 
-          <Navbar />
-          {/* <ShoppingCart /> */}
+          {isClickedShoppingCart ? (
+            <ShoppingCart />
+          ) : (
+            <Navbar onClick={handleClickShoppingCart} />
+          )}
         </>
       ) : (
         <Notification />

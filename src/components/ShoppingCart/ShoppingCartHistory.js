@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import imageDeleteButtonSrc from "../../assets/deleteButton.svg";
 import imagePlusButtonSrc from "../../assets/plusButton.svg";
 import imageMinusButtonSrc from "../../assets/minusButton.svg";
-import { useDispatch } from "react-redux";
+import { removeMenu } from "../../features/menu/menuSlice";
 
 const ShoppingCartHistoryContainer = styled.div`
   position: relative;
@@ -113,11 +114,11 @@ export default function ShoppingCartHistory({ list }) {
   const [totalQuantity, setTotalQuantity] = useState(1);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (!totalQuantity) {
-  //     dispatch() 지우기, id를 줄지 메뉴 이름을 줄지
-  //   }
-  // });
+  useEffect(() => {
+    if (!totalQuantity) {
+      // dispatch(removeMenu(id));
+    }
+  }, [totalQuantity, dispatch]);
 
   const handleClickPlusButton = () => {
     setTotalQuantity((prev) => prev + 1);

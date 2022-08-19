@@ -40,9 +40,9 @@ const CountBox = styled.p`
   color: #fff;
 `;
 
-export default function Item({ src, title, gap, count }) {
+export default function Item({ src, title, gap, count, onClick }) {
   return (
-    <ItemContainer>
+    <ItemContainer onClick={onClick}>
       {src ? (
         <IconWrapper>
           <img src={src} alt="navbar-icon" gap={gap} />
@@ -60,4 +60,5 @@ Item.propTypes = {
   title: PropTypes.string.isRequired,
   gap: PropTypes.string,
   count: PropTypes.string,
+  onClick: PropTypes.func,
 };

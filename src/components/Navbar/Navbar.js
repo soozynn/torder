@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import Item from "./NavbarItem";
 import Recall from "../Recall/index";
@@ -7,7 +9,6 @@ import iconOrderSrc from "../../assets/order.svg";
 import iconBillSrc from "../../assets/bill.svg";
 import iconEventsSrc from "../../assets/events.svg";
 import iconShoppingBagSrc from "../../assets/shoppingBag.svg";
-import { useSelector } from "react-redux";
 
 const NavbarContainer = styled.div`
   position: fixed;
@@ -24,7 +25,7 @@ const NavbarContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export default function Navbar() {
+export default function Navbar({ onClick }) {
   const shoppingCartList = useSelector((state) => state.menu.bill);
 
   return (
@@ -36,8 +37,12 @@ export default function Navbar() {
       {shoppingCartList.length > 0 ? (
         <Item title="장바구니" count={shoppingCartList.length} />
       ) : (
-        <Item src={iconShoppingBagSrc} title="장바구니" />
+        <Item src={iconShoppingBagSrc} title="장바구니" onClick={onClick} />
       )}
     </NavbarContainer>
   );
 }
+
+Navbar.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

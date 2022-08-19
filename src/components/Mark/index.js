@@ -32,5 +32,5 @@ export default function Mark({ option, description }) {
 
 Mark.propTypes = {
   option: PropTypes.bool,
-  description: PropTypes.bool,
+  description: PropTypes.string,
 };

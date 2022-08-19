@@ -12,22 +12,54 @@ const MenuCategoryListContainer = styled.div`
   }
 `;
 
-export default function MenuCategoryList({ menu, name, activeCategory }) {
-  const { subCategories } = menu;
-  // 해당 서브카테고리스 갯수만큼
+export default function MenuCategoryList({ id, title, goods, subCategories }) {
   return (
     <MenuCategoryListContainer>
       {subCategories
-        // .filter((subCategory) => (
-
-        // ))
+        .filter((subCategory) => subCategory.parentCategoriesCodes.includes(id))
         .map((subCategory) => (
-          <MenuCategory key={subCategory.id} menu={menu} name={name} />
+          <MenuCategory
+            key={subCategory.id}
+            goods={goods}
+            title={title}
+            subTitle={subCategory.name}
+            subCategory={subCategory}
+          />
         ))}
     </MenuCategoryListContainer>
   );
 }
 
 MenuCategoryList.propTypes = {
-  // menu: PropTypes.
+  goods: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      description: PropTypes.string,
+      belongToCategories: PropTypes.arrayOf(PropTypes.string),
+      image: PropTypes.string,
+      soldOut: PropTypes.bool,
+      hit: PropTypes.bool,
+      best: PropTypes.bool,
+      recommend: PropTypes.bool,
+      new: PropTypes.bool,
+      orderMaxQuantity: PropTypes.number,
+      orderMinQuantity: PropTypes.number,
+      optionGroups: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string,
+          selectedOptionLimit: PropTypes.number,
+          require: PropTypes.bool,
+          optionItems: PropTypes.arrayOf(
+            PropTypes.shape({
+              displayName: PropTypes.string,
+              price: PropTypes.number,
+              optionQuantityLimit: PropTypes.number,
+            })
+          ),
+        })
+      ),
+    })
+  ),
 };
