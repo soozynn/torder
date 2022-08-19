@@ -32,7 +32,8 @@ export default function DutchPayPrice({ order, count }) {
         {order.length
           ? (
               order.reduce(
-                (accumulator, object) => accumulator + object.price,
+                (accumulator, object) =>
+                  accumulator + object.price * object.count,
                 0
               ) / count
             ).toLocaleString()

@@ -34,7 +34,11 @@ export default function OrderList({ order }) {
         <p>총 주문금액</p>
         <p>
           {order
-            .reduce((accumulator, object) => accumulator + object.price, 0)
+            .reduce(
+              (accumulator, object) =>
+                accumulator + object.price * object.count,
+              0
+            )
             .toLocaleString()}
         </p>
       </TotalPriceWrapper>
