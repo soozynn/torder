@@ -112,16 +112,11 @@ const TotalPrice = styled.p`
 const ButtonContainer = styled.div`
   height: 14.625vw;
   display: flex;
-  align-items: center;
   gap: 1.25vw;
-
-  :last-child {
-    margin-right: 4vw;
-  }
 `;
 
 const CloseButtonWrapper = styled.div`
-  width: 16.5vw;
+  width: 22.5vw;
   display: flex;
   justify-content: flex-end;
 `;
@@ -200,11 +195,22 @@ export default function ShoppingCartList({
 
         <ButtonContainer>
           <CloseButtonWrapper>
-            <Button onClick={handleClickCloseButton}>닫기</Button>
+            <Button
+              onClick={handleClickCloseButton}
+              width="18.75vw"
+              height="11.5vw"
+            >
+              닫기
+            </Button>
           </CloseButtonWrapper>
 
           <OrderButtonWrapper>
-            <Button background="red" onClick={handleClickOrderButton}>
+            <Button
+              background="red"
+              width="72.5vw"
+              height="11.5vw"
+              onClick={handleClickOrderButton}
+            >
               주문하기
             </Button>
           </OrderButtonWrapper>
