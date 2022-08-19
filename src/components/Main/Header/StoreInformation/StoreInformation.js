@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import HeaderIcons from "./Icons/index";
+import StoreInformationIcon from "./StoreInformationIcon";
 
 const StoreInformationContainer = styled.div`
   flex: 1;
@@ -46,7 +46,7 @@ export default function StoreInformation({ store }) {
 
   return (
     <StoreInformationContainer>
-      <HeaderIcons onClick={handleClickHamburger} />
+      <StoreInformationIcon onClick={handleClickHamburger} />
       <Name>{name}</Name>
       {}
     </StoreInformationContainer>

@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import StoreInformation from "./StoreInformation";
-import TableNumber from "./TableNumber";
+import StoreInformation from "./StoreInformation/StoreInformation";
+import TableNumber from "./TableNumber/index";
 
 const HeaderContainer = styled.div`
   width: 100vw;

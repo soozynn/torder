@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import imageBellSrc from "../../assets/bell.svg";
+import imageBellSrc from "../../../assets/bell.svg";
 
 const RecallContainer = styled.div`
   width: 17vw;

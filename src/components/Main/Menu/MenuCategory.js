@@ -4,9 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Menu from "./Menu";
-import Notification from "../Notification";
-
-import { addMenuToCart } from "../../features/menu/menuSlice";
+import { addMenuToCart } from "../../../features/menu/menuSlice";
 
 const CategoryNameWrapper = styled.div`
   display: flex;
