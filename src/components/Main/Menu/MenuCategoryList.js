@@ -19,6 +19,7 @@ export default function MenuCategoryList({
   subCategories,
   setIsOpenNotification,
   setNotificationText,
+  setShowsShoppingCart,
 }) {
   return (
     <MenuCategoryListContainer>
@@ -33,6 +34,7 @@ export default function MenuCategoryList({
             subTitle={subCategory.name}
             setIsOpenNotification={setIsOpenNotification}
             setNotificationText={setNotificationText}
+            setShowsShoppingCart={setShowsShoppingCart}
           />
         ))}
     </MenuCategoryListContainer>
@@ -49,6 +51,7 @@ MenuCategoryList.propTypes = {
       parentCategoriesCodes: PropTypes.arrayOf(PropTypes.string.isRequired),
     })
   ).isRequired,
+  setShowsShoppingCart: PropTypes.func.isRequired,
   setIsOpenNotification: PropTypes.func.isRequired,
   setNotificationText: PropTypes.func.isRequired,
   goods: PropTypes.arrayOf(

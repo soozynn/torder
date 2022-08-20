@@ -85,6 +85,7 @@ export default function Main() {
               subCategories={menu.subCategories}
               setIsOpenNotification={setIsOpenNotification}
               setNotificationText={setNotificationText}
+              setShowsShoppingCart={setShowsShoppingCart}
             />
           </GoodsContainer>
 

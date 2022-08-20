@@ -49,6 +49,7 @@ export default function MenuCategory({
   goods,
   setIsOpenNotification,
   setNotificationText,
+  setShowsShoppingCart,
 }) {
   const dispatch = useDispatch();
 
@@ -71,6 +72,7 @@ export default function MenuCategory({
     );
     setNotificationText(`장바구니에 ${menu.name} 상품을 담았습니다.`);
     setIsOpenNotification(true);
+    setShowsShoppingCart(true);
   };
 
   return (
