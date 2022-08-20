@@ -32,24 +32,30 @@ src
 ┣ components
 ┃     ┣ Bill // Bill page에서 필요한 컴포넌트만 따로 모아두었습니다.
 ┃     ┃  ┣ DutchPay
-┃     ┃  ┣ Header
 ┃     ┃  ┗ OrderList
 ┃     ┃
-┃     ┗ Main // Main page에서 필요한 컴포넌트 분리
-┃        ┣ Button
-┃        ┣ Category
-┃        ┣ Header
-┃        ┣ Label
-┃        ┣ Mark
-┃        ┣ Menu
-┃        ┣ Navbar
-┃        ┣ Notification
-┃        ┣ RecallIcon
-┃        ┣ ShoppingCart
-┃        ┣ Sidebar
-┃        ┣ SoldoutImage
-┃        ┗ SubCategory
-┃
+┃     ┣ Main // Main page에서 필요한 컴포넌트 분리
+┃     ┃  ┣ Button
+┃     ┃  ┣ Category
+┃     ┃  ┣ Header
+┃     ┃  ┣ Label
+┃     ┃  ┣ Mark
+┃     ┃  ┣ Menu
+┃     ┃  ┣ Navbar
+┃     ┃  ┣ Notification
+┃     ┃  ┣ RecallIcon
+┃     ┃  ┣ ShoppingCart
+┃     ┃  ┣ Sidebar
+┃     ┃  ┣ SoldoutImage
+┃     ┃  ┗ SubCategory
+┃     ┃
+┃     ┣ OrderHistory // OrderHistory page에서 필요한 컴포넌트 분리
+┃     ┃     ┣ OrderHistory.js
+┃     ┃     ┣ OrderHistoryList.js
+┃     ┃     ┗ TotalCount.js
+┃     ┃
+┃     ┗ shared // 페이지별로 분리 된 폴더에서 공용으로 사용하는 컴포넌트 분리
+┃         ┗ Header.js
 ┣ features
 ┃    ┗ menu
 ┃       ┗ menuSlice.js
@@ -89,6 +95,11 @@ src
   <br />
   실제로 사용하게 된 이유로는 props drilling 및 데이터를 추적하기 어렵다는 생각이 들어 사용하게 되었습니다.
 
+## 아쉬운 점
+
+아토믹 디자인 패턴 또는 타입스크립트를 적용해보고 싶었으나 과제 기한에 맞추어 완성도를 더 높이기 위해 사용해보지 못했던 점이 아쉬웠고, 만들면서 재사용되는 컴포넌트가 굉장히 많다고 느껴졌는데 이에 맞추어 유동성있게 만들지 못했던 점이 아쉬웠습니다.
+
 ## About
 
-추가적으로 더 개선이 필요한 엣지 케이스 고려 및 유닛 코드 테스트도 작성하도록 하겠습니다. 또, 좀 더 재사용성있는 컴포넌트 만들기, 성능 최적화에 대해서도 더 생각해보도록 하겠습니다. 감사합니다!
+현재 스크롤에 따라 카테고리가 활성화되는 부분을 만들고 있습니다. 이 외에
+추가적으로 더 개선이 필요한 엣지 케이스 고려 및 유닛 코드 테스트도 작성해보도록 하겠습니다. 또, 좀 더 재사용성있는 컴포넌트 만들기, 성능 최적화에 대해서도 더 생각해보도록 하겠습니다. 감사합니다!
