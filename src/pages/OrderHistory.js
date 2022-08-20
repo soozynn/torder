@@ -19,9 +19,7 @@ export default function OrderHistory() {
   return (
     <OrderContainer>
       <Header title="주문내역" />
-      <div>
-        <OrderHistoryList />
-      </div>
+      <OrderHistoryList />
     </OrderContainer>
   );
 }

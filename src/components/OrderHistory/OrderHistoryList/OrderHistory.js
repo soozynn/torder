@@ -38,6 +38,8 @@ const Number = styled.div`
 `;
 
 const Text = styled.div`
+  font-size: 4vw;
+  letter-spacing: -0.2vw;
   font-weight: 700;
   color: #ab240f;
 `;
@@ -61,7 +63,7 @@ const OrderNameWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: "notoserif-bold";
+  font-family: "NotoSerifKR-bold";
   color: #131313;
 `;
 
@@ -72,20 +74,30 @@ const OrderOption = styled.div`
   gap: 1.25vw;
 `;
 
-const Title = styled.p``;
+const Title = styled.p`
+  flex: 1;
+  font-size: 4vw;
+  letter-spacing: -0.2vw;
+`;
 
-const Quantity = styled.p``;
+const Quantity = styled.p`
+  width: 20.625vw;
+  font-size: 3.75vw;
+  text-align: right;
+`;
 
-export default function OrderHistory({ history }) {
-  const { number, time, name, count } = history;
+export default function OrderHistory({ history, index, orderLength }) {
+  const { time, name, count } = history;
 
   return (
     <OrderHistoryContainer>
       <div>
         <HistoryContainer>
           <TitleWrapper>
-            <Number>{number}</Number>
-            <Text>마지막 주문</Text>
+            <Number>{index + 1}</Number>
+            <Text>
+              {orderLength === index + 1 ? "마지막 주문" : "이전 주문"}
+            </Text>
             <Time>{time}</Time>
           </TitleWrapper>
 
@@ -106,9 +118,9 @@ export default function OrderHistory({ history }) {
 
 OrderHistory.propTypes = {
   history: PropTypes.shape({
-    number: PropTypes.number.isRequired,
     time: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     count: PropTypes.number.isRequired,
   }),
+  index: PropTypes.number.isRequired,
 };

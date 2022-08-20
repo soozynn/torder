@@ -66,6 +66,7 @@ export default function MenuCategory({
         name: menu.name,
         price: menu.price,
         count: 1,
+        time: new Date().toLocaleTimeString(),
       })
     );
     setNotificationText(`장바구니에 ${menu.name} 상품을 담았습니다.`);
