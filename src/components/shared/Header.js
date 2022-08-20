@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import imagePrevButtonSrc from "../../../assets/prevButton.svg";
+import imagePrevButtonSrc from "../../assets/prevButton.svg";
 
 const BillHeaderContainer = styled.header`
   position: relative;
@@ -32,7 +33,7 @@ const Title = styled.p`
   letter-spacing: -0.10625vw;
 `;
 
-export default function BillHeader() {
+export default function Header({ title }) {
   const navigate = useNavigate();
 
   const handleClickPrevButton = () => {
@@ -44,7 +45,11 @@ export default function BillHeader() {
       <PrevButton onClick={handleClickPrevButton}>
         <PrevIcon src={imagePrevButtonSrc} alt="prev-arrow" />
       </PrevButton>
-      <Title>계산서</Title>
+      <Title>{title}</Title>
     </BillHeaderContainer>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+};
