@@ -28,13 +28,21 @@ const NavbarContainer = styled.div`
 export default function Navbar({ cartList, onClick }) {
   const navigate = useNavigate();
 
+  const handleClickOrderHistory = () => {
+    navigate("/orderHistory");
+  };
+
   const handleClickBill = () => {
     navigate("/bill");
   };
 
   return (
     <NavbarContainer>
-      <Item src={iconOrderSrc} title="주문내역" />
+      <Item
+        src={iconOrderSrc}
+        title="주문내역"
+        onClick={handleClickOrderHistory}
+      />
       <Item
         src={iconBillSrc}
         title="계산서"

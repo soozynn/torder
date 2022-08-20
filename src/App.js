@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main";
 import Bill from "./pages/Bill";
+import OrderHistory from "./pages/OrderHistory";
 
 const GlobalStyles = createGlobalStyle`
   body, html {
@@ -48,7 +49,7 @@ export default function App() {
       <GlobalStyles />
       <Router>
         <Routes>
-          {/* <Route path="/order" element={<Order/>} /> */}
+          <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/bill" element={<Bill />} />
           {/* <Route path="/recall" element={<Recall/>} />
           <Route path="/events" element={<Events/>} /> */}

@@ -24,12 +24,11 @@ const Price = styled.span`
 `;
 
 export default function DutchPayPrice({ order, count }) {
-  console.log(order);
   return (
     <DutchPayButtonContainer>
       <Count>1인당</Count>
       <Price>
-        {order.length
+        {order && order.length
           ? (
               order.reduce(
                 (accumulator, object) =>
@@ -52,6 +51,6 @@ DutchPayPrice.propTypes = {
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
     })
-  ).isRequired,
-  count: PropTypes.number.isRequired,
+  ),
+  count: PropTypes.number,
 };
