@@ -9,6 +9,7 @@ import imageMinusButtonSrc from "../../../assets/minusButton.svg";
 import {
   addMenuToCart,
   removeMenuToCart,
+  reduceMenuToCart,
 } from "../../../features/menu/menuSlice";
 
 const ShoppingCartHistoryContainer = styled.div`
@@ -127,6 +128,10 @@ export default function ShoppingCartHistory({
   const [quantity, setQuantity] = useState(orderMinQuantity);
   const dispatch = useDispatch();
 
+  const handleClickDeleteButton = () => {
+    dispatch(removeMenuToCart(menu.id));
+  };
+
   const handleClickPlusButton = () => {
     if (quantity >= orderMaxQuantity) {
       setIsOpenNotification(true);
@@ -153,7 +158,7 @@ export default function ShoppingCartHistory({
     }
 
     dispatch(
-      removeMenuToCart({
+      reduceMenuToCart({
         id: menu.id,
       })
     );
@@ -162,7 +167,7 @@ export default function ShoppingCartHistory({
 
   return (
     <ShoppingCartHistoryContainer>
-      <DeleteButton>
+      <DeleteButton onClick={handleClickDeleteButton}>
         <Icon alt="delete" src={imageDeleteButtonSrc} />
       </DeleteButton>
 

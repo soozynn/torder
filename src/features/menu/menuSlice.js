@@ -24,6 +24,11 @@ export const menuSlice = createSlice({
       state.cart.push(action.payload);
     },
     removeMenuToCart: (state, action) => {
+      const id = action.payload;
+
+      state.cart = state.cart.filter((menu) => menu.id !== id);
+    },
+    reduceMenuToCart: (state, action) => {
       const { id } = action.payload;
       const sameMenuIndex = state.cart.findIndex(
         (menu) => menu.id === id && menu.count > 1
@@ -49,6 +54,7 @@ export const menuSlice = createSlice({
 export const {
   addMenuToCart,
   removeMenuToCart,
+  reduceMenuToCart,
   removeAllMenuToCart,
   orderMenuListInCart,
 } = menuSlice.actions;

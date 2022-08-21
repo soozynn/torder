@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -148,6 +148,12 @@ export default function ShoppingCartList({
     dispatch(removeAllMenuToCart());
     setShowsShoppingCart(false);
   };
+
+  useEffect(() => {
+    if (!cartList.length) {
+      setShowsShoppingCart(false);
+    }
+  }, [cartList.length, setShowsShoppingCart]);
 
   return (
     <ShoppingCartListContainer>
