@@ -2,16 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const OrderHistoryContainer = styled.div`
-  padding: 0 5vw;
-  width: 100%;
-  height: calc(100vh - 25.625vw);
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow: auto;
-`;
-
 const HistoryContainer = styled.div`
   margin-top: 3.125vw;
 `;
@@ -21,13 +11,14 @@ const TitleWrapper = styled.div`
   align-items: center;
   gap: 2.125vw;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
+  color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
 `;
 
 const Number = styled.div`
   width: 5.125vw;
   height: 5.125vw;
   border-radius: 1.25vw;
-  background-color: #ab240f;
+  background-color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +32,7 @@ const Text = styled.div`
   font-size: 4vw;
   letter-spacing: -0.2vw;
   font-weight: 700;
-  color: #ab240f;
+  color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
 `;
 
 const Time = styled.div`
@@ -50,7 +41,7 @@ const Time = styled.div`
   letter-spacing: -0.08125vw;
   text-align: right;
   font-weight: 500;
-  color: #ab240f;
+  color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
 `;
 
 const HistoryInformation = styled.div`
@@ -90,29 +81,27 @@ export default function OrderHistory({ history, index, orderLength }) {
   const { time, name, count } = history;
 
   return (
-    <OrderHistoryContainer>
-      <div>
-        <HistoryContainer>
-          <TitleWrapper>
-            <Number>{index + 1}</Number>
-            <Text>
-              {orderLength === index + 1 ? "마지막 주문" : "이전 주문"}
-            </Text>
-            <Time>{time}</Time>
-          </TitleWrapper>
+    <div>
+      <HistoryContainer>
+        <TitleWrapper>
+          <Number index={index}>{orderLength - index}</Number>
+          <Text index={index}>{index === 0 ? "마지막 주문" : "이전 주문"}</Text>
+          <Time index={index}>{time}</Time>
+        </TitleWrapper>
 
-          <div>
-            <HistoryInformation>
-              <OrderNameWrapper>
-                <Title>{name}</Title>
-                <Quantity>{count}개</Quantity>
-              </OrderNameWrapper>
-              <OrderOption />
-            </HistoryInformation>
-          </div>
-        </HistoryContainer>
-      </div>
-    </OrderHistoryContainer>
+        <div>
+          {/* {history.map((menu) => ( */}
+          <HistoryInformation>
+            <OrderNameWrapper>
+              <Title>{name}</Title>
+              <Quantity>{count}개</Quantity>
+            </OrderNameWrapper>
+            <OrderOption />
+          </HistoryInformation>
+          {/* ))} */}
+        </div>
+      </HistoryContainer>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const DutchPayButtonContainer = styled.p`
+const DutchPayButtonContainer = styled.div`
   height: 13.75vw;
   display: flex;
   justify-content: center;
