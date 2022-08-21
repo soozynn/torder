@@ -140,7 +140,9 @@ export default function DetailDescription() {
     setShowsShoppingCart,
   } = filteredMenu[0];
 
-  const [quantity, setQuantity] = useState(orderMinQuantity);
+  const [quantity, setQuantity] = useState(
+    !orderMinQuantity ? 1 : orderMinQuantity
+  );
 
   const handleClickPrevButton = () => {
     navigate(-1);
@@ -157,12 +159,14 @@ export default function DetailDescription() {
         id,
         name,
         price,
-        quantity,
+        count: quantity,
         time: new Date().toLocaleTimeString(navigator.language, {
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
         }),
+        orderMinQuantity,
+        orderMaxQuantity,
         option,
       })
     );

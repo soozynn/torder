@@ -58,6 +58,7 @@ export default function MenuCategory({
   const handleClickMenu = (menu) => {
     if (menu.optionGroups.length > 0 || menu.description) {
       navigate(`/menuDetail${menu.id}`);
+      return;
     }
 
     if (menu.soldOut) {
@@ -65,7 +66,7 @@ export default function MenuCategory({
       setIsOpenNotification(true);
       return;
     }
-    console.log(menu.orderMinQuantity);
+
     dispatch(
       addMenuToCart({
         id: menu.id,
