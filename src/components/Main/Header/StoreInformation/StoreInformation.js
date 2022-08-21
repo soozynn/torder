@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import StoreInformationIcon from "./StoreInformationIcon";
+import Sidebar from "../../Sidebar/Sidebar";
 
 const StoreInformationContainer = styled.div`
   flex: 1;
@@ -36,19 +37,23 @@ const Name = styled.p`
 
 export default function StoreInformation({ store }) {
   const { name } = store;
-
+  const [showsSidebar, setShowsSidebar] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClickHamburger = () => {
-    // 사이드바 보이기
+    setShowsSidebar(true);
     setIsClicked(!isClicked);
+  };
+
+  const CloseSidebar = () => {
+    setShowsSidebar(false);
   };
 
   return (
     <StoreInformationContainer>
       <StoreInformationIcon onClick={handleClickHamburger} />
       <Name>{name}</Name>
-      {}
+      {showsSidebar && <Sidebar onClick={CloseSidebar} />}
     </StoreInformationContainer>
   );
 }

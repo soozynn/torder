@@ -88,7 +88,6 @@ export default function Main() {
               setShowsShoppingCart={setShowsShoppingCart}
             />
           </GoodsContainer>
-
           {showsShoppingCart ? (
             <ShoppingCartList
               cartList={cart}

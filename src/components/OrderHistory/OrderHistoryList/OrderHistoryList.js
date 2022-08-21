@@ -18,8 +18,7 @@ const OrderHistoryWrapper = styled.div`
 
 export default function OrderHistoryList() {
   const orderList = useSelector((state) => state.menu.order);
-  // 동일한 시간대의 값이면 그냥 요소 리스트에 추가해서 그려주기
-  // 동일한 시간대의 값이 아니면 그냥 돌려주기
+
   return (
     <div>
       <OrderHistoryWrapper>
