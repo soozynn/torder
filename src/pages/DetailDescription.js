@@ -5,9 +5,10 @@ import styled from "styled-components";
 
 import imagePrevButtonSrc from "../assets/prevButton.svg";
 import Notification from "../components/Main/Notification";
+import MenuInformation from "../components/DetailDescription/MenuInformation";
+import OptionList from "../components/DetailDescription/OptionList";
 import { addMenuToCart } from "../features/menu/menuSlice";
 import { getProductDescription } from "../components/utils/util";
-import MenuInformation from "../components/DetailDescription/MenuInformation";
 
 const DetailDescriptionContainer = styled.div`
   position: fixed;
@@ -83,12 +84,6 @@ const MenuDescription = styled.p`
   line-height: 1.5em;
 `;
 
-const OptionList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.875vw;
-`;
-
 const ButtonContainer = styled.div`
   position: fixed;
   width: 100vw;
@@ -122,7 +117,6 @@ const OrderButton = styled.p`
 `;
 
 export default function DetailDescription() {
-  const [quantity, setQuantity] = useState(1);
   const [option, setOption] = useState([]);
   const [isOpenNotification, setIsOpenNotification] = useState(false);
   const [notificationText, setNotificationText] = useState("");
@@ -140,9 +134,13 @@ export default function DetailDescription() {
     description,
     optionGroups,
     selectedOptionLimit,
+    orderMaxQuantity,
+    orderMinQuantity,
     showsShoppingCart,
     setShowsShoppingCart,
   } = filteredMenu[0];
+
+  const [quantity, setQuantity] = useState(orderMinQuantity);
 
   const handleClickPrevButton = () => {
     navigate(-1);
@@ -173,11 +171,22 @@ export default function DetailDescription() {
   };
 
   const handleClickPlusButton = () => {
+    if (quantity >= orderMaxQuantity) {
+      setIsOpenNotification(true);
+      setNotificationText(`최대 주문 수량이 ${orderMaxQuantity}개 입니다.`);
+      return;
+    }
+
     setQuantity((prev) => prev + 1);
   };
 
   const handleClickMinusButton = () => {
-    if (quantity < 2) return;
+    if (quantity >= orderMinQuantity) {
+      setIsOpenNotification(true);
+      setNotificationText(`최소 주문 수량이 ${orderMinQuantity}개 입니다.`);
+      return;
+    }
+
     setQuantity((prev) => prev - 1);
   };
 
@@ -210,15 +219,17 @@ export default function DetailDescription() {
         quantity={quantity}
         handleClickPlusButton={handleClickPlusButton}
         handleClickMinusButton={handleClickMinusButton}
+        maxQuantity={orderMaxQuantity}
+        mimQuantity={selectedOptionLimit}
       />
 
-      <OptionList
+      {/* <OptionList
         options={optionGroups}
         soldOut={soldOut}
         limit={selectedOptionLimit}
         setOption={setOption}
         setNotificationText={setNotificationText}
-      />
+      /> */}
 
       <ButtonContainer>
         <BackButton onClick={handleClickPrevButton}>뒤로가기</BackButton>

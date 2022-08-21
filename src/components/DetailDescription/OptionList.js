@@ -57,10 +57,10 @@ export default function OptionList({
       return;
     }
 
-    if (limitQuantity >= limit) {
-      setNotificationText("더 이상 수량을 추가할 수 없습니다.");
-      return;
-    }
+    // if (limitQuantity >= limit) {
+    //   setNotificationText("더 이상 수량을 추가할 수 없습니다.");
+    //   return;
+    // }
 
     setIsSelectedOption(!isSelectedOption);
     setOption((prev) => [...prev, selectedOption]);

@@ -167,7 +167,12 @@ export default function ShoppingCartList({
         <ShoppingCartContainer>
           <ShoppingCartWrapper>
             {cartList.map((menu) => (
-              <ShoppingCartHistory key={menu.id} menu={menu} />
+              <ShoppingCartHistory
+                key={menu.id}
+                menu={menu}
+                setNotificationText={setNotificationText}
+                setIsOpenNotification={setIsOpenNotification}
+              />
             ))}
           </ShoppingCartWrapper>
         </ShoppingCartContainer>
