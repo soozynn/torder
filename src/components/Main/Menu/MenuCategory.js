@@ -65,13 +65,15 @@ export default function MenuCategory({
       setIsOpenNotification(true);
       return;
     }
-
+    console.log(menu.orderMinQuantity);
     dispatch(
       addMenuToCart({
         id: menu.id,
         name: menu.name,
         price: menu.price,
-        count: 1,
+        count: !menu.orderMinQuantity ? 1 : menu.orderMinQuantity,
+        orderMinQuantity: menu.orderMinQuantity,
+        orderMaxQuantity: menu.orderMaxQuantity,
         time: new Date().toLocaleTimeString(navigator.language, {
           hour: "2-digit",
           minute: "2-digit",

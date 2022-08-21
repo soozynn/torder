@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import imagePlusButtonSrc from "../../assets/plusButton.svg";
 import imageMinusButtonSrc from "../../assets/minusButton.svg";
@@ -76,6 +77,7 @@ export default function MenuInformation({
   quantity,
   handleClickPlusButton,
   handleClickMinusButton,
+  maxQuantity,
 }) {
   return (
     <MenuInformationContainer>
@@ -89,13 +91,17 @@ export default function MenuInformation({
           <>
             <QuantityText>수량</QuantityText>
             <QuantityWrapper>
-              <ButtonWrapper onClick={handleClickPlusButton}>
-                <CountIcon alt="plus" src={imagePlusButtonSrc} />
-              </ButtonWrapper>
+              {maxQuantity > 1 && (
+                <ButtonWrapper onClick={handleClickPlusButton}>
+                  <CountIcon alt="plus" src={imagePlusButtonSrc} />
+                </ButtonWrapper>
+              )}
               <Quantity>{quantity}개</Quantity>
-              <ButtonWrapper onClick={handleClickMinusButton}>
-                <CountIcon alt="minus" src={imageMinusButtonSrc} />
-              </ButtonWrapper>
+              {maxQuantity > 1 && (
+                <ButtonWrapper onClick={handleClickMinusButton}>
+                  <CountIcon alt="minus" src={imageMinusButtonSrc} />
+                </ButtonWrapper>
+              )}
             </QuantityWrapper>
           </>
         )}
@@ -103,3 +109,12 @@ export default function MenuInformation({
     </MenuInformationContainer>
   );
 }
+
+MenuInformation.propTypes = {
+  soldOut: PropTypes.bool.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  handleClickPlusButton: PropTypes.func.isRequired,
+  handleClickMinusButton: PropTypes.func.isRequired,
+  maxQuantity: PropTypes.number.isRequired,
+};

@@ -28,11 +28,16 @@ http://localhost:3000/ 을 실행시켜주세요.
 
 ```
 src
-┣ assets // icons svg folder
+┣ assets // icons, svg or png image folder
 ┣ components
 ┃     ┣ Bill // Bill page에서 필요한 컴포넌트만 따로 모아두었습니다.
 ┃     ┃  ┣ DutchPay
 ┃     ┃  ┗ OrderList
+┃     ┃
+┃     ┣ DetailDescription // DetailDescription page에서 필요한 컴포넌트 분리
+┃     ┃  ┣ MenuInformation.js
+┃     ┃  ┣ Option.js
+┃     ┃  ┗ OptionList.js
 ┃     ┃
 ┃     ┣ Main // Main page에서 필요한 컴포넌트 분리
 ┃     ┃  ┣ Button
@@ -54,8 +59,11 @@ src
 ┃     ┃     ┣ OrderHistoryList.js
 ┃     ┃     ┗ TotalCount.js
 ┃     ┃
-┃     ┗ shared // 페이지별로 분리 된 폴더에서 공용으로 사용하는 컴포넌트 분리
-┃         ┗ Header.js
+┃     ┣ shared // 페이지별로 분리 된 폴더에서 공용으로 사용하는 컴포넌트 분리
+┃     ┃   ┗ Header.js
+┃     ┃
+┃     ┗ utils
+┃         ┗ util.js
 ┣ features
 ┃    ┗ menu
 ┃       ┗ menuSlice.js
@@ -101,5 +109,5 @@ src
 
 ## About
 
-현재 스크롤에 따라 카테고리가 활성화되는 부분을 만들고 있습니다. 이 외에
+현재 스크롤에 따라 카테고리가 활성화되는 부분과 옵션/상세설명이 있는 메뉴 클릭 시 보여지는 옵션사항 수정 중입니다. 이 외에
 추가적으로 더 개선이 필요한 엣지 케이스 고려 및 유닛 코드 테스트도 작성해보도록 하겠습니다. 또, 좀 더 재사용성있는 컴포넌트 만들기, 성능 최적화에 대해서도 더 생각해보도록 하겠습니다. 감사합니다!

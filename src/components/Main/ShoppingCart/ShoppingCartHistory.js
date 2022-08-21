@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -116,11 +116,24 @@ const TotalQuantity = styled.p`
   letter-spacing: -0.175vw;
 `;
 
-export default function ShoppingCartHistory({ menu }) {
-  const { name, option, price, count } = menu;
+export default function ShoppingCartHistory({
+  menu,
+  setNotificationText,
+  setIsOpenNotification,
+}) {
+  const { name, option, price, count, orderMaxQuantity, orderMinQuantity } =
+    menu;
+
+  const [quantity, setQuantity] = useState(orderMinQuantity);
   const dispatch = useDispatch();
 
   const handleClickPlusButton = () => {
+    if (quantity >= orderMaxQuantity) {
+      setIsOpenNotification(true);
+      setNotificationText("더 이상 수량을 추가할 수 없습니다.");
+      return;
+    }
+
     dispatch(
       addMenuToCart({
         id: menu.id,
@@ -129,14 +142,22 @@ export default function ShoppingCartHistory({ menu }) {
         count: 1,
       })
     );
+    setQuantity((prev) => prev + 1);
   };
 
   const handleClickMinusButton = () => {
+    if (quantity >= orderMaxQuantity) {
+      setIsOpenNotification(true);
+      setNotificationText(`최소 주문 수량이 ${orderMaxQuantity}개 입니다.`);
+      return;
+    }
+
     dispatch(
       removeMenuToCart({
         id: menu.id,
       })
     );
+    setQuantity((prev) => prev - 1);
   };
 
   return (
@@ -176,4 +197,6 @@ ShoppingCartHistory.propTypes = {
     price: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,
   }),
+  setIsOpenNotification: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
 };
