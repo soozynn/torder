@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -6,6 +6,7 @@ import Main from "./pages/Main";
 import Bill from "./pages/Bill";
 import OrderHistory from "./pages/OrderHistory";
 import Events from "./pages/Events";
+import DetailDescription from "./pages/DetailDescription";
 
 const GlobalStyles = createGlobalStyle`
   body, html {
@@ -45,6 +46,8 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 export default function App() {
+  const [showsShoppingCart, setShowsShoppingCart] = useState(false);
+
   return (
     <>
       <GlobalStyles />
@@ -52,9 +55,26 @@ export default function App() {
         <Routes>
           <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/bill" element={<Bill />} />
+          <Route
+            path="/menuDetail:id"
+            element={
+              <DetailDescription
+                showsShoppingCart={showsShoppingCart}
+                setShowsShoppingCart={setShowsShoppingCart}
+              />
+            }
+          />
           {/* <Route path="/recall" element={<Recall/>} /> */}
           <Route path="/events" element={<Events />} />
-          <Route path="/" element={<Main />} />
+          <Route
+            path="/"
+            element={
+              <Main
+                showsShoppingCart={showsShoppingCart}
+                setShowsShoppingCart={setShowsShoppingCart}
+              />
+            }
+          />
         </Routes>
       </Router>
     </>

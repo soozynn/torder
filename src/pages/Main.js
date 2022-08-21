@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import Header from "../components/Main/Header/index";
 import CategoryList from "../components/Main/Category/CategoryList";
@@ -41,9 +42,8 @@ const CategoryListContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export default function Main() {
+export default function Main({ showsShoppingCart, setShowsShoppingCart }) {
   const { menu, cart } = useSelector((state) => state.menu);
-  const [showsShoppingCart, setShowsShoppingCart] = useState(false);
   const [isOpenNotification, setIsOpenNotification] = useState(false);
   const [notificationText, setNotificationText] = useState("");
   const [activeCategoryId, setActiveCategoryId] = useState(
@@ -108,8 +108,18 @@ export default function Main() {
           )}
         </>
       ) : (
-        <Notification>데이터를 불러오지 못하였습니다.</Notification>
+        <Notification
+          isOpenNotification={isOpenNotification}
+          setIsOpenNotification={setIsOpenNotification}
+        >
+          데이터를 불러오지 못하였습니다.
+        </Notification>
       )}
     </>
   );
 }
+
+Main.propTypes = {
+  showsShoppingCart: PropTypes.bool.isRequired,
+  setShowsShoppingCart: PropTypes.func.isRequired,
+};
