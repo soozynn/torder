@@ -30,6 +30,7 @@ export default function FullMenuList({
   subCategories,
   setIsOpenNotification,
   setNotificationText,
+  setShowsShoppingCart,
 }) {
   return (
     <FullMenuListContainer>
@@ -42,6 +43,7 @@ export default function FullMenuList({
           subCategories={subCategories}
           setIsOpenNotification={setIsOpenNotification}
           setNotificationText={setNotificationText}
+          setShowsShoppingCart={setShowsShoppingCart}
         />
       ))}
     </FullMenuListContainer>
@@ -49,6 +51,7 @@ export default function FullMenuList({
 }
 
 FullMenuList.propTypes = {
+  setShowsShoppingCart: PropTypes.func.isRequired,
   setIsOpenNotification: PropTypes.func.isRequired,
   setNotificationText: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(

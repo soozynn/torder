@@ -49,6 +49,7 @@ export default function MenuCategory({
   goods,
   setIsOpenNotification,
   setNotificationText,
+  setShowsShoppingCart,
 }) {
   const dispatch = useDispatch();
 
@@ -66,11 +67,16 @@ export default function MenuCategory({
         name: menu.name,
         price: menu.price,
         count: 1,
-        time: new Date().toLocaleTimeString(),
+        time: new Date().toLocaleTimeString(navigator.language, {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        }),
       })
     );
     setNotificationText(`장바구니에 ${menu.name} 상품을 담았습니다.`);
     setIsOpenNotification(true);
+    setShowsShoppingCart(true);
   };
 
   return (

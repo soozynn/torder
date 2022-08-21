@@ -5,7 +5,6 @@ import mockData from "../../mock.json";
 const initialState = {
   menu: { ...mockData },
   order: [],
-  bill: [],
   cart: [],
 };
 
@@ -40,8 +39,8 @@ export const menuSlice = createSlice({
     removeAllMenuToCart: (state) => {
       state.cart = [];
     },
-    orderMenuList: (state) => {
-      state.order = [...state.cart];
+    orderMenuListInCart: (state) => {
+      state.order.push(...state.cart);
       state.cart = [];
     },
   },
@@ -51,7 +50,7 @@ export const {
   addMenuToCart,
   removeMenuToCart,
   removeAllMenuToCart,
-  orderMenuList,
+  orderMenuListInCart,
 } = menuSlice.actions;
 
 export default menuSlice.reducer;

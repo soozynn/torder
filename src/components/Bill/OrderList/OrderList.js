@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
 
 import Order from "./Order";
 
@@ -28,7 +29,12 @@ export default function OrderList({ order }) {
     <BillListHistoryContainer>
       {order &&
         order.map((menu) => (
-          <Order name={menu.name} price={menu.price} count={menu.count} />
+          <Order
+            key={uuidv4()}
+            name={menu.name}
+            price={menu.price}
+            count={menu.count}
+          />
         ))}
       <TotalPriceWrapper>
         <p>총 주문금액</p>

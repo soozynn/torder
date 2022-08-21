@@ -8,7 +8,7 @@ import ShoppingCartHead from "./ShoppingCartHead";
 import ShoppingCartHistory from "./ShoppingCartHistory";
 import Button from "../Button/index";
 import {
-  orderMenuList,
+  orderMenuListInCart,
   removeAllMenuToCart,
 } from "../../../features/menu/menuSlice";
 
@@ -138,7 +138,7 @@ export default function ShoppingCartList({
   };
 
   const handleClickOrderButton = () => {
-    dispatch(orderMenuList());
+    dispatch(orderMenuListInCart());
     setShowsShoppingCart(false);
     setIsOpenNotification(true);
     setNotificationText("주문을 완료했습니다.");
