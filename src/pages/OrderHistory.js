@@ -13,6 +13,7 @@ const OrderContainer = styled.div`
   height: 100vh;
   overflow: hidden;
   background-color: #fff;
+  display: block;
 `;
 
 export default function OrderHistory() {
