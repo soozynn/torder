@@ -45,6 +45,7 @@ const SignButtonWrapper = styled.div`
 `;
 
 const SignMessage = styled.p`
+  font-family: "NotoSerifKR-bold";
   font-size: 4.25vw;
   letter-spacing: -0.14875vw;
 `;

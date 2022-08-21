@@ -21,20 +21,20 @@ export default function MenuCategoryList({
   setNotificationText,
   setShowsShoppingCart,
 }) {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [scrollPosition, setScrollPosition] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const position = window.pageYOffset;
-      setScrollPosition(position);
-      console.log(scrollPosition);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const position = window.pageYOffset;
+  //     setScrollPosition(position);
+  //     console.log(scrollPosition);
+  //   };
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrollPosition]);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [scrollPosition]);
   return (
     <MenuCategoryListContainer>
       {subCategories

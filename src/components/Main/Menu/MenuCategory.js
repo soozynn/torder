@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -52,9 +53,13 @@ export default function MenuCategory({
   setShowsShoppingCart,
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClickMenu = (menu) => {
-    if (menu.option || menu.description) return;
+    if (menu.optionGroups.length > 0 || menu.description) {
+      navigate(`/menuDetail${menu.id}`);
+    }
+
     if (menu.soldOut) {
       setNotificationText("품절 된 상품입니다.");
       setIsOpenNotification(true);
