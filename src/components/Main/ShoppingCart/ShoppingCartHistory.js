@@ -151,6 +151,11 @@ export default function ShoppingCartHistory({
   };
 
   const handleClickMinusButton = () => {
+    if (!quantity) {
+      dispatch(removeMenuToCart(menu.id));
+      return;
+    }
+
     if (quantity >= orderMaxQuantity) {
       setIsOpenNotification(true);
       setNotificationText(`최소 주문 수량이 ${orderMaxQuantity}개 입니다.`);
