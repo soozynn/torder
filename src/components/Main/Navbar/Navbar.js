@@ -36,6 +36,10 @@ export default function Navbar({ cartList, onClick }) {
     navigate("/bill");
   };
 
+  const handleClickEvents = () => {
+    navigate("/events");
+  };
+
   return (
     <NavbarContainer>
       <Item
@@ -58,6 +62,7 @@ export default function Navbar({ cartList, onClick }) {
         gap="1.625vw"
         width="3.69537vw"
         height="4.1695vw"
+        onClick={handleClickEvents}
       />
       {cartList.length > 0 ? (
         <Item title="장바구니" cartList={cartList} onClick={onClick} />
