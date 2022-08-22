@@ -6,7 +6,7 @@ import imageSelectButtonSrc from "../../assets/selectButton.svg";
 import imageUnSelectButtonSrc from "../../assets/unSelectButton.svg";
 import imagePlusButtonSrc from "../../assets/plusButton.svg";
 import imageMinusButtonSrc from "../../assets/minusButton.svg";
-console.log(imageSelectButtonSrc);
+
 const OptionContainer = styled.div`
   min-height: 12vw;
   color: #000;
@@ -15,7 +15,7 @@ const OptionContainer = styled.div`
   align-items: center;
   gap: 1.25vw;
   border: ${(props) =>
-    props.selected ? "0.125vw solid #000000" : "0.125vw solid #e8e8e8"};
+    props.selected ? "0.125vw solid #2f2a26" : "0.125vw solid #e8e8e8"};
   border-radius: 1.25vw;
   padding: 0 3.75vw;
   box-sizing: border-box;
@@ -76,6 +76,8 @@ const Quantity = styled.p`
 const ButtonIcon = styled.p`
   width: 5.75vw;
   height: 5.75vw;
+  z-index: 10;
+  /* background-color: black; */
 `;
 
 export default function Option({
@@ -89,7 +91,7 @@ export default function Option({
 }) {
   const { displayName, price, optionQuantityLimit } = item;
 
-  const [quantity, setQuantity] = useState(optionQuantityLimit);
+  const [quantity, setQuantity] = useState(1);
 
   const handleClickPlusButton = () => {
     if (quantity >= optionQuantityLimit) {
