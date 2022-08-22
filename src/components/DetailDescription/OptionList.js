@@ -53,6 +53,7 @@ export default function OptionList({
   setIsCheckedRequiredOption,
 }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [maxQuantity, setMaxQuantity] = useState(1);
 
   const handleClickOption = (item) => {
     if (soldOut) {

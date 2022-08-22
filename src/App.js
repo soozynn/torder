@@ -10,6 +10,7 @@ import Events from "./pages/Events";
 import DetailDescription from "./pages/DetailDescription";
 import Recall from "./pages/Recall";
 import Notification from "./components/Main/Notification";
+import OptionModal from "./pages/OptionModal";
 
 const GlobalStyles = createGlobalStyle`
   body, html {
@@ -80,6 +81,7 @@ export default function App() {
             }
           />
           <Route path="/eventList" element={<Events setTitle={setTitle} />} />
+          <Route path="/cartOption" element={<OptionModal />} />
           <Route
             path="/eventList/coupon"
             element={

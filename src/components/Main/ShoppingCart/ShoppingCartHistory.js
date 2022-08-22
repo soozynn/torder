@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -127,9 +128,14 @@ export default function ShoppingCartHistory({
 
   const [quantity, setQuantity] = useState(orderMinQuantity);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClickDeleteButton = () => {
     dispatch(removeMenuToCart(menu.id));
+  };
+
+  const handleClickViewOptions = () => {
+    navigate("/cartOption", { replace: true });
   };
 
   const handleClickPlusButton = () => {
@@ -178,7 +184,9 @@ export default function ShoppingCartHistory({
 
       <MenuInformation>
         <MenuName>{name}</MenuName>
-        <MenuOption>{option ? option : ""}</MenuOption>
+        <MenuOption onClick={handleClickViewOptions}>
+          {option ? "옵션보기" : ""}
+        </MenuOption>
       </MenuInformation>
 
       <TotalInformation>

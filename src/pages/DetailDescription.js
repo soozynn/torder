@@ -155,7 +155,11 @@ export default function DetailDescription({
       return;
     }
 
-    if (!isCheckedRequiredOption) return;
+    if (!isCheckedRequiredOption) {
+      setNotificationText("필수 옵션을 모두 선택해주세요");
+      setIsOpenNotification(true);
+      return;
+    }
 
     dispatch(
       addMenuToCart({
@@ -173,6 +177,8 @@ export default function DetailDescription({
         option,
       })
     );
+    setNotificationText(`${option.length}개의 상품을 담았습니다`);
+    setIsOpenNotification(true);
     navigate(-1);
     setShowsShoppingCart(!showsShoppingCart);
   };
