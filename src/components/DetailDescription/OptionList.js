@@ -38,70 +38,77 @@ const FlagMaxSelectQuantity = styled.p`
   align-items: center;
 `;
 
+const OptionListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.875vw;
+`;
+
 export default function OptionList({
   options,
   soldOut,
-  limit,
   setOption,
   setNotificationText,
+  setIsOpenNotification,
+  setIsCheckedRequiredOption,
 }) {
-  const [isSelectedOption, setIsSelectedOption] = useState(false);
-  const [limitQuantity, setLimitQuantity] = useState(0);
-  const [selectedOption, setSelectedOption] = useState({
-    option: "",
-    quantity: 0,
-  });
-  const handleClickOption = (limitQuantity) => {
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const handleClickOption = (item) => {
     if (soldOut) {
       setNotificationText("품절 된 상품입니다.");
+      setIsOpenNotification(true);
       return;
     }
 
-    // if (limitQuantity >= limit) {
+    // if (limitQuantity > item.optionQuantityLimit) {
     //   setNotificationText("더 이상 수량을 추가할 수 없습니다.");
+    //   setIsOpenNotification(true);
     //   return;
     // }
 
-    setIsSelectedOption(!isSelectedOption);
-    setOption((prev) => [...prev, selectedOption]);
+    // setSelectedOption(item.displayName);
+    // setOption((prev) => [...prev, { option: selectedOption }]);
   };
+
+  if (!options) return;
 
   return (
     <OptionListContainer>
-      {options.length > 0 &&
-        options.map((option) => (
-          <div>
-            <OptionText>
-              <FlagText>
-                {option.name} / {option.require ? "필수옵션" : "선택옵션"}
-              </FlagText>
-              <FlagMaxSelectQuantity>
-                {option.selectedOptionLimit}개 까지 선택할 수 있습니다.
-              </FlagMaxSelectQuantity>
-            </OptionText>
+      {options.map((option) => (
+        <div key={option.name}>
+          <OptionText>
+            <FlagText>
+              {option.name} / {option.require ? "필수옵션" : "선택옵션"}
+            </FlagText>
+            <FlagMaxSelectQuantity>
+              {option.selectedOptionLimit}개 까지 선택할 수 있습니다.
+            </FlagMaxSelectQuantity>
+          </OptionText>
 
-            <OptionList>
-              {option.optionItems.map((item) => (
-                <Option
-                  key={item.displayName}
-                  soldOut={soldOut}
-                  displayName={item.displayName}
-                  price={item.price}
-                  limit={item.optionQuantityLimit}
-                  onClick={() => handleClickOption(item.optionQuantityLimit)}
-                />
-              ))}
-            </OptionList>
-          </div>
-        ))}
+          <OptionListWrapper>
+            {option.optionItems.map((item) => (
+              <Option
+                key={item.displayName}
+                item={item}
+                onClick={() => handleClickOption(item)}
+                setNotificationText={setNotificationText}
+                setIsOpenNotification={setIsOpenNotification}
+                selectedOptions={selectedOptions}
+              />
+            ))}
+          </OptionListWrapper>
+        </div>
+      ))}
     </OptionListContainer>
   );
 }
 
 OptionList.propTypes = {
-  soldOut: PropTypes.bool.isRequired,
-  limit: PropTypes.number.isRequired,
-  setOption: PropTypes.func.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
+  setIsOpenNotification: PropTypes.func.isRequired,
+  soldOut: PropTypes.bool,
+  setOption: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

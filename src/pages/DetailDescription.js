@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import imagePrevButtonSrc from "../assets/prevButton.svg";
-import Notification from "../components/Main/Notification";
 import MenuInformation from "../components/DetailDescription/MenuInformation";
 import OptionList from "../components/DetailDescription/OptionList";
 import { addMenuToCart } from "../features/menu/menuSlice";
@@ -116,10 +116,12 @@ const OrderButton = styled.p`
   align-items: center;
 `;
 
-export default function DetailDescription() {
+export default function DetailDescription({
+  setNotificationText,
+  setIsOpenNotification,
+}) {
   const [option, setOption] = useState([]);
-  const [isOpenNotification, setIsOpenNotification] = useState(false);
-  const [notificationText, setNotificationText] = useState("");
+  const [isCheckedRequiredOption, setIsCheckedRequiredOption] = useState(false);
   const { menu } = useSelector((state) => state.menu);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -133,7 +135,6 @@ export default function DetailDescription() {
     soldOut,
     description,
     optionGroups,
-    selectedOptionLimit,
     orderMaxQuantity,
     orderMinQuantity,
     showsShoppingCart,
@@ -153,6 +154,8 @@ export default function DetailDescription() {
       setIsOpenNotification(true);
       return;
     }
+
+    if (!isCheckedRequiredOption) return;
 
     dispatch(
       addMenuToCart({
@@ -185,7 +188,7 @@ export default function DetailDescription() {
   };
 
   const handleClickMinusButton = () => {
-    if (quantity >= orderMinQuantity) {
+    if (quantity <= orderMinQuantity) {
       setIsOpenNotification(true);
       setNotificationText(`최소 주문 수량이 ${orderMinQuantity}개 입니다.`);
       return;
@@ -224,16 +227,20 @@ export default function DetailDescription() {
         handleClickPlusButton={handleClickPlusButton}
         handleClickMinusButton={handleClickMinusButton}
         maxQuantity={orderMaxQuantity}
-        mimQuantity={selectedOptionLimit}
       />
 
-      {/* <OptionList
-        options={optionGroups}
-        soldOut={soldOut}
-        limit={selectedOptionLimit}
-        setOption={setOption}
-        setNotificationText={setNotificationText}
-      /> */}
+      <div>
+        {!soldOut && optionGroups.length > 0 && (
+          <OptionList
+            options={optionGroups}
+            soldOut={soldOut}
+            setOption={setOption}
+            setNotificationText={setNotificationText}
+            setIsOpenNotification={setIsOpenNotification}
+            setIsCheckedRequiredOption={setIsCheckedRequiredOption}
+          />
+        )}
+      </div>
 
       <ButtonContainer>
         <BackButton onClick={handleClickPrevButton}>뒤로가기</BackButton>
@@ -247,15 +254,11 @@ export default function DetailDescription() {
           </OrderButton>
         )}
       </ButtonContainer>
-
-      {isOpenNotification && (
-        <Notification
-          isOpenNotification={isOpenNotification}
-          setIsOpenNotification={setIsOpenNotification}
-        >
-          {notificationText}
-        </Notification>
-      )}
     </DetailDescriptionContainer>
   );
 }
+
+DetailDescription.propTypes = {
+  setNotificationText: PropTypes.func.isRequired,
+  setIsOpenNotification: PropTypes.func.isRequired,
+};

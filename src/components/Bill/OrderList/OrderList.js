@@ -17,32 +17,43 @@ const TotalPriceWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   font-family: "NotoSerifKR-bold";
   font-size: 3.5vw;
   color: #ab240f;
   letter-spacing: -0.175vw;
-  box-sizing: border-box;
 `;
 
 export default function OrderList({ order }) {
   return (
     <BillListHistoryContainer>
       {order &&
-        order.map((menu) => (
-          <Order
-            key={uuidv4()}
-            name={menu.name}
-            price={menu.price}
-            count={menu.count}
-          />
-        ))}
+        order.map((menu) => {
+          return menu.option ? (
+            menu.option.map((option) => (
+              <Order
+                key={uuidv4()}
+                name={option.name}
+                price={0}
+                count={option.count}
+              />
+            ))
+          ) : (
+            <Order
+              key={uuidv4()}
+              name={menu.name}
+              price={menu.price}
+              count={menu.count}
+            />
+          );
+        })}
       <TotalPriceWrapper>
         <p>총 주문금액</p>
         <p>
           {order
             .reduce(
               (accumulator, object) =>
-                accumulator + object.price * object.count,
+                accumulator + object.price * (object.count ? object.count : 0),
               0
             )
             .toLocaleString()}
@@ -55,10 +66,16 @@ export default function OrderList({ order }) {
 OrderList.propTypes = {
   order: PropTypes.arrayOf(
     PropTypes.shape({
-      count: PropTypes.number.isRequired,
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      count: PropTypes.number,
+      id: PropTypes.string,
+      name: PropTypes.string,
       price: PropTypes.number.isRequired,
+      option: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          count: PropTypes.number.isRequired,
+        })
+      ),
     })
   ).isRequired,
 };

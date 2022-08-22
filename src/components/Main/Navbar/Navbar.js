@@ -37,7 +37,11 @@ export default function Navbar({ cartList, onClick }) {
   };
 
   const handleClickEvents = () => {
-    navigate("/events");
+    navigate("/eventList");
+  };
+
+  const handleClickRecall = () => {
+    navigate("/callStaff");
   };
 
   return (
@@ -55,7 +59,7 @@ export default function Navbar({ cartList, onClick }) {
         height="2.775vw"
         onClick={handleClickBill}
       />
-      <RecallIcon position="center" />
+      <RecallIcon position="center" onClick={handleClickRecall} />
       <Item
         src={iconEventsSrc}
         title="이벤트"

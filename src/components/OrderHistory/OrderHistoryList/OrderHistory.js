@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
 
 const HistoryContainer = styled.div`
   margin-top: 3.125vw;
@@ -78,7 +79,7 @@ const Quantity = styled.p`
 `;
 
 export default function OrderHistory({ history, index, orderLength }) {
-  const { time, name, count } = history;
+  const { time, name, count, option } = history;
 
   return (
     <div>
@@ -90,15 +91,25 @@ export default function OrderHistory({ history, index, orderLength }) {
         </TitleWrapper>
 
         <div>
-          {/* {history.map((menu) => ( */}
-          <HistoryInformation>
-            <OrderNameWrapper>
-              <Title>{name}</Title>
-              <Quantity>{count}개</Quantity>
-            </OrderNameWrapper>
-            <OrderOption />
-          </HistoryInformation>
-          {/* ))} */}
+          {option ? (
+            option.map((item) => (
+              <HistoryInformation key={uuidv4()}>
+                <OrderNameWrapper>
+                  <Title>{item.name}</Title>
+                  <Quantity>{item.count}개</Quantity>
+                </OrderNameWrapper>
+                <OrderOption />
+              </HistoryInformation>
+            ))
+          ) : (
+            <HistoryInformation>
+              <OrderNameWrapper>
+                <Title>{name}</Title>
+                <Quantity>{count}개</Quantity>
+              </OrderNameWrapper>
+              <OrderOption />
+            </HistoryInformation>
+          )}
         </div>
       </HistoryContainer>
     </div>
@@ -108,8 +119,9 @@ export default function OrderHistory({ history, index, orderLength }) {
 OrderHistory.propTypes = {
   history: PropTypes.shape({
     time: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    count: PropTypes.number.isRequired,
+    name: PropTypes.string,
+    count: PropTypes.number,
   }),
   index: PropTypes.number.isRequired,
+  orderLength: PropTypes.number.isRequired,
 };

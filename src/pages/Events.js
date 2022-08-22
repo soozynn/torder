@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import Header from "../components/shared/Header";
 import imageCouponSrc from "../assets/coupon.png";
@@ -31,14 +33,38 @@ const EventImage = styled.img`
   object-fit: contain;
 `;
 
-export default function Events() {
+export default function Events({ setTitle }) {
+  const navigate = useNavigate();
+
+  const hadleClickTadaEventImage = (event) => {
+    setTitle(event.target.alt);
+    navigate("coupon");
+  };
+
+  const handleClickTossEventImage = (event) => {
+    setTitle(event.target.alt);
+    navigate("coupon");
+  };
+
   return (
     <EventsContainer>
       <Header title="이벤트" />
       <EventWrapper>
-        <EventImage alt="coupon" src={imageCouponSrc} />
-        <EventImage alt="subscription" src={imageSubscriptionSrc} />
+        <EventImage
+          alt="타다 LITE / 20% 쿠폰 / 증정"
+          src={imageCouponSrc}
+          onClick={(e) => hadleClickTadaEventImage(e)}
+        />
+        <EventImage
+          alt="토스 / 신규가입 하면 만 원 / 즉시 지급!"
+          src={imageSubscriptionSrc}
+          onClick={(e) => handleClickTossEventImage(e)}
+        />
       </EventWrapper>
     </EventsContainer>
   );
 }
+
+Events.propTypes = {
+  setTitle: PropTypes.func.isRequired,
+};

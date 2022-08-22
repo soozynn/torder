@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -132,6 +133,11 @@ export default function ShoppingCartList({
   setShowsShoppingCart,
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClickRecallButton = () => {
+    navigate("/callStaff", { replace: true });
+  };
 
   const handleClickCloseButton = () => {
     setShowsShoppingCart(false);
@@ -158,7 +164,7 @@ export default function ShoppingCartList({
   return (
     <ShoppingCartListContainer>
       <RecallWrapper>
-        <RecallIcon />
+        <RecallIcon onClick={handleClickRecallButton} />
       </RecallWrapper>
       <ShoppingCartHead />
 

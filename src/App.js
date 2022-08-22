@@ -5,8 +5,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Bill from "./pages/Bill";
 import OrderHistory from "./pages/OrderHistory";
+import Coupon from "./pages/Coupon";
 import Events from "./pages/Events";
 import DetailDescription from "./pages/DetailDescription";
+import Recall from "./pages/Recall";
+import Notification from "./components/Main/Notification";
 
 const GlobalStyles = createGlobalStyle`
   body, html {
@@ -47,6 +50,9 @@ const GlobalStyles = createGlobalStyle`
 
 export default function App() {
   const [showsShoppingCart, setShowsShoppingCart] = useState(false);
+  const [title, setTitle] = useState("");
+  const [isOpenNotification, setIsOpenNotification] = useState(false);
+  const [notificationText, setNotificationText] = useState("");
 
   return (
     <>
@@ -59,13 +65,31 @@ export default function App() {
             path="/menuDetail:id"
             element={
               <DetailDescription
-                showsShoppingCart={showsShoppingCart}
-                setShowsShoppingCart={setShowsShoppingCart}
+                setNotificationText={setNotificationText}
+                setIsOpenNotification={setIsOpenNotification}
               />
             }
           />
-          {/* <Route path="/recall" element={<Recall/>} /> */}
-          <Route path="/events" element={<Events />} />
+          <Route
+            path="/callStaff"
+            element={
+              <Recall
+                setNotificationText={setNotificationText}
+                setIsOpenNotification={setIsOpenNotification}
+              />
+            }
+          />
+          <Route path="/eventList" element={<Events setTitle={setTitle} />} />
+          <Route
+            path="/eventList/coupon"
+            element={
+              <Coupon
+                title={title}
+                setNotificationText={setNotificationText}
+                setIsOpenNotification={setIsOpenNotification}
+              />
+            }
+          />
           <Route
             path="/"
             element={
@@ -77,6 +101,14 @@ export default function App() {
           />
         </Routes>
       </Router>
+      {isOpenNotification && (
+        <Notification
+          isOpenNotification={isOpenNotification}
+          setIsOpenNotification={setIsOpenNotification}
+        >
+          {notificationText}
+        </Notification>
+      )}
     </>
   );
 }
