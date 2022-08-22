@@ -35,9 +35,9 @@ const Title = styled.div`
   white-space: inherit;
 `;
 
-export default function Recall({ position }) {
+export default function Recall({ position, onClick }) {
   return (
-    <RecallContainer position={position}>
+    <RecallContainer position={position} onClick={onClick}>
       <IconImage alt="icon" src={imageBellSrc} />
       <Title>직원호출</Title>
     </RecallContainer>
@@ -46,4 +46,5 @@ export default function Recall({ position }) {
 
 Recall.propTypes = {
   position: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
 };

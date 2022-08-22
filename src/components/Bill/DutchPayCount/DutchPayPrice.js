@@ -32,7 +32,8 @@ export default function DutchPayPrice({ order, count }) {
           ? (
               order.reduce(
                 (accumulator, object) =>
-                  accumulator + object.price * object.count,
+                  accumulator +
+                  object.price * (object.count ? object.count : 0),
                 0
               ) / count
             ).toLocaleString()
@@ -46,9 +47,9 @@ export default function DutchPayPrice({ order, count }) {
 DutchPayPrice.propTypes = {
   order: PropTypes.arrayOf(
     PropTypes.shape({
-      count: PropTypes.number.isRequired,
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      count: PropTypes.number,
+      id: PropTypes.string,
+      name: PropTypes.string,
       price: PropTypes.number.isRequired,
     })
   ),

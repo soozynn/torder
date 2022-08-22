@@ -66,14 +66,14 @@ const Price = styled.p`
   width: 18vw;
 `;
 
-export default function Order({ name, price, count }) {
+export default function Order({ name, price, count, option }) {
   return (
     <div>
       <MenuWrapper>
         <MenuName>
-          <NameText>{name}</NameText>
+          <NameText>{option ? option.name : name}</NameText>
           <PriceWrapper>
-            <Count>{count}개</Count>
+            <Count>{option ? option.count : count}개</Count>
             <Price>{(price * count).toLocaleString()}</Price>
           </PriceWrapper>
         </MenuName>
@@ -90,7 +90,13 @@ export default function Order({ name, price, count }) {
 }
 
 Order.propTypes = {
-  name: PropTypes.string.isRequired,
-  count: PropTypes.number.isRequired,
+  name: PropTypes.string,
+  count: PropTypes.number,
   price: PropTypes.number.isRequired,
+  option: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      count: PropTypes.number.isRequired,
+    })
+  ),
 };

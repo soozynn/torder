@@ -48,6 +48,9 @@ export const menuSlice = createSlice({
       state.order.push(...state.cart);
       state.cart = [];
     },
+    orderOptions: (state, action) => {
+      state.order.push(action.payload);
+    },
   },
 });
 
@@ -57,6 +60,7 @@ export const {
   reduceMenuToCart,
   removeAllMenuToCart,
   orderMenuListInCart,
+  orderOptions,
 } = menuSlice.actions;
 
 export default menuSlice.reducer;
