@@ -35,6 +35,7 @@ http://localhost:3000/ 을 실행시켜주세요.
 > 처음에는 components 폴더 내부에서 페이지 별로 나누지 않았으나, 어디서 어떤 컴포넌트가 필요한지도 추적을 할 수 있도록 분리하면 더 깔끔할 것 같다는 생각이 들어 page 별로 다시한번 구조를 분리 해주었습니다.
 
 ```
+// mock.json은 data 폴더 내에 있습니다.
 src
 ┣ assets // icons, svg or png image folder
 ┣ components
@@ -95,8 +96,8 @@ src
 ┃   ┗ store.js
 ┃
 ┣ App.js
-┣ index.js
-┗ mock.json
+┗ index.js
+
 ```
 
 ## 사용한 기술 스택
