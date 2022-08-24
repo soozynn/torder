@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 import imagePrevButtonSrc from "../../assets/prevButton.svg";
 
 const BillHeaderContainer = styled.header`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   width: 100vw;
   height: 11.875vw;
   background-color: #fff;

@@ -6,6 +6,7 @@ import imageCloseButtonSrc from "../../../assets/closeButton.svg";
 import SidebarItem from "./SidebarItem";
 
 const SidebarContainer = styled.div`
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
@@ -13,15 +14,14 @@ const SidebarContainer = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0.25vw 0.25vw 0.375vw 0 rgb(0 0 0 / 26%);
-  display: flex;
   z-index: 10;
 `;
 
 const SidebarContent = styled.div`
-  width: 47.5vw;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
+  width: 47.5vw;
+  background-color: #fff;
 `;
 
 const CloseButton = styled.div`
@@ -36,10 +36,10 @@ const CloseButtonIcon = styled.img`
 `;
 
 const SignButtonWrapper = styled.div`
-  padding: 8.5vw 5vw 5.8125vw;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  padding: 8.5vw 5vw 5.8125vw;
+  box-sizing: border-box;
   gap: 1.875vw;
   border-bottom: 0.125vw solid #ddd;
 `;

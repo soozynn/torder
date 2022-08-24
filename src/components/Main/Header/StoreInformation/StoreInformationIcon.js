@@ -6,10 +6,10 @@ import logoSrc from "../../../../assets/logo.svg";
 import hamburgerSrc from "../../../../assets/hamburger.svg";
 
 const HeaderIconContainer = styled.div`
-  width: 17.5vw;
-  height: 4.675vw;
   display: flex;
   align-items: center;
+  width: 17.5vw;
+  height: 4.675vw;
   gap: 1.875vw;
 `;
 

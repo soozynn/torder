@@ -6,17 +6,17 @@ import { v4 as uuidv4 } from "uuid";
 import Order from "./Order";
 
 const BillListHistoryContainer = styled.header`
+  height: calc(100vh - 38.75vw);
   padding: 0 5vw;
   box-sizing: border-box;
-  height: calc(100vh - 38.75vw);
   overflow: auto;
 `;
 
 const TotalPriceWrapper = styled.div`
-  padding: 2.9375vw 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 2.9375vw 0;
   box-sizing: border-box;
   font-family: "NotoSerifKR-bold";
   font-size: 3.5vw;
@@ -28,8 +28,8 @@ export default function OrderList({ order }) {
   return (
     <BillListHistoryContainer>
       {order &&
-        order.map((menu) => {
-          return menu.option ? (
+        order.map((menu) =>
+          menu.option ? (
             menu.option.map((option) => (
               <Order
                 key={uuidv4()}
@@ -45,8 +45,8 @@ export default function OrderList({ order }) {
               price={menu.price}
               count={menu.count}
             />
-          );
-        })}
+          )
+        )}
       <TotalPriceWrapper>
         <p>총 주문금액</p>
         <p>

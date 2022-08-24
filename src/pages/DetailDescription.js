@@ -37,9 +37,13 @@ const MenuImage = styled.div`
 `;
 
 const PrevButton = styled.button`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   position: absolute;
   width: 100%;
   height: 18.5vw;
+  padding: 4.85vw 0 0 3.125vw;
   background-color: unset;
   border: none;
   box-shadow: 0 0.375vw 0.75vw 0 transparent;
@@ -48,11 +52,7 @@ const PrevButton = styled.button`
     rgba(0, 0, 0, 0.4),
     hsla(0, 0%, 49%, 0)
   );
-  padding: 4.85vw 0 0 3.125vw;
   box-sizing: border-box;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
 `;
 
 const PrevIcon = styled.img`
@@ -75,59 +75,59 @@ const MenuName = styled.p`
 `;
 
 const MenuDescription = styled.p`
-  font-size: 2.5vw;
-  color: #606060;
-  letter-spacing: -0.0625vw;
   padding: 1.75vw 0 3.75vw;
   box-sizing: border-box;
   border-bottom: 0.125vw solid #dfdfdf;
   line-height: 1.5em;
+  font-size: 2.5vw;
+  color: #606060;
+  letter-spacing: -0.0625vw;
 `;
 
 const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
   position: fixed;
   width: 100vw;
   left: 0;
   bottom: 0;
-  display: flex;
-  align-items: center;
   font-size: 4.25vw;
   font-weight: 700;
   letter-spacing: -0.125vw;
 `;
 
 const BackButton = styled.p`
-  width: 27.5vw;
-  background-color: #999;
-  color: #fff;
-  height: 13.75vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 27.5vw;
+  height: 13.75vw;
+  background-color: #999;
+  color: #fff;
 `;
 
 const OrderButton = styled.p`
-  flex: 1;
-  background-color: #b51900;
-  color: #fff;
-  height: 13.75vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 13.75vw;
+  flex: 1;
+  background-color: #b51900;
+  color: #fff;
 `;
 
 export default function DetailDescription({
   setNotificationText,
   setIsOpenNotification,
+  menuList,
 }) {
   const [option, setOption] = useState([]);
   const [isCheckedRequiredOption, setIsCheckedRequiredOption] = useState(false);
-  const { menu } = useSelector((state) => state.menu);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const filteredMenu = menu.goods.filter((menu) => menu.id === id);
+  const filteredMenu = menuList.goods.filter((menu) => menu.id === id);
   const {
     name,
     image,

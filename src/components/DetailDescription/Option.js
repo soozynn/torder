@@ -8,23 +8,23 @@ import imagePlusButtonSrc from "../../assets/plusButton.svg";
 import imageMinusButtonSrc from "../../assets/minusButton.svg";
 
 const OptionContainer = styled.div`
-  min-height: 12vw;
-  color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 12vw;
+  padding: 0 3.75vw;
   gap: 1.25vw;
   border: ${(props) =>
     props.selected ? "0.125vw solid #2f2a26" : "0.125vw solid #e8e8e8"};
   border-radius: 1.25vw;
-  padding: 0 3.75vw;
   box-sizing: border-box;
+  color: #000;
 `;
 
 const OptionNameWrapper = styled.div`
-  width: 41.625vw;
   display: flex;
   align-items: center;
+  width: 41.625vw;
   gap: 2.5vw;
 `;
 
@@ -34,22 +34,22 @@ const OptionIcon = styled.img`
 `;
 
 const OptionName = styled.span`
+  display: -webkit-box;
   flex: 1;
+  width: 26.875vw;
   font-family: "NotoSerifKR-bold";
   font-size: 3vw;
   letter-spacing: -0.075vw;
-  width: 26.875vw;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;
 
 const OptionPriceWrapper = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
+  flex: 1;
 `;
 
 const OptionPrice = styled.span`
@@ -168,6 +168,13 @@ export default function Option({
 Option.propTypes = {
   setNotificationText: PropTypes.func.isRequired,
   setIsOpenNotification: PropTypes.func.isRequired,
+  slectedOptionName: PropTypes.string.isRequired,
+  setSelcetedOptionName: PropTypes.func.isRequired,
+  setOption: PropTypes.shape({
+    slectedOptionName: PropTypes.string,
+    count: PropTypes.number,
+    price: PropTypes.number,
+  }),
   onClick: PropTypes.func.isRequired,
   item: PropTypes.shape({
     displayName: PropTypes.string.isRequired,

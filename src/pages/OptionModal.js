@@ -6,15 +6,15 @@ import styled from "styled-components";
 import OptionItem from "../components/OptionModal/OptionItem";
 
 const OptionModalContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 10;
 `;
 
@@ -27,13 +27,13 @@ const ModalWrapper = styled.header`
 `;
 
 const ModalTitle = styled.div`
-  height: 10.375vw;
-  font-family: "NotoSerifKR-bold";
-  font-size: 3.75vw;
-  border-bottom: 0.125vw solid #dfdfdf;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 10.375vw;
+  border-bottom: 0.125vw solid #dfdfdf;
+  font-family: "NotoSerifKR-bold";
+  font-size: 3.75vw;
 `;
 
 const DetailOptionWrapper = styled.div`
@@ -62,8 +62,8 @@ const OptionList = styled.div`
 const Bar = styled.div`
   height: 0.125vw;
   width: 60vw;
-  background-color: ${(props) => (props.color ? props.color : "dfdfdf")};
   margin: ${(props) => props.color && "2.0625vw 0 2.9375vw;"};
+  background-color: ${(props) => (props.color ? props.color : "dfdfdf")};
 `;
 
 const TotalPriceWrapper = styled.div`
@@ -88,12 +88,12 @@ const TotalPrice = styled.p`
 const CloseButton = styled.button`
   width: 60vw;
   height: 8.75vw;
+  margin-top: 2.5vw;
   border-radius: 1.875vw;
   background-color: #2f2a26;
   font-size: 3.25vw;
   color: #fff;
   font-weight: 500;
-  margin-top: 2.5vw;
 `;
 
 export default function OptionModal() {

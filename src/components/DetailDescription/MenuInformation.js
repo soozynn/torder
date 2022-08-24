@@ -30,10 +30,10 @@ const Price = styled.p`
 `;
 
 const MenuQuantityContainer = styled.div`
-  margin-top: 1.5vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1.5vw;
 `;
 
 const QuantityText = styled.p`
@@ -48,11 +48,11 @@ const QuantityWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  width: 10.25vw;
-  height: 10.25vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 10.25vw;
+  height: 10.25vw;
   background: none;
   border: unset;
   transition: all 0.2s;

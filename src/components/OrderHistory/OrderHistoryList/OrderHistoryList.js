@@ -7,11 +7,11 @@ import TotalCount from "./TotalCount";
 import OrderHistory from "./OrderHistory";
 
 const OrderHistoryWrapper = styled.div`
-  padding: 0 5vw;
-  width: 100%;
-  height: calc(100vh - 25.625vw);
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 25.625vw);
+  padding: 0 5vw;
   box-sizing: border-box;
   overflow: auto;
 `;

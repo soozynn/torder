@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -10,16 +10,15 @@ import FullMenuList from "../components/Main/Menu/FullMenuList";
 import Navbar from "../components/Main/Navbar/Navbar";
 import Notification from "../components/Main/Notification/index";
 import ShoppingCartList from "../components/Main/ShoppingCart/ShoppingCartList";
-import { getMenuList } from "../features/menu/menuSlice";
 
 const GoodsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100vw;
   height: 93.3594vh;
-  display: flex;
-  flex-direction: column;
   padding-bottom: 15vh;
   border-top-left-radius: 6.25vw;
   border-top-right-radius: 6.25vw;
@@ -30,10 +29,10 @@ const GoodsContainer = styled.div`
 `;
 
 const Wrapbar = styled.div`
-  width: 100vw;
-  height: 6.25vw;
   display: flex;
   justify-content: center;
+  width: 100vw;
+  height: 6.25vw;
   padding: 2.35vw 0 2.2875vw;
   box-sizing: border-box;
 `;
@@ -43,14 +42,16 @@ const CategoryListContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export default function Main({ showsShoppingCart, setShowsShoppingCart }) {
-  const { menu, cart } = useSelector((state) => state.menu);
-  const [isOpenNotification, setIsOpenNotification] = useState(false);
-  const [notificationText, setNotificationText] = useState("");
-  const [activeCategoryId, setActiveCategoryId] = useState(
-    menu.categories[0].id
-  );
-  const dispatch = useDispatch();
+export default function Main({
+  showsShoppingCart,
+  setShowsShoppingCart,
+  activeCategoryId,
+  setActiveCategoryId,
+  setNotificationText,
+  setIsOpenNotification,
+  menuList,
+}) {
+  const { cart } = useSelector((state) => state.menu);
 
   const handleClickShoppingCart = () => {
     if (!cart.length) {
@@ -62,67 +63,43 @@ export default function Main({ showsShoppingCart, setShowsShoppingCart }) {
     setShowsShoppingCart(!showsShoppingCart);
   };
 
-  useEffect(() => {
-    fetch("http://localhost:8000/data")
-      .then((res) => res.json())
-      .then((res) => dispatch(getMenuList(res)))
-      .catch(console.error);
-  }, [dispatch]);
-
   return (
     <>
-      {menu ? (
-        <>
-          <Header store={menu.store} table={menu.table} />
+      <Header store={menuList.store} table={menuList.table} />
 
-          <GoodsContainer>
-            <Wrapbar></Wrapbar>
-            <CategoryListContainer>
-              <CategoryList
-                categories={menu.categories}
-                activeId={activeCategoryId}
-                setActiveId={setActiveCategoryId}
-              />
-              <SubCategoryList
-                subCategories={menu.subCategories}
-                activeCategoryId={activeCategoryId}
-              />
-            </CategoryListContainer>
-            <FullMenuList
-              goods={menu.goods}
-              categories={menu.categories}
-              subCategories={menu.subCategories}
-              setIsOpenNotification={setIsOpenNotification}
-              setNotificationText={setNotificationText}
-              setShowsShoppingCart={setShowsShoppingCart}
+      <GoodsContainer>
+        <Wrapbar />
+        <CategoryListContainer>
+          <>
+            <CategoryList
+              categories={menuList.categories}
+              activeId={activeCategoryId}
+              setActiveId={setActiveCategoryId}
             />
-          </GoodsContainer>
-          {showsShoppingCart ? (
-            <ShoppingCartList
-              cartList={cart}
-              setIsOpenNotification={setIsOpenNotification}
-              setNotificationText={setNotificationText}
-              setShowsShoppingCart={setShowsShoppingCart}
+            <SubCategoryList
+              subCategories={menuList.subCategories}
+              activeCategoryId={activeCategoryId}
             />
-          ) : (
-            <Navbar onClick={handleClickShoppingCart} cartList={cart} />
-          )}
-          {isOpenNotification && (
-            <Notification
-              isOpenNotification={isOpenNotification}
-              setIsOpenNotification={setIsOpenNotification}
-            >
-              {notificationText}
-            </Notification>
-          )}
-        </>
-      ) : (
-        <Notification
-          isOpenNotification={isOpenNotification}
+          </>
+        </CategoryListContainer>
+        <FullMenuList
+          goods={menuList.goods}
+          categories={menuList.categories}
+          subCategories={menuList.subCategories}
           setIsOpenNotification={setIsOpenNotification}
-        >
-          데이터를 불러오지 못하였습니다.
-        </Notification>
+          setNotificationText={setNotificationText}
+          setShowsShoppingCart={setShowsShoppingCart}
+        />
+      </GoodsContainer>
+      {showsShoppingCart ? (
+        <ShoppingCartList
+          cartList={cart}
+          setIsOpenNotification={setIsOpenNotification}
+          setNotificationText={setNotificationText}
+          setShowsShoppingCart={setShowsShoppingCart}
+        />
+      ) : (
+        <Navbar onClick={handleClickShoppingCart} cartList={cart} />
       )}
     </>
   );
@@ -131,4 +108,18 @@ export default function Main({ showsShoppingCart, setShowsShoppingCart }) {
 Main.propTypes = {
   showsShoppingCart: PropTypes.bool.isRequired,
   setShowsShoppingCart: PropTypes.func.isRequired,
+  activeCategoryId: PropTypes.string.isRequired,
+  setActiveCategoryId: PropTypes.func.isRequired,
+  menuList: PropTypes.shape({
+    version: PropTypes.string.isRequired,
+    table: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+    store: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      logoURL: PropTypes.string.isRequired,
+    }),
+  }),
 };

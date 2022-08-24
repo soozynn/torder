@@ -6,10 +6,10 @@ import StoreInformationIcon from "./StoreInformationIcon";
 import Sidebar from "../../Sidebar/Sidebar";
 
 const StoreInformationContainer = styled.div`
-  flex: 1;
-  height: 7.99875vw;
   display: flex;
   align-items: center;
+  flex: 1;
+  height: 7.99875vw;
   gap: 1.25vw;
   padding: 0 1.25vw;
   box-sizing: border-box;

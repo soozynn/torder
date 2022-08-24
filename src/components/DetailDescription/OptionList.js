@@ -5,22 +5,22 @@ import PropTypes from "prop-types";
 import Option from "./Option";
 
 const OptionListContainer = styled.div`
-  padding: 0.75vw 5vw;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 2.75vw;
+  padding: 0.75vw 5vw;
   padding-bottom: 36vw;
+  gap: 2.75vw;
+  background-color: #fff;
   box-sizing: border-box;
 `;
 
 const OptionText = styled.div`
-  padding: 2.625vw 0;
-  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 2.625vw 0;
   gap: 1.25vw;
+  box-sizing: border-box;
 `;
 
 const FlagText = styled.p`
@@ -31,11 +31,11 @@ const FlagText = styled.p`
 `;
 
 const FlagMaxSelectQuantity = styled.p`
+  display: flex;
+  align-items: center;
   font-size: 2.875vw;
   letter-spacing: -0.14375vw;
   color: #999;
-  display: flex;
-  align-items: center;
 `;
 
 const OptionListWrapper = styled.div`
@@ -124,4 +124,5 @@ OptionList.propTypes = {
       ),
     })
   ),
+  setIsCheckedRequiredOption: PropTypes.func.isRequired,
 };

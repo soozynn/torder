@@ -24,20 +24,20 @@ const ShoppingCartListContainer = styled.div`
 `;
 
 const RecallWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   right: 2.5vw;
   top: -15.75vw;
   width: 17vw;
   height: 17vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const ShoppingCartBackground = styled.div`
-  height: calc(43.75vh - 3.75vw);
   display: flex;
   flex-direction: column;
+  height: calc(43.75vh - 3.75vw);
   margin-top: 3.75vw;
   background-color: #fff;
   box-shadow: 0 -1.25vw 3.75vw 0 rgb(0 0 0 / 16%);
@@ -80,9 +80,9 @@ const ShoppingCartContainer = styled.div`
 `;
 
 const ShoppingCartWrapper = styled.div`
-  height: 30.25vw;
   display: flex;
   align-items: center;
+  height: 30.25vw;
   margin-top: 2vw;
   padding-right: 3.125vw;
   gap: 2.5vw;
@@ -111,15 +111,15 @@ const TotalPrice = styled.p`
 `;
 
 const ButtonContainer = styled.div`
-  height: 14.625vw;
   display: flex;
+  height: 14.625vw;
   gap: 1.25vw;
 `;
 
 const CloseButtonWrapper = styled.div`
-  width: 22.5vw;
   display: flex;
   justify-content: flex-end;
+  width: 22.5vw;
 `;
 
 const OrderButtonWrapper = styled.div`

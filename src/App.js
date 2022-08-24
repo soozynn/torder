@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { createGlobalStyle } from "styled-components";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
 import Main from "./pages/Main";
 import Bill from "./pages/Bill";
@@ -49,59 +50,92 @@ const GlobalStyles = createGlobalStyle`
 }
 `;
 
+const LoadingMessage = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export default function App() {
+  const [menuList, setMenuList] = useState(null);
   const [showsShoppingCart, setShowsShoppingCart] = useState(false);
-  const [title, setTitle] = useState("");
+  const [eventTitle, setEventTitle] = useState("");
   const [isOpenNotification, setIsOpenNotification] = useState(false);
   const [notificationText, setNotificationText] = useState("");
+  const [activeCategoryId, setActiveCategoryId] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:8000/data")
+      .then((res) => res.json())
+      .then((data) => {
+        setMenuList(data);
+        setActiveCategoryId(data.categories[0].id);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <>
       <GlobalStyles />
       <Router>
-        <Routes>
-          <Route path="/orderHistory" element={<OrderHistory />} />
-          <Route path="/bill" element={<Bill />} />
-          <Route
-            path="/menuDetail:id"
-            element={
-              <DetailDescription
-                setNotificationText={setNotificationText}
-                setIsOpenNotification={setIsOpenNotification}
-              />
-            }
-          />
-          <Route
-            path="/callStaff"
-            element={
-              <Recall
-                setNotificationText={setNotificationText}
-                setIsOpenNotification={setIsOpenNotification}
-              />
-            }
-          />
-          <Route path="/eventList" element={<Events setTitle={setTitle} />} />
-          <Route path="/cartOption" element={<OptionModal />} />
-          <Route
-            path="/eventList/coupon"
-            element={
-              <Coupon
-                title={title}
-                setNotificationText={setNotificationText}
-                setIsOpenNotification={setIsOpenNotification}
-              />
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <Main
-                showsShoppingCart={showsShoppingCart}
-                setShowsShoppingCart={setShowsShoppingCart}
-              />
-            }
-          />
-        </Routes>
+        {menuList ? (
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  showsShoppingCart={showsShoppingCart}
+                  setShowsShoppingCart={setShowsShoppingCart}
+                  activeCategoryId={activeCategoryId}
+                  setActiveCategoryId={setActiveCategoryId}
+                  setNotificationText={setNotificationText}
+                  setIsOpenNotification={setIsOpenNotification}
+                  menuList={menuList}
+                />
+              }
+            />
+            <Route path="/orderHistory" element={<OrderHistory />} />
+            <Route path="/bill" element={<Bill />} />
+            <Route
+              path="/menuDetail:id"
+              element={
+                <DetailDescription
+                  setNotificationText={setNotificationText}
+                  setIsOpenNotification={setIsOpenNotification}
+                  menuList={menuList}
+                />
+              }
+            />
+            <Route
+              path="/callStaff"
+              element={
+                <Recall
+                  setNotificationText={setNotificationText}
+                  setIsOpenNotification={setIsOpenNotification}
+                  items={menuList.serviceItems}
+                />
+              }
+            />
+            <Route
+              path="/eventList"
+              element={
+                <Events eventList={menuList.event} setTitle={setEventTitle} />
+              }
+            />
+            <Route
+              path="/eventList/coupon"
+              element={
+                <Coupon
+                  title={eventTitle}
+                  setNotificationText={setNotificationText}
+                  setIsOpenNotification={setIsOpenNotification}
+                />
+              }
+            />
+            <Route path="/cartOption" element={<OptionModal />} />
+          </Routes>
+        ) : (
+          <LoadingMessage>Loading...</LoadingMessage>
+        )}
       </Router>
       {isOpenNotification && (
         <Notification

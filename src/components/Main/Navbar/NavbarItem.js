@@ -3,21 +3,21 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const ItemContainer = styled.div`
-  width: 13.25vw;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: 13.25vw;
+  height: 100%;
   gap: ${(props) => (props.gap ? props.gap : "1.45vw")};
 `;
 
 const IconWrapper = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  flex: 1;
 `;
 
 const Icon = styled.img`

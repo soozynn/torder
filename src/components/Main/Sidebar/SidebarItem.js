@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 import imageArrowSrc from "../../../assets/arrow.svg";
 
 const SidebarItemContainer = styled.div`
-  padding: 3vw 5vw;
-  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 3vw 5vw;
+  box-sizing: border-box;
   font-family: "NotoSerifKR-bold";
   font-size: 3.5vw;
   letter-spacing: -0.0875vw;

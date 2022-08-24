@@ -3,9 +3,9 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const OptionWrapper = styled.div`
-  margin-top: 1vw;
   display: flex;
   align-items: center;
+  margin-top: 1vw;
   gap: 1.25vw;
   font-size: 2.75vw;
   color: #0080ff;

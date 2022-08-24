@@ -6,10 +6,10 @@ import imagePlusButtonSrc from "../../../assets/plusButton.svg";
 import imageMinusButtonSrc from "../../../assets/minusButton.svg";
 
 const DutchPayCountContainer = styled.div`
-  height: 13.75vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 13.75vw;
   padding: 0 5vw;
   box-sizing: border-box;
   border-top: 0.125vw solid #ccc;
