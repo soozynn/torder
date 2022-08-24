@@ -10,7 +10,15 @@ $ git clone https://github.com/soozynn/torder.git
 $ npm install
 ```
 
-설치 후,
+설치 후, 새 터미널에서 json-server를 실행시켜주세요.
+
+## local에서 json-server 실행 방법
+
+```
+$ npx json-server --watch data/mock.json --port 8000
+```
+
+이후,
 
 ```
 $ npm start
@@ -54,6 +62,9 @@ src
 ┃     ┃  ┣ SoldoutImage
 ┃     ┃  ┗ SubCategory
 ┃     ┃
+┃     ┣ OptionModal
+┃     ┃  ┗ OptionItem.js
+┃     ┃
 ┃     ┣ OrderHistory // OrderHistory page에서 필요한 컴포넌트 분리
 ┃     ┃  ┣ OrderHistory.js
 ┃     ┃  ┣ OrderHistoryList.js
@@ -72,10 +83,12 @@ src
 ┃       ┗ menuSlice.js
 ┣ pages
 ┃   ┣ Bill.js
+┃   ┣ Coupon.js
 ┃   ┣ DetailDescription.js
 ┃   ┣ Events.js
 ┃   ┣ Main.js
-┃   ┣ Order.js
+┃   ┣ OptionModal.js
+┃   ┣ OrderHistory.js
 ┃   ┗ Recall.js
 ┃
 ┣ store

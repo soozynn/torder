@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Header from "../components/shared/Header";
 import imagePrevButtonSrc from "../assets/prevButton.svg";
-import Notification from "../components/Main/Notification";
-import { useNavigate } from "react-router-dom";
 
 const TermsWrapper = styled.div`
   display: flex;
