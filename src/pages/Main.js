@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -10,6 +10,7 @@ import FullMenuList from "../components/Main/Menu/FullMenuList";
 import Navbar from "../components/Main/Navbar/Navbar";
 import Notification from "../components/Main/Notification/index";
 import ShoppingCartList from "../components/Main/ShoppingCart/ShoppingCartList";
+import { getMenuList } from "../features/menu/menuSlice";
 
 const GoodsContainer = styled.div`
   position: fixed;
@@ -49,6 +50,7 @@ export default function Main({ showsShoppingCart, setShowsShoppingCart }) {
   const [activeCategoryId, setActiveCategoryId] = useState(
     menu.categories[0].id
   );
+  const dispatch = useDispatch();
 
   const handleClickShoppingCart = () => {
     if (!cart.length) {
@@ -59,6 +61,13 @@ export default function Main({ showsShoppingCart, setShowsShoppingCart }) {
 
     setShowsShoppingCart(!showsShoppingCart);
   };
+
+  useEffect(() => {
+    fetch("http://localhost:8000/data")
+      .then((res) => res.json())
+      .then((res) => dispatch(getMenuList(res)))
+      .catch(console.error);
+  }, [dispatch]);
 
   return (
     <>

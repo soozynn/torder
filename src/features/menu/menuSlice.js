@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import mockData from "../../mock.json";
-
 const initialState = {
-  menu: { ...mockData },
+  menu: {},
   order: [],
   cart: [],
 };
@@ -12,6 +10,9 @@ export const menuSlice = createSlice({
   name: "menu",
   initialState,
   reducers: {
+    getMenuList: (state, action) => {
+      state.menu = { ...action.payload };
+    },
     addMenuToCart: (state, action) => {
       const { id } = action.payload;
       const sameMenuIndex = state.cart.findIndex((menu) => menu.id === id);
@@ -55,6 +56,7 @@ export const menuSlice = createSlice({
 });
 
 export const {
+  getMenuList,
   addMenuToCart,
   removeMenuToCart,
   reduceMenuToCart,

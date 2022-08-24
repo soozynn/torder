@@ -77,7 +77,6 @@ const ButtonIcon = styled.p`
   width: 5.75vw;
   height: 5.75vw;
   z-index: 10;
-  /* background-color: black; */
 `;
 
 export default function Option({
