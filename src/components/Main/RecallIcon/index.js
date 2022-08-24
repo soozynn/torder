@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 import imageBellSrc from "../../../assets/bell.svg";
 
 const RecallContainer = styled.div`
-  width: 17vw;
-  height: 17vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 17vw;
+  height: 17vw;
   border-radius: 3.75vw;
   margin-bottom: ${(props) => (props.position ? "7vw" : "")};
   box-sizing: border-box;

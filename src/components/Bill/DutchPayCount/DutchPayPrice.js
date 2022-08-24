@@ -3,11 +3,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const DutchPayButtonContainer = styled.p`
-  height: 13.75vw;
-  background-color: #2f2a26;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 13.75vw;
+  background-color: #2f2a26;
   gap: 2.125vw;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 `;

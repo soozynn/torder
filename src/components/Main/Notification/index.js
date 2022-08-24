@@ -3,14 +3,14 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const NotificationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 50%;
   left: 50%;
   width: 55vw;
   height: 25vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #b51900;
   border-radius: 15px;
   transform: translate(-50%, -50%);

@@ -51,8 +51,8 @@ const GuideText = styled.p`
 const Line = styled.div`
   width: 100%;
   height: 0.125vw;
-  background-color: #dfdfdf;
   margin: 1.25vw 0;
+  background-color: #dfdfdf;
   box-sizing: border-box;
 `;
 
@@ -62,11 +62,11 @@ const CouponTitle = styled.span`
 `;
 
 const NumberPadWrapper = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  flex: 1;
   box-sizing: border-box;
 `;
 
@@ -100,11 +100,11 @@ const NumberLine = styled.div`
 
 const KeypadWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-items: center;
   width: 80vw;
   height: 55vw;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-top: 3vw;
 `;
 
@@ -139,14 +139,14 @@ const ReceiveCouponButton = styled.button`
   letter-spacing: -0.2125vw;
   width: 90vw;
   height: 11.5vw;
+  margin-top: 8vw;
+  margin-bottom: 1.25vw;
   background-color: ${(props) => (props.active ? "#ab240f" : "#999")};
   border: 0.125vw solid #999;
   border-radius: 1.875vw;
   font-size: 4.25vw;
   font-weight: 700;
   color: #fff;
-  margin-top: 8vw;
-  margin-bottom: 1.25vw;
 `;
 
 export default function Coupon({
@@ -195,7 +195,7 @@ export default function Coupon({
 
   return (
     <>
-      <Header title={title.replaceAll("/", " ")} />
+      <Header title={title} />
       <TermsWrapper>
         <TermsText>
           ※ 본인은 만 18세 이상이며 이용약관, 개인정보 수집 및 이용 개인정보제공
@@ -209,15 +209,13 @@ export default function Coupon({
           <GuideText>
             해당 번호로{" "}
             <CouponTitle>
-              {title.split("/")[0].includes("타다")
-                ? `${title.split("/")[0]}[택시]`
-                : title.split("/")[0]}
+              {title.includes("LITE")
+                ? `${title.slice(0, 7)}[택시]`
+                : title.slice(0, 3)}
             </CouponTitle>
             <CouponTitle color="red">
               {" "}
-              {title.split("/")[0].includes("토스")
-                ? `10,000${title.split("/")[1].slice(-1)} 쿠폰`
-                : title.split("/")[1]}
+              {title.includes("토스") ? "10,000원 쿠폰" : "20% 쿠폰"}
             </CouponTitle>
             을 보내드립니다.
           </GuideText>
@@ -265,4 +263,6 @@ export default function Coupon({
 
 Coupon.propTypes = {
   title: PropTypes.string.isRequired,
+  setNotificationText: PropTypes.func.isRequired,
+  setIsOpenNotification: PropTypes.func.isRequired,
 };

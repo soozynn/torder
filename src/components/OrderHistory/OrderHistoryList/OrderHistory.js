@@ -16,13 +16,13 @@ const TitleWrapper = styled.div`
 `;
 
 const Number = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 5.125vw;
   height: 5.125vw;
   border-radius: 1.25vw;
   background-color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 2.75vw;
   font-weight: 700;
   letter-spacing: -0.06875vw;
@@ -60,9 +60,9 @@ const OrderNameWrapper = styled.div`
 `;
 
 const OrderOption = styled.div`
-  margin-top: 2.375vw;
   display: flex;
   flex-direction: column;
+  margin-top: 2.375vw;
   gap: 1.25vw;
 `;
 

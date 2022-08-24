@@ -3,11 +3,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const TableNumberContainer = styled.div`
-  width: 17.5vw;
-  height: 7.99875vw;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  width: 17.5vw;
+  height: 7.99875vw;
 `;
 
 const ContentWrapper = styled.div`

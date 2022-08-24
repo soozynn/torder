@@ -8,7 +8,6 @@ import imagePlusButtonSrc from "../../assets/plusButton.svg";
 import imageMinusButtonSrc from "../../assets/minusButton.svg";
 
 const OptionItemContainer = styled.div`
-  font-family: "NotoSerifKR-bold";
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,6 +17,7 @@ const OptionItemContainer = styled.div`
   padding: 3.125vw 3.75vw;
   border: ${(props) =>
     props.active ? "0.25vw solid #2f2a26" : "0.125vw solid #e8e8e8"};
+  font-family: "NotoSerifKR-bold";
   font-size: 4.25vw;
   border-radius: 1.25vw;
   box-sizing: border-box;
@@ -34,11 +34,11 @@ const CheckBoxIcon = styled.img`
 `;
 
 const Title = styled.p`
+  width: 51vw;
+  margin-left: 1.875vw;
   font-size: 2.875vw;
   font-weight: 700;
   color: #2f2a26;
-  width: 51vw;
-  margin-left: 1.875vw;
 `;
 
 const ButtonIcon = styled.img`

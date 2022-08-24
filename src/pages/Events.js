@@ -4,8 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Header from "../components/shared/Header";
-import imageCouponSrc from "../assets/coupon.png";
-import imageSubscriptionSrc from "../assets/subscription.png";
+import { eventWrapper } from "@testing-library/user-event/dist/utils";
 
 const EventsContainer = styled.div`
   position: fixed;
@@ -33,16 +32,11 @@ const EventImage = styled.img`
   object-fit: contain;
 `;
 
-export default function Events({ setTitle }) {
+export default function Events({ eventList, setTitle }) {
   const navigate = useNavigate();
 
-  const hadleClickTadaEventImage = (event) => {
-    setTitle(event.target.alt);
-    navigate("coupon");
-  };
-
-  const handleClickTossEventImage = (event) => {
-    setTitle(event.target.alt);
+  const hadleClickEventImage = (eventName) => {
+    setTitle(eventName);
     navigate("coupon");
   };
 
@@ -50,16 +44,14 @@ export default function Events({ setTitle }) {
     <EventsContainer>
       <Header title="이벤트" />
       <EventWrapper>
-        <EventImage
-          alt="타다 LITE / 20% 쿠폰 / 증정"
-          src={imageCouponSrc}
-          onClick={(e) => hadleClickTadaEventImage(e)}
-        />
-        <EventImage
-          alt="토스 / 신규가입 하면 만 원 / 즉시 지급!"
-          src={imageSubscriptionSrc}
-          onClick={(e) => handleClickTossEventImage(e)}
-        />
+        {eventList.map((event) => (
+          <EventImage
+            key={event.name}
+            alt="이벤트"
+            src={event.imgUrl}
+            onClick={() => hadleClickEventImage(event.name)}
+          />
+        ))}
       </EventWrapper>
     </EventsContainer>
   );
@@ -67,4 +59,10 @@ export default function Events({ setTitle }) {
 
 Events.propTypes = {
   setTitle: PropTypes.func.isRequired,
+  eventList: PropTypes.arrayOf(
+    PropTypes.shape({
+      imgUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
 };

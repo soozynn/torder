@@ -11,14 +11,14 @@ import iconEventsSrc from "../../../assets/events.svg";
 import iconShoppingBagSrc from "../../../assets/shoppingBag.svg";
 
 const NavbarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 13.25vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   background-color: #fff;
   padding: 0 12.5vw;
   border-top: 0.125vw solid #ccc;

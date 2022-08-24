@@ -5,15 +5,15 @@ import Header from "../components/shared/Header";
 import OrderHistoryList from "../components/OrderHistory/OrderHistoryList/OrderHistoryList";
 
 const OrderContainer = styled.div`
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   background-color: #fff;
-  display: block;
+  z-index: 1;
+  overflow: hidden;
 `;
 
 export default function OrderHistory() {

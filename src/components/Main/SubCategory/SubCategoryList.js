@@ -6,11 +6,11 @@ import PropTypes from "prop-types";
 import SubCategory from "./SubCategory";
 
 const SubCategoryListContainer = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
   width: 100%;
   padding: 1.5vw 0 2.375vw;
-  display: flex;
-  align-items: center;
   box-sizing: border-box;
   overflow: auto;
 `;

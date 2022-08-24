@@ -14,25 +14,25 @@ import {
 } from "../../../features/menu/menuSlice";
 
 const ShoppingCartHistoryContainer = styled.div`
-  position: relative;
-  min-width: 27.5vw;
-  height: 30.25vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  min-width: 27.5vw;
+  height: 30.25vw;
   background-color: #f5f3f2;
   border-radius: 2.5vw;
   box-sizing: border-box;
 `;
 
 const DeleteButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
   position: absolute;
   top: 0;
   right: 0;
   width: 7.875vw;
   height: 7.875vw;
-  display: flex;
-  justify-content: flex-end;
   transform: translate(15%, -15%);
   filter: drop-shadow(0 0 1vw rgba(0, 0, 0, 0.2));
 `;
@@ -77,10 +77,10 @@ const MenuOption = styled.p`
 `;
 
 const TotalInformation = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  flex: 1;
 `;
 
 const Price = styled.p`
@@ -97,11 +97,11 @@ const TotalQuantityContainer = styled.div`
 `;
 
 const Button = styled.button`
-  width: 10.25vw;
-  height: 10.25vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 10.25vw;
+  height: 10.25vw;
   background: none;
   border: unset;
   transition: all 0.2s;

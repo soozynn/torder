@@ -13,24 +13,24 @@ const RecallContainer = styled.div`
 `;
 
 const OnlyStaffCallModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 
 const StaffCallText = styled.p`
-  font-size: 8vw;
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: -0.4vw;
   margin-bottom: 2vw;
+  font-size: 8vw;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.4vw;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -41,15 +41,15 @@ const ButtonsWrapper = styled.div`
 `;
 
 const StaffButton = styled.button`
+  width: 32.5vw;
+  height: 11.5vw;
+  border-radius: 1.25vw;
+  background-color: ${(props) => (props.color ? "#b51900" : "#999")};
   color: #fff;
   font-size: 4.25vw;
   font-weight: 500;
   letter-spacing: -0.2125vw;
-  width: 32.5vw;
-  height: 11.5vw;
   opacity: 0.95;
-  border-radius: 1.25vw;
-  background-color: ${(props) => (props.color ? "#b51900" : "#999")};
 `;
 
 const StaffOptionListContainer = styled.div`
@@ -59,10 +59,10 @@ const StaffOptionListContainer = styled.div`
 `;
 
 const OptionListWrapper = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
   padding-top: 3.75vw;
   overflow-y: scroll;
   box-sizing: border-box;
@@ -75,37 +75,28 @@ const StaffButtonsWrapper = styled.div`
 `;
 
 const OnlyStaffButton = styled.button`
-  font-weight: 500;
   width: 50%;
-  color: #fff;
   background-color: #2f2a26;
-  font-size: 4.25vw;
   border: none;
+  font-weight: 500;
+  font-size: 4.25vw;
+  color: #fff;
 `;
 
 const OrderButton = styled.button`
-  font-weight: 500;
   width: 50%;
-  color: #fff;
-  background-color: ${(props) => (props.active ? "#ab240f" : "#999")};
-  font-size: 4.25vw;
   border: none;
+  background-color: ${(props) => (props.active ? "#ab240f" : "#999")};
+  font-weight: 500;
+  font-size: 4.25vw;
+  color: #fff;
 `;
 
-export default function Recall({ setNotificationText, setIsOpenNotification }) {
-  const options = [
-    "얼음컵",
-    "물",
-    "따뜻한물",
-    "피클",
-    "숟가락",
-    "물티슈",
-    "포크",
-    "나이프",
-    "담요",
-    "와인추천",
-    "직원호출",
-  ];
+export default function Recall({
+  setNotificationText,
+  setIsOpenNotification,
+  items,
+}) {
   const [isCallStaff, setIsCallStaff] = useState(false);
   const [checkedOptions, setCheckedOptions] = useState([]);
   const dispatch = useDispatch();
@@ -191,11 +182,11 @@ export default function Recall({ setNotificationText, setIsOpenNotification }) {
       <Header title="직원호출" />
       <StaffOptionListContainer>
         <OptionListWrapper>
-          {options.map((option) => (
+          {items.map((option) => (
             <OptionItem
-              key={option}
-              title={option}
-              onClick={() => handleClickOption(option)}
+              key={option.id}
+              title={option.name}
+              onClick={() => handleClickOption(option.name)}
               checkedOptions={checkedOptions}
               setCheckedOptions={setCheckedOptions}
               setNotificationText={setNotificationText}

@@ -36,8 +36,8 @@ const HorizontalBar = styled.div`
 `;
 
 const MenuContainer = styled.div`
-  margin-top: 2.375vw;
   display: grid;
+  margin-top: 2.375vw;
   grid-template-columns: 1fr 1fr;
   column-gap: 2.5vw;
   row-gap: 1.875vw;
@@ -115,6 +115,7 @@ MenuCategory.propTypes = {
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
   setIsOpenNotification: PropTypes.func.isRequired,
+  setShowsShoppingCart: PropTypes.func.isRequired,
   setNotificationText: PropTypes.func.isRequired,
   goods: PropTypes.arrayOf(
     PropTypes.shape({

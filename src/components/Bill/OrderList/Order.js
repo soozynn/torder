@@ -23,13 +23,13 @@ const MenuName = styled.div`
 `;
 
 const MenuInformation = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-top: 2.375vw;
+  gap: 1.25vw;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   font-size: 2.75vw;
   color: #666;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25vw;
 `;
 
 const DefaultInformation = styled.div`
@@ -46,10 +46,10 @@ const NameText = styled.p`
 `;
 
 const PriceWrapper = styled.div`
-  width: 28.75vw;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  width: 28.75vw;
   gap: 2.5vw;
 
   * {

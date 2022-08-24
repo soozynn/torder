@@ -3,10 +3,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const DutchPayButtonContainer = styled.div`
-  height: 13.75vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 13.75vw;
   gap: 2vw;
   background-color: #2f2a26;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
@@ -20,11 +20,11 @@ const TotalTitle = styled.p`
 `;
 
 const Count = styled.p`
-  width: 5.25vw;
-  height: 5.25vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 5.25vw;
+  height: 5.25vw;
   border-radius: 0.625vw;
   background-color: #fff;
   font-size: 3.5vw;

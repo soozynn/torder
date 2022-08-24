@@ -8,10 +8,10 @@ import MenuImage from "./MenuImage";
 import SoldOutImage from "../SoldoutImage/index";
 
 const MenuContainer = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
   gap: 1.5vw;
 `;
 
@@ -45,9 +45,9 @@ const Price = styled.p`
 `;
 
 const LabelContainer = styled.div`
-  margin-top: 1.375vw;
   display: flex;
   align-items: center;
+  margin-top: 1.375vw;
   gap: 0.625vw;
 `;
 
