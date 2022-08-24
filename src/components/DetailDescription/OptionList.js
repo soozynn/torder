@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Option from "./Option";
+import OptionCategory from "./OptionCategory";
 
 const OptionListContainer = styled.div`
   display: flex;
@@ -14,93 +14,30 @@ const OptionListContainer = styled.div`
   box-sizing: border-box;
 `;
 
-const OptionText = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2.625vw 0;
-  gap: 1.25vw;
-  box-sizing: border-box;
-`;
-
-const FlagText = styled.p`
-  flex: 1;
-  font-family: "NotoSerifKR-bold";
-  font-size: 3.25vw;
-  letter-spacing: -0.1625vw;
-`;
-
-const FlagMaxSelectQuantity = styled.p`
-  display: flex;
-  align-items: center;
-  font-size: 2.875vw;
-  letter-spacing: -0.14375vw;
-  color: #999;
-`;
-
-const OptionListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.875vw;
-`;
-
 export default function OptionList({
   options,
-  soldOut,
-  setOption,
+  selectedOptions,
+  setSelectedOptions,
   setNotificationText,
   setIsOpenNotification,
-  setIsCheckedRequiredOption,
+  setOptionsRequire,
+  price,
 }) {
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [maxQuantity, setMaxQuantity] = useState(1);
-
-  const handleClickOption = (item) => {
-    if (soldOut) {
-      setNotificationText("품절 된 상품입니다.");
-      setIsOpenNotification(true);
-      return;
-    }
-
-    // if (limitQuantity > item.optionQuantityLimit) {
-    //   setNotificationText("더 이상 수량을 추가할 수 없습니다.");
-    //   setIsOpenNotification(true);
-    //   return;
-    // }
-
-    // setSelectedOption(item.displayName);
-    // setOption((prev) => [...prev, { option: selectedOption }]);
-  };
-
-  if (!options) return;
-
   return (
     <OptionListContainer>
-      {options.map((option) => (
-        <div key={option.name}>
-          <OptionText>
-            <FlagText>
-              {option.name} / {option.require ? "필수옵션" : "선택옵션"}
-            </FlagText>
-            <FlagMaxSelectQuantity>
-              {option.selectedOptionLimit}개 까지 선택할 수 있습니다.
-            </FlagMaxSelectQuantity>
-          </OptionText>
-
-          <OptionListWrapper>
-            {option.optionItems.map((item) => (
-              <Option
-                key={item.displayName}
-                item={item}
-                onClick={() => handleClickOption(item)}
-                setNotificationText={setNotificationText}
-                setIsOpenNotification={setIsOpenNotification}
-                selectedOptions={selectedOptions}
-              />
-            ))}
-          </OptionListWrapper>
-        </div>
-      ))}
+      {options &&
+        options.map((option) => (
+          <OptionCategory
+            key={option.name}
+            option={option}
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
+            setNotificationText={setNotificationText}
+            setIsOpenNotification={setIsOpenNotification}
+            setOptionsRequire={setOptionsRequire}
+            price={price}
+          />
+        ))}
     </OptionListContainer>
   );
 }
@@ -108,7 +45,6 @@ export default function OptionList({
 OptionList.propTypes = {
   setNotificationText: PropTypes.func.isRequired,
   setIsOpenNotification: PropTypes.func.isRequired,
-  soldOut: PropTypes.bool,
   setOption: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({

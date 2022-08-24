@@ -73,10 +73,9 @@ const Quantity = styled.p`
   text-align: center;
 `;
 
-const ButtonIcon = styled.p`
+const ButtonIcon = styled.img`
   width: 5.75vw;
   height: 5.75vw;
-  z-index: 10;
 `;
 
 export default function Option({
@@ -84,15 +83,19 @@ export default function Option({
   onClick,
   setNotificationText,
   setIsOpenNotification,
-  slectedOptionName,
-  setOption,
-  setSelcetedOptionName,
+  selectedOptions,
+  setSelectedOptions,
+  maxQuantity,
+  require,
 }) {
   const { displayName, price, optionQuantityLimit } = item;
-
   const [quantity, setQuantity] = useState(1);
 
-  const handleClickPlusButton = () => {
+  const handleClickPlusButton = (e) => {
+    e.stopPropagation();
+
+    let num = quantity + 1;
+
     if (quantity >= optionQuantityLimit) {
       setNotificationText("더 이상 수량을 추가할 수 없습니다.");
       setIsOpenNotification(true);
@@ -100,34 +103,51 @@ export default function Option({
     }
 
     setQuantity((prev) => prev + 1);
+    setSelectedOptions((selectedOptions) =>
+      selectedOptions.map((option) =>
+        option.name === displayName ? (option.count = num) : option.count
+      )
+    );
   };
 
-  const handleClickMinusButton = () => {
-    if (quantity <= optionQuantityLimit) {
+  const handleClickMinusButton = (e) => {
+    e.stopPropagation();
+    let num = quantity + 1;
+
+    if (quantity < 2) {
       setNotificationText("더 이상 선택할 수 없습니다.");
       setIsOpenNotification(true);
       return;
     }
 
     setQuantity((prev) => prev - 1);
+    setSelectedOptions((selectedOptions) =>
+      selectedOptions.map((option) =>
+        option.name === displayName ? (option.count = num) : option.count
+      )
+    );
   };
 
   const handleClickOptionIcon = () => {
-    setSelcetedOptionName(item.displayName);
-    setOption((prev) => [
+    setSelectedOptions((prev) => [
       ...prev,
-      { slectedOptionName, count: quantity, price },
+      { name: displayName, count: quantity, price },
     ]);
   };
 
+  const checkOptionsincluded = () => {
+    if (selectedOptions.length > 0) {
+      return selectedOptions.find((option) => option.name === displayName);
+    }
+
+    return false;
+  };
+
   return (
-    <OptionContainer
-      onClick={onClick}
-      selected={displayName === slectedOptionName}
-    >
+    <OptionContainer onClick={onClick} selected={checkOptionsincluded()}>
       <OptionNameWrapper>
         <div>
-          {displayName === slectedOptionName ? (
+          {checkOptionsincluded() ? (
             <OptionIcon
               alt="selected-option"
               src={imageSelectButtonSrc}
@@ -148,13 +168,13 @@ export default function Option({
       <OptionPriceWrapper>
         <QuantityWrapper>
           {optionQuantityLimit > 1 && (
-            <div onClick={handleClickPlusButton}>
+            <div onClick={(e) => handleClickPlusButton(e)}>
               <ButtonIcon alt="plus" src={imagePlusButtonSrc} />
             </div>
           )}
           <Quantity>{quantity}개</Quantity>
           {optionQuantityLimit > 1 && (
-            <div onClick={handleClickMinusButton}>
+            <div onClick={(e) => handleClickMinusButton(e)}>
               <ButtonIcon alt="minus" src={imageMinusButtonSrc} />
             </div>
           )}

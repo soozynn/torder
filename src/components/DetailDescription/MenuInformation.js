@@ -91,13 +91,13 @@ export default function MenuInformation({
           <>
             <QuantityText>수량</QuantityText>
             <QuantityWrapper>
-              {maxQuantity > 1 && (
+              {maxQuantity !== 1 && (
                 <ButtonWrapper onClick={handleClickPlusButton}>
                   <CountIcon alt="plus" src={imagePlusButtonSrc} />
                 </ButtonWrapper>
               )}
               <Quantity>{quantity}개</Quantity>
-              {maxQuantity > 1 && (
+              {maxQuantity !== 1 && (
                 <ButtonWrapper onClick={handleClickMinusButton}>
                   <CountIcon alt="minus" src={imageMinusButtonSrc} />
                 </ButtonWrapper>
