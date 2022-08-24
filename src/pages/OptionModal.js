@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
 
 import OptionItem from "../components/OptionModal/OptionItem";
+import { useNavigate } from "react-router-dom";
 
 const OptionModalContainer = styled.div`
   display: flex;
@@ -51,6 +52,15 @@ const MenuPrice = styled.div`
   margin-bottom: 2.3125vw;
 `;
 
+const PriceText = styled.p`
+  font-size: 2.75vw;
+`;
+
+const PriceNumber = styled.p`
+  font-size: 3vw;
+  font-weight: 700;
+`;
+
 const OptionList = styled.div`
   width: 60vw;
   height: 39.625vw;
@@ -63,7 +73,7 @@ const Bar = styled.div`
   height: 0.125vw;
   width: 60vw;
   margin: ${(props) => props.color && "2.0625vw 0 2.9375vw;"};
-  background-color: ${(props) => (props.color ? props.color : "dfdfdf")};
+  background-color: ${(props) => (props.color ? props.color : "#dfdfdf")};
 `;
 
 const TotalPriceWrapper = styled.div`
@@ -72,7 +82,7 @@ const TotalPriceWrapper = styled.div`
   margin-top: 3.125vw;
 `;
 
-const PriceText = styled.p`
+const TotalText = styled.p`
   font-size: 3vw;
   font-weight: 500;
   letter-spacing: -0.075vw;
@@ -96,7 +106,7 @@ const CloseButton = styled.button`
   font-weight: 500;
 `;
 
-export default function OptionModal() {
+export default function OptionModal({ selectedOptions }) {
   const navigate = useNavigate();
 
   return (
@@ -104,27 +114,52 @@ export default function OptionModal() {
       <ModalWrapper>
         <ModalTitle>옵션보기</ModalTitle>
         <DetailOptionWrapper>
-          <MenuTitle>{}</MenuTitle>
-          <Bar color="#2f2a26"></Bar>
-          <MenuPrice></MenuPrice>
-          <Bar></Bar>
+          <MenuTitle>{selectedOptions[0].parentTitle}</MenuTitle>
+          <Bar color="#2f2a26" />
+          <MenuPrice>
+            <PriceText>기본가격</PriceText>
+            <PriceNumber>
+              {selectedOptions[0].parentPrice.toLocaleString()}
+            </PriceNumber>
+          </MenuPrice>
+          <Bar />
           <OptionList>
-            {/* {option.map((option) => (
+            {selectedOptions.map((option) => (
               <OptionItem
+                key={uuidv4()}
                 name={option.name}
                 count={option.count}
                 price={option.price}
               />
-            ))} */}
+            ))}
           </OptionList>
-          <Bar></Bar>
+          <Bar />
           <TotalPriceWrapper>
-            <PriceText>합계</PriceText>
-            <TotalPrice>{}</TotalPrice>
+            <TotalText>합계</TotalText>
+            <TotalPrice>
+              {(
+                selectedOptions[0].parentPrice +
+                selectedOptions.reduce(
+                  (accumulator, option) =>
+                    accumulator + option.price * option.count,
+                  0
+                )
+              ).toLocaleString()}
+            </TotalPrice>
           </TotalPriceWrapper>
-          <CloseButton onClick={() => navigate(-1)}>닫기</CloseButton>
+          <CloseButton onClick={() => navigate("/", { replace: true })}>
+            닫기
+          </CloseButton>
         </DetailOptionWrapper>
       </ModalWrapper>
     </OptionModalContainer>
   );
 }
+
+OptionModal.propTypes = {
+  selectedOptions: PropTypes.shape({
+    name: PropTypes.string,
+    count: PropTypes.number,
+    price: PropTypes.number,
+  }),
+};

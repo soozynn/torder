@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -120,9 +120,11 @@ export default function DetailDescription({
   setNotificationText,
   setIsOpenNotification,
   menuList,
+  selectedOptions,
+  setSelectedOptions,
+  setShowsShoppingCart,
 }) {
-  const [option, setOption] = useState([]);
-  const [isCheckedRequiredOption, setIsCheckedRequiredOption] = useState(false);
+  // const [optionsRequire, setOptionsRequire] = useState([]);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -137,8 +139,6 @@ export default function DetailDescription({
     optionGroups,
     orderMaxQuantity,
     orderMinQuantity,
-    showsShoppingCart,
-    setShowsShoppingCart,
   } = filteredMenu[0];
 
   const [quantity, setQuantity] = useState(
@@ -151,15 +151,16 @@ export default function DetailDescription({
 
   const handleClickOrderButton = () => {
     if (soldOut) {
+      setNotificationText("품절 된 상품입니다.");
       setIsOpenNotification(true);
       return;
     }
 
-    if (!isCheckedRequiredOption) {
-      setNotificationText("필수 옵션을 모두 선택해주세요");
-      setIsOpenNotification(true);
-      return;
-    }
+    // if (optionsRequire.includes(false)) {
+    //   setNotificationText("필수 옵션을 모두 선택해주세요.");
+    //   setIsOpenNotification(true);
+    //   return;
+    // }
 
     dispatch(
       addMenuToCart({
@@ -174,17 +175,17 @@ export default function DetailDescription({
         }),
         orderMinQuantity,
         orderMaxQuantity,
-        option,
+        option: selectedOptions,
       })
     );
-    setNotificationText(`${option.length}개의 상품을 담았습니다`);
+    setNotificationText(`${quantity}개의 상품을 담았습니다.`);
     setIsOpenNotification(true);
     navigate(-1);
-    setShowsShoppingCart(!showsShoppingCart);
+    setShowsShoppingCart(true);
   };
 
   const handleClickPlusButton = () => {
-    if (quantity >= orderMaxQuantity) {
+    if (orderMaxQuantity > 0 && quantity >= orderMaxQuantity) {
       setIsOpenNotification(true);
       setNotificationText(`최대 주문 수량이 ${orderMaxQuantity}개 입니다.`);
       return;
@@ -194,7 +195,9 @@ export default function DetailDescription({
   };
 
   const handleClickMinusButton = () => {
+    if (!orderMaxQuantity && quantity === 1) return;
     if (quantity <= orderMinQuantity) {
+      if (!orderMaxQuantity) return;
       setIsOpenNotification(true);
       setNotificationText(`최소 주문 수량이 ${orderMinQuantity}개 입니다.`);
       return;
@@ -239,11 +242,12 @@ export default function DetailDescription({
         {!soldOut && optionGroups.length > 0 && (
           <OptionList
             options={optionGroups}
-            soldOut={soldOut}
-            setOption={setOption}
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
             setNotificationText={setNotificationText}
             setIsOpenNotification={setIsOpenNotification}
-            setIsCheckedRequiredOption={setIsCheckedRequiredOption}
+            price={price}
+            // setOptionsRequire={setOptionsRequire}
           />
         )}
       </div>

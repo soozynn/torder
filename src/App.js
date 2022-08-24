@@ -57,6 +57,7 @@ const LoadingMessage = styled.div`
 
 export default function App() {
   const [menuList, setMenuList] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [showsShoppingCart, setShowsShoppingCart] = useState(false);
   const [eventTitle, setEventTitle] = useState("");
   const [isOpenNotification, setIsOpenNotification] = useState(false);
@@ -90,6 +91,7 @@ export default function App() {
                   setNotificationText={setNotificationText}
                   setIsOpenNotification={setIsOpenNotification}
                   menuList={menuList}
+                  selectedOptions={selectedOptions}
                 />
               }
             />
@@ -102,6 +104,9 @@ export default function App() {
                   setNotificationText={setNotificationText}
                   setIsOpenNotification={setIsOpenNotification}
                   menuList={menuList}
+                  selectedOptions={selectedOptions}
+                  setSelectedOptions={setSelectedOptions}
+                  setShowsShoppingCart={setShowsShoppingCart}
                 />
               }
             />
@@ -131,7 +136,10 @@ export default function App() {
                 />
               }
             />
-            <Route path="/cartOption" element={<OptionModal />} />
+            <Route
+              path="/cartOption"
+              element={<OptionModal selectedOptions={selectedOptions} />}
+            />
           </Routes>
         ) : (
           <LoadingMessage>Loading...</LoadingMessage>

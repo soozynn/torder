@@ -152,11 +152,11 @@ export default function Recall({
   };
 
   const handleClickOption = (optionName) => {
-    const findOption = checkedOptions.find(
+    const sameOption = checkedOptions.find(
       (option) => option.name === optionName
     );
 
-    if (findOption) {
+    if (sameOption) {
       setCheckedOptions(
         checkedOptions.filter((option) => option.name !== optionName)
       );
