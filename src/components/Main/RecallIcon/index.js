@@ -12,13 +12,13 @@ const RecallContainer = styled.div`
   width: 17vw;
   height: 17vw;
   border-radius: 3.75vw;
-  margin-bottom: ${(props) => (props.position ? "7vw" : "")};
+  margin-bottom: ${(props) => (props.$position ? "7vw" : "")};
   box-sizing: border-box;
   box-shadow: ${(props) =>
-    props.position ? "0 0 10px 0 rgb(0 0 0 / 50%)" : ""};
+    props.$position ? "0 0 10px 0 rgb(0 0 0 / 50%)" : ""};
   background-color: #b51900;
   color: #fff;
-  gap: ${(props) => (props.position ? "" : "0.875vw")};
+  gap: ${(props) => (props.$position ? "" : "0.875vw")};
 `;
 
 const IconImage = styled.img`
@@ -37,7 +37,7 @@ const Title = styled.div`
 
 export default function Recall({ position, onClick }) {
   return (
-    <RecallContainer position={position} onClick={onClick}>
+    <RecallContainer $position={position} onClick={onClick}>
       <IconImage alt="icon" src={imageBellSrc} />
       <Title>직원호출</Title>
     </RecallContainer>

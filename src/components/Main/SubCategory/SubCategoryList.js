@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -30,7 +29,6 @@ export default function SubCategoryList({ subCategories, activeCategoryId }) {
   const [activeSubCategoryId, setActiveSubCategoryId] = useState(
     subCategories[0].id
   );
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setActiveSubCategoryId(

@@ -57,7 +57,7 @@ export default function MenuCategory({
 
   const handleClickMenu = (menu) => {
     if (menu.optionGroups.length > 0 || menu.description) {
-      navigate(`/menuDetail${menu.id}`);
+      navigate(`/menuDetail/${menu.id}`);
       return;
     }
 

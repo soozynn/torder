@@ -86,7 +86,7 @@ const OnlyStaffButton = styled.button`
 const OrderButton = styled.button`
   width: 50%;
   border: none;
-  background-color: ${(props) => (props.active ? "#ab240f" : "#999")};
+  background-color: ${(props) => (props.$active ? "#ab240f" : "#999")};
   font-weight: 500;
   font-size: 4.25vw;
   color: #fff;
@@ -199,7 +199,7 @@ export default function Recall({
             직원만 호출
           </OnlyStaffButton>
           <OrderButton
-            active={checkedOptions.length > 0}
+            $active={checkedOptions.length > 0}
             onClick={handleClickOrderButton}
           >
             요청하기

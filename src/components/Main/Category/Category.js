@@ -5,14 +5,14 @@ import PropTypes from "prop-types";
 const Content = styled.div`
   white-space: nowrap;
   padding: 0.5vw 3.125vw;
-  background-color: ${(props) => props.isActive && "#2f2a26"};
+  background-color: ${(props) => props.$isActive && "#2f2a26"};
   border: 0.25vw solid #2f2a26;
   border-radius: 4.25vw;
   box-sizing: border-box;
   font-weight: 900;
   font-family: "NotoSerifKR-semibold";
   font-size: 3.25vw;
-  color: ${(props) => props.isActive && "#fff"};
+  color: ${(props) => props.$isActive && "#fff"};
 
   :last-child {
     margin-right: 2.2vw;
@@ -21,7 +21,7 @@ const Content = styled.div`
 
 export default function Category({ onClick, name, isActive }) {
   return (
-    <Content onClick={onClick} isActive={isActive}>
+    <Content onClick={onClick} $isActive={isActive}>
       {name}
     </Content>
   );

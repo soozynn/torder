@@ -7,7 +7,7 @@ $ git clone https://github.com/soozynn/torder.git
 ```
 
 ```
-$ npm install
+$ pnpm install
 ```
 
 설치 후, 새 터미널에서 json-server를 실행시켜주세요.
@@ -21,7 +21,7 @@ $ npx json-server --watch data/mock.json --port 8000
 이후,
 
 ```
-$ npm start
+$ pnpm start
 ```
 
 http://localhost:3000/ 을 실행시켜주세요.

@@ -8,7 +8,7 @@ const ButtonText = styled.p`
   align-items: center;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  background-color: ${(props) => (props.background ? "#b51900" : "#999")};
+  background-color: ${(props) => (props.$background ? "#b51900" : "#999")};
   border-radius: 1.25vw;
   font-size: 4.25vw;
   font-weight: 750;
@@ -26,7 +26,7 @@ export default function Button({
   return (
     <ButtonText
       onClick={onClick}
-      background={background}
+      $background={background}
       width={width}
       height={height}
     >

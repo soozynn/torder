@@ -30,7 +30,7 @@ export default function CategoryList({ categories, activeId, setActiveId }) {
               handleClickCategory(category.id);
             }}
             name={category.name}
-            isActive={activeId === category.id}
+            $isActive={activeId === category.id}
           />
         ))}
       </CategoryListWrapper>

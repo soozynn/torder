@@ -12,7 +12,7 @@ const TitleWrapper = styled.div`
   align-items: center;
   gap: 2.125vw;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
-  color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
+  color: ${(props) => (props.$index === 0 ? "#ab240f" : "#999")};
 `;
 
 const Number = styled.div`
@@ -22,7 +22,7 @@ const Number = styled.div`
   width: 5.125vw;
   height: 5.125vw;
   border-radius: 1.25vw;
-  background-color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
+  background-color: ${(props) => (props.$index === 0 ? "#ab240f" : "#999")};
   font-size: 2.75vw;
   font-weight: 700;
   letter-spacing: -0.06875vw;
@@ -33,7 +33,7 @@ const Text = styled.div`
   font-size: 4vw;
   letter-spacing: -0.2vw;
   font-weight: 700;
-  color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
+  color: ${(props) => (props.$index === 0 ? "#ab240f" : "#999")};
 `;
 
 const Time = styled.div`
@@ -42,7 +42,7 @@ const Time = styled.div`
   letter-spacing: -0.08125vw;
   text-align: right;
   font-weight: 500;
-  color: ${(props) => (props.index === 0 ? "#ab240f" : "#999")};
+  color: ${(props) => (props.$index === 0 ? "#ab240f" : "#999")};
 `;
 
 const HistoryInformation = styled.div`
@@ -85,9 +85,9 @@ export default function OrderHistory({ history, index, orderLength }) {
     <div>
       <HistoryContainer>
         <TitleWrapper>
-          <Number index={index}>{orderLength - index}</Number>
-          <Text index={index}>{index === 0 ? "마지막 주문" : "이전 주문"}</Text>
-          <Time index={index}>{time}</Time>
+          <Number $index={index}>{orderLength - index}</Number>
+          <Text $index={index}>{index === 0 ? "마지막 주문" : "이전 주문"}</Text>
+          <Time $index={index}>{time}</Time>
         </TitleWrapper>
 
         <div>

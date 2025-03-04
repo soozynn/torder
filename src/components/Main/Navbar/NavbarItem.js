@@ -9,7 +9,7 @@ const ItemContainer = styled.div`
   align-items: center;
   width: 13.25vw;
   height: 100%;
-  gap: ${(props) => (props.gap ? props.gap : "1.45vw")};
+  gap: ${(props) => (props.$gap ? props.$gap : "1.45vw")};
 `;
 
 const IconWrapper = styled.div`
@@ -54,7 +54,7 @@ export default function Item({
   height,
 }) {
   return (
-    <ItemContainer onClick={onClick} gap={gap}>
+    <ItemContainer onClick={onClick} $gap={gap}>
       {src ? (
         <IconWrapper>
           <Icon src={src} alt="navbar-icon" width={width} height={height} />

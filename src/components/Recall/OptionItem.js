@@ -16,7 +16,7 @@ const OptionItemContainer = styled.div`
   margin-bottom: 1.875vw;
   padding: 3.125vw 3.75vw;
   border: ${(props) =>
-    props.active ? "0.25vw solid #2f2a26" : "0.125vw solid #e8e8e8"};
+    props.$active ? "0.25vw solid #2f2a26" : "0.125vw solid #e8e8e8"};
   font-family: "NotoSerifKR-bold";
   font-size: 4.25vw;
   border-radius: 1.25vw;
@@ -124,7 +124,7 @@ export default function OptionItem({
   return (
     <OptionItemContainer
       onClick={onClick}
-      active={checkedOptions.find((option) => option.name === title)}
+      $active={checkedOptions.find((option) => option.name === title)}
     >
       <CheckBoxWrapper>
         {checkedOptions.find((option) => option.name === title) ? (

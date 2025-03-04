@@ -95,10 +95,10 @@ export default function App() {
                 />
               }
             />
-            <Route path="/orderHistory" element={<OrderHistory />} />
-            <Route path="/bill" element={<Bill />} />
+            <Route path="orderHistory" element={<OrderHistory />} />
+            <Route path="bill" element={<Bill />} />
             <Route
-              path="/menuDetail:id"
+              path="menuDetail/:id"
               element={
                 <DetailDescription
                   setNotificationText={setNotificationText}
@@ -111,7 +111,7 @@ export default function App() {
               }
             />
             <Route
-              path="/callStaff"
+              path="callStaff"
               element={
                 <Recall
                   setNotificationText={setNotificationText}
@@ -121,13 +121,13 @@ export default function App() {
               }
             />
             <Route
-              path="/eventList"
+              path="eventList"
               element={
                 <Events eventList={menuList.event} setTitle={setEventTitle} />
               }
             />
             <Route
-              path="/eventList/coupon"
+              path="eventList/coupon"
               element={
                 <Coupon
                   title={eventTitle}
@@ -137,7 +137,7 @@ export default function App() {
               }
             />
             <Route
-              path="/cartOption"
+              path="cartOption"
               element={<OptionModal selectedOptions={selectedOptions} />}
             />
           </Routes>

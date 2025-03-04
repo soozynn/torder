@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 import Option from "./Option";
 
@@ -44,10 +43,8 @@ export default function OptionCategory({
   price,
 }) {
   const { name, require, selectedOptionLimit, optionItems } = option;
-
   const [quantity, setQuantity] = useState(0);
-  const [isCheckedRequire, setIsCheckedRequire] = useState(false);
-  console.log(option);
+
   const handleClickOption = (item, limit) => {
     const sameOption = selectedOptions.some(
       (option) => option.name === item.displayName

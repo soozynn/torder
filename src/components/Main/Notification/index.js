@@ -15,7 +15,7 @@ const NotificationWrapper = styled.div`
   border-radius: 15px;
   transform: translate(-50%, -50%);
   z-index: 100;
-  animation: ${(props) => props.isfadeIn && "fadeIn 1s linear 1 forwards"};
+  animation: ${(props) => props.$isFadeIn && "fadeIn 1s linear 1 forwards"};
 
   @keyframes fadeIn {
     0% {
@@ -51,7 +51,7 @@ export default function Notification({
   }, [isOpenNotification, setIsOpenNotification]);
 
   return (
-    <NotificationWrapper isfadeIn={isOpenNotification}>
+    <NotificationWrapper $isFadeIn={isOpenNotification}>
       <Text>{children}</Text>
     </NotificationWrapper>
   );

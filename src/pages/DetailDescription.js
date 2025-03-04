@@ -124,7 +124,6 @@ export default function DetailDescription({
   setSelectedOptions,
   setShowsShoppingCart,
 }) {
-  // const [optionsRequire, setOptionsRequire] = useState([]);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -141,6 +140,7 @@ export default function DetailDescription({
     orderMinQuantity,
   } = filteredMenu[0];
 
+  const [optionsRequire, setOptionsRequire] = useState([]);
   const [quantity, setQuantity] = useState(
     !orderMinQuantity ? 1 : orderMinQuantity
   );
@@ -247,7 +247,7 @@ export default function DetailDescription({
             setNotificationText={setNotificationText}
             setIsOpenNotification={setIsOpenNotification}
             price={price}
-            // setOptionsRequire={setOptionsRequire}
+            setOptionsRequire={setOptionsRequire}
           />
         )}
       </div>

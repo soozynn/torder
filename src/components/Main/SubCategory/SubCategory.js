@@ -10,16 +10,16 @@ const SubCategoryContainer = styled.div`
   letter-spacing: -0.075vw;
   font-family: ${(props) =>
     props.isActive ? "NotoSerifKR-bold" : "NotoSerifKR"};
-  font-size: ${(props) => (props.isActive ? "3vw" : "2.75vw")};
-  color: ${(props) => props.isActive && "#fff"};
+  font-size: ${(props) => (props.$isActive ? "3vw" : "2.75vw")};
+  color: ${(props) => props.$isActive && "#fff"};
 `;
 
 const SubCategoryTitle = styled.p`
   white-space: nowrap;
   padding: 0.355vw 2.625vw 0.4vw;
   box-sizing: border-box;
-  background-color: ${(props) => props.isActive && "#ab240f"};
-  border-radius: ${(props) => props.isActive && "12.5vw"};
+  background-color: ${(props) => props.$isActive && "#ab240f"};
+  border-radius: ${(props) => props.$isActive && "12.5vw"};
 `;
 
 const Bar = styled.div`
@@ -31,8 +31,8 @@ const Bar = styled.div`
 
 export default function SubCategory({ name, onClick, isActive, lastbar }) {
   return (
-    <SubCategoryContainer isActive={isActive} onClick={onClick}>
-      <SubCategoryTitle isActive={isActive}>{name}</SubCategoryTitle>
+    <SubCategoryContainer $isActive={isActive} onClick={onClick}>
+      <SubCategoryTitle $isActive={isActive}>{name}</SubCategoryTitle>
       {lastbar && <Bar></Bar>}
     </SubCategoryContainer>
   );

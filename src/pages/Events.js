@@ -4,7 +4,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Header from "../components/shared/Header";
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
 
 const EventsContainer = styled.div`
   position: fixed;
