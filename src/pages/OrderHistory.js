@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "../components/shared/Header";
-import OrderHistoryList from "../components/OrderHistory/OrderHistoryList/OrderHistoryList";
+import Header from "@components/shared/Header";
+import OrderHistoryList from "@components/OrderHistory/OrderHistoryList/OrderHistoryList";
 
 const OrderContainer = styled.div`
   display: block;

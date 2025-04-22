@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import imageArrowSrc from "../../../assets/arrow.svg";
+import imageArrowSrc from "@assets/arrow.svg";
 
 const SidebarItemContainer = styled.div`
   display: flex;

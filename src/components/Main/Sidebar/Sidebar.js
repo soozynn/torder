@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import imageCloseButtonSrc from "../../../assets/closeButton.svg";
+import imageCloseButtonSrc from "@assets/closeButton.svg";
 import SidebarItem from "./SidebarItem";
 
 const SidebarContainer = styled.div`

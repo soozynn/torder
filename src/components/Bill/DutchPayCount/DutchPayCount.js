@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import imagePlusButtonSrc from "../../../assets/plusButton.svg";
-import imageMinusButtonSrc from "../../../assets/minusButton.svg";
+import imagePlusButtonSrc from "@assets/plusButton.svg";
+import imageMinusButtonSrc from "@assets/minusButton.svg";
 
 const DutchPayCountContainer = styled.div`
   display: flex;

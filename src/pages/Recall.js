@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Header from "../components/shared/Header";
-import OptionItem from "../components/Recall/OptionItem";
-import { orderOptions } from "../features/menu/menuSlice";
+import Header from "@components/shared/Header";
+import OptionItem from "@components/Recall/OptionItem";
+import { orderOptions } from "@features/menu/menuSlice";
 
 const RecallContainer = styled.div`
   overflow: hidden;

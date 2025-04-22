@@ -1,0 +1,57 @@
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+import * as React from "react";
+const SvgOrder = props => /*#__PURE__*/React.createElement("svg", _extends({
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 26.025,
+  height: 18.5
+}, props), /*#__PURE__*/React.createElement("g", {
+  "data-name": "Group 3057"
+}, /*#__PURE__*/React.createElement("g", {
+  "data-name": "Group 3006"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M0 0h20.025v2.5H0z",
+  "data-name": "Rectangle 891",
+  style: {
+    fill: "#2f2a26"
+  },
+  transform: "translate(6)"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M0 0h2.5v2.5H0z",
+  "data-name": "Rectangle 897",
+  style: {
+    fill: "#2f2a26"
+  }
+})), /*#__PURE__*/React.createElement("g", {
+  "data-name": "Group 3058"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M0 0h20.025v2.5H0z",
+  "data-name": "Rectangle 891",
+  style: {
+    fill: "#2f2a26"
+  },
+  transform: "translate(6 8)"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M0 0h2.5v2.5H0z",
+  "data-name": "Rectangle 897",
+  style: {
+    fill: "#2f2a26"
+  },
+  transform: "translate(0 8)"
+})), /*#__PURE__*/React.createElement("g", {
+  "data-name": "Group 3059"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M0 0h20.025v2.5H0z",
+  "data-name": "Rectangle 891",
+  style: {
+    fill: "#2f2a26"
+  },
+  transform: "translate(6 16)"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M0 0h2.5v2.5H0z",
+  "data-name": "Rectangle 897",
+  style: {
+    fill: "#2f2a26"
+  },
+  transform: "translate(0 16)"
+}))));
+export default SvgOrder;

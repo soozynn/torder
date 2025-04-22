@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import imageDeleteButtonSrc from "../../../assets/deleteButton.svg";
-import imagePlusButtonSrc from "../../../assets/plusButton.svg";
-import imageMinusButtonSrc from "../../../assets/minusButton.svg";
+import imageDeleteButtonSrc from "@assets/deleteButton.svg";
+import imagePlusButtonSrc from "@assets/plusButton.svg";
+import imageMinusButtonSrc from "@assets/minusButton.svg";
 import {
   addMenuToCart,
   removeMenuToCart,
   reduceMenuToCart,
-} from "../../../features/menu/menuSlice";
+} from "@features/menu/menuSlice";
 
 const ShoppingCartHistoryContainer = styled.div`
   display: flex;

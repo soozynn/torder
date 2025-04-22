@@ -1,0 +1,65 @@
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+import * as React from "react";
+const SvgEvents = props => /*#__PURE__*/React.createElement("svg", _extends({
+  xmlns: "http://www.w3.org/2000/svg",
+  width: "current",
+  height: "current",
+  viewBox: "0 0 29.563 33.356"
+}, props), /*#__PURE__*/React.createElement("g", {
+  "data-name": "Group 3041"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M4.893 21.9 0 0l21.519 9.738",
+  "data-name": "Path 1415",
+  style: {
+    fill: "none",
+    stroke: "#2f2a26",
+    strokeWidth: 2
+  },
+  transform: "rotate(180 14.076 15.81)"
+}), /*#__PURE__*/React.createElement("g", {
+  "data-name": "Group 3040"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M.988 0 0 4.013",
+  "data-name": "Path 1412",
+  style: {
+    strokeLinejoin: "round",
+    strokeLinecap: "square",
+    fill: "none",
+    stroke: "#2f2a26",
+    strokeWidth: 2
+  },
+  transform: "rotate(-21 11.592 -33.66)"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m0 0 2.62 3.6",
+  "data-name": "Path 1413",
+  style: {
+    strokeLinejoin: "round",
+    strokeLinecap: "square",
+    fill: "none",
+    stroke: "#2f2a26",
+    strokeWidth: 2
+  },
+  transform: "rotate(-2.99 78.318 -103.352)"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m0 0 3.626 1.5",
+  "data-name": "Path 1414",
+  style: {
+    strokeLinejoin: "round",
+    strokeLinecap: "square",
+    fill: "none",
+    stroke: "#2f2a26",
+    strokeWidth: 2
+  },
+  transform: "rotate(-2.99 213.94 -20.8)"
+})), /*#__PURE__*/React.createElement("path", {
+  d: "M.036 13.574s-.71-6.266 4.14-10.2A14.68 14.68 0 0 1 14.24.031a13 13 0 0 1-4.012 9.579A13.62 13.62 0 0 1 .036 13.574z",
+  "data-name": "Path 1416",
+  style: {
+    strokeLinecap: "square",
+    fill: "none",
+    stroke: "#2f2a26",
+    strokeWidth: 2
+  },
+  transform: "rotate(7 -65.71 78.476)"
+})));
+export default SvgEvents;

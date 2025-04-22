@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 
 import Item from "./NavbarItem";
 import RecallIcon from "../RecallIcon/index";
-import iconOrderSrc from "../../../assets/order.svg";
-import iconBillSrc from "../../../assets/bill.svg";
-import iconEventsSrc from "../../../assets/events.svg";
-import iconShoppingBagSrc from "../../../assets/shoppingBag.svg";
+import iconOrderSrc from "@assets/order.svg";
+import iconBillSrc from "@assets/bill.svg";
+import iconEventsSrc from "@assets/events.svg";
+import iconShoppingBagSrc from "@assets/shoppingBag.svg";
 
 const NavbarContainer = styled.div`
   display: flex;

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import imagePrevButtonSrc from "../../assets/prevButton.svg";
+import imagePrevButtonSrc from "@assets/prevButton.svg";
 
 const BillHeaderContainer = styled.header`
   display: flex;

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import imageUnSelectButtonSrc from "../../assets/unSelectButton.svg";
-import imageSelectButtonSrc from "../../assets/selectButton.svg";
-import imagePlusButtonSrc from "../../assets/plusButton.svg";
-import imageMinusButtonSrc from "../../assets/minusButton.svg";
+import imageUnSelectButtonSrc from "@assets/unSelectButton.svg";
+import imageSelectButtonSrc from "@assets/selectButton.svg";
+import imagePlusButtonSrc from "@assets/plusButton.svg";
+import imageMinusButtonSrc from "@assets/minusButton.svg";
 
 const OptionItemContainer = styled.div`
   display: flex;

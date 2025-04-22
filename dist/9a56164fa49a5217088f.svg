@@ -1,0 +1,17 @@
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+import * as React from "react";
+const SvgPrevButton = props => /*#__PURE__*/React.createElement("svg", _extends({
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 39.159,
+  height: 26.849
+}, props), /*#__PURE__*/React.createElement("g", {
+  "data-name": "<-"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "m-2713.99 26.264-11.425-11.425a2 2 0 0 1-.472-.747v-.011a2 2 0 0 1-.1-.485v-.216a2 2 0 0 1 .2-.836l.007-.014v-.016a2 2 0 0 1 .19-.3l.011-.014.005-.007.009-.011.008-.01.006-.007.011-.014c.041-.049.084-.1.129-.14L-2713.99.586a2 2 0 0 1 2.829 0 2 2 0 0 1 0 2.829l-8.011 8.01h30.331a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-30.331l8.011 8.011a2 2 0 0 1 0 2.829 2 2 0 0 1-1.415.585 2 2 0 0 1-1.414-.586",
+  "data-name": "Union 6",
+  style: {
+    fill: "#2f2a26"
+  },
+  transform: "translate(2726)"
+})));
+export default SvgPrevButton;

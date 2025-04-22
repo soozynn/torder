@@ -10,7 +10,7 @@ import Coupon from "./pages/Coupon";
 import Events from "./pages/Events";
 import DetailDescription from "./pages/DetailDescription";
 import Recall from "./pages/Recall";
-import Notification from "./components/Main/Notification";
+import Notification from "@components/Main/Notification";
 import OptionModal from "./pages/OptionModal";
 
 const GlobalStyles = createGlobalStyle`
@@ -63,16 +63,32 @@ export default function App() {
   const [isOpenNotification, setIsOpenNotification] = useState(false);
   const [notificationText, setNotificationText] = useState("");
   const [activeCategoryId, setActiveCategoryId] = useState("");
+  const [loadingError, setLoadingError] = useState(null);
+
+  const fetchMenuData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/data");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data"); // 에러 발생 시
+      }
+
+      const data = await response.json();
+
+      setMenuList(data);
+      setActiveCategoryId(data.categories[0].id); // 기본 카테고리 설정
+    } catch (error) {
+      setLoadingError(error.message); // 에러 메시지 저장
+    }
+  };
 
   useEffect(() => {
-    fetch("http://localhost:8000/data")
-      .then((res) => res.json())
-      .then((data) => {
-        setMenuList(data);
-        setActiveCategoryId(data.categories[0].id);
-      })
-      .catch(console.error);
+    fetchMenuData();
   }, []);
+
+  if (loadingError) {
+    return <div>Error: {loadingError}</div>;
+  }
 
   return (
     <>
@@ -145,6 +161,7 @@ export default function App() {
           <LoadingMessage>Loading...</LoadingMessage>
         )}
       </Router>
+
       {isOpenNotification && (
         <Notification
           isOpenNotification={isOpenNotification}

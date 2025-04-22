@@ -1,0 +1,41 @@
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+import * as React from "react";
+const SvgShoppingBag = props => /*#__PURE__*/React.createElement("svg", _extends({
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 25.714,
+  height: 28.349
+}, props), /*#__PURE__*/React.createElement("g", {
+  "data-name": "shopping-bag (1)"
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M6.952 2 3 7.27v18.444a2.635 2.635 0 0 0 2.635 2.635h18.444a2.635 2.635 0 0 0 2.635-2.635V7.27L22.762 2z",
+  "data-name": "Path 7",
+  style: {
+    strokeLinecap: "square",
+    fill: "none",
+    stroke: "#2f2a26",
+    strokeWidth: 2
+  },
+  transform: "translate(-2 -1)"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M0 0h23.174",
+  "data-name": "Line 3",
+  style: {
+    strokeLinejoin: "round",
+    strokeLinecap: "round",
+    fill: "none",
+    stroke: "#2f2a26",
+    strokeWidth: 2
+  },
+  transform: "translate(1.296 6.207)"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M18.408 10A5.2 5.2 0 0 1 8 10",
+  "data-name": "Path 8",
+  style: {
+    strokeLinejoin: "round",
+    fill: "none",
+    stroke: "#2f2a26",
+    strokeWidth: 2
+  },
+  transform: "translate(-.065 .808)"
+})));
+export default SvgShoppingBag;

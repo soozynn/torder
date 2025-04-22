@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Header from "../components/shared/Header";
-import imagePrevButtonSrc from "../assets/prevButton.svg";
+import Header from "@components/shared/Header";
+import imagePrevButtonSrc from "@assets/prevButton.svg";
 
 const TermsWrapper = styled.div`
   display: flex;

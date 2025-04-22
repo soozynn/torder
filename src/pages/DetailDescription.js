@@ -4,11 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import imagePrevButtonSrc from "../assets/prevButton.svg";
-import MenuInformation from "../components/DetailDescription/MenuInformation";
-import OptionList from "../components/DetailDescription/OptionList";
-import { addMenuToCart } from "../features/menu/menuSlice";
-import { getProductDescription } from "../components/utils/util";
+import imagePrevButtonSrc from "@assets/prevButton.svg";
+import MenuInformation from "@components/DetailDescription/MenuInformation";
+import OptionList from "@components/DetailDescription/OptionList";
+import { addMenuToCart } from "@features/menu/menuSlice";
+import { getProductDescription } from "@components/utils/util";
 
 const DetailDescriptionContainer = styled.div`
   position: fixed;

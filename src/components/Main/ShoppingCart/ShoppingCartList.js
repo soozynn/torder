@@ -11,7 +11,7 @@ import Button from "../Button/index";
 import {
   orderMenuListInCart,
   removeAllMenuToCart,
-} from "../../../features/menu/menuSlice";
+} from "@features/menu/menuSlice";
 
 const ShoppingCartListContainer = styled.div`
   position: fixed;

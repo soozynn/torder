@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import logoSrc from "../../../../assets/logo.svg";
-import hamburgerSrc from "../../../../assets/hamburger.svg";
+import logoSrc from "@assets/logo.svg";
+import hamburgerSrc from "@assets/hamburger.svg";
 
 const HeaderIconContainer = styled.div`
   display: flex;

@@ -15,16 +15,14 @@ $ pnpm install
 ## local에서 json-server 실행 방법
 
 ```
-$ npx json-server --watch data/mock.json --port 8000
+$ pnpm start-server
 ```
 
 이후,
 
 ```
-$ pnpm start
+$ pnpm dev
 ```
-
-http://localhost:3000/ 을 실행시켜주세요.
 
 ## 최종 결과
 

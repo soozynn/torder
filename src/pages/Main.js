@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Header from "../components/Main/Header/index";
-import CategoryList from "../components/Main/Category/CategoryList";
-import SubCategoryList from "../components/Main/SubCategory/SubCategoryList";
-import FullMenuList from "../components/Main/Menu/FullMenuList";
-import Navbar from "../components/Main/Navbar/Navbar";
-import ShoppingCartList from "../components/Main/ShoppingCart/ShoppingCartList";
+import Header from "@components/Main/Header/index";
+import CategoryList from "@components/Main/Category/CategoryList";
+import SubCategoryList from "@components/Main/SubCategory/SubCategoryList";
+import FullMenuList from "@components/Main/Menu/FullMenuList";
+import Navbar from "@components/Main/Navbar/Navbar";
+import ShoppingCartList from "@components/Main/ShoppingCart/ShoppingCartList";
 
 const GoodsContainer = styled.div`
   display: flex;

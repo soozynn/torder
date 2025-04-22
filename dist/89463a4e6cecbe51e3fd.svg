@@ -1,0 +1,45 @@
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+import * as React from "react";
+const SvgUnSelectButton = props => /*#__PURE__*/React.createElement("svg", _extends({
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 36,
+  height: 36
+}, props), /*#__PURE__*/React.createElement("g", {
+  "data-name": "Group 490"
+}, /*#__PURE__*/React.createElement("g", {
+  "data-name": "Rectangle 219",
+  style: {
+    stroke: "#e8e8e8",
+    fill: "#fff",
+    strokeWidth: 2
+  }
+}, /*#__PURE__*/React.createElement("rect", {
+  width: 36,
+  height: 36,
+  stroke: "none",
+  rx: 10,
+  style: {
+    stroke: "none"
+  }
+}), /*#__PURE__*/React.createElement("rect", {
+  width: 34,
+  height: 34,
+  x: 1,
+  y: 1,
+  rx: 9,
+  style: {
+    fill: "none"
+  }
+})), /*#__PURE__*/React.createElement("path", {
+  d: "m0 6.328 4.773 6.014L17.769 0",
+  "data-name": "Path 172",
+  style: {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: 3,
+    fill: "none",
+    stroke: "#e8e8e8"
+  },
+  transform: "rotate(-8 106.27 -52.509)"
+})));
+export default SvgUnSelectButton;
