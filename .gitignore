@@ -24,3 +24,6 @@ yarn-error.log*
 
 # package
 package-lock.json
+
+# webpack dist(빌드 결과물)
+dist/
