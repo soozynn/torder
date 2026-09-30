@@ -1,0 +1,19 @@
+# 의존성 업데이트 PR을 매주 한 번, 묶어서 받습니다.
+# 보안 업데이트(Dependabot alerts)는 이 설정과 별개로 바로 PR이 생성됩니다.
+version: 2
+updates:
+  - package-ecosystem: "npm" # pnpm-lock.yaml 도 여기서 처리됩니다
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
